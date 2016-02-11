@@ -1,22 +1,5 @@
 EESchema Schematic File Version 2
 LIBS:StepperController-rescue
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:microcontrollers
-LIBS:microchip
-LIBS:texas
-LIBS:interface
-LIBS:display
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
 LIBS:brooktre
 LIBS:dc-dc
 LIBS:elec-unifil
@@ -24,62 +7,70 @@ LIBS:ftdi
 LIBS:graphic
 LIBS:logo
 LIBS:relays
-LIBS:w_connectors
-LIBS:w_device
-LIBS:w_microcontrollers
-LIBS:w_opto
-LIBS:w_relay
-LIBS:w_transistor
-LIBS:borniers
-LIBS:tmc2660
-LIBS:xo-14s
 LIBS:74xgxx
+LIBS:74xx
 LIBS:ac-dc
 LIBS:actel
 LIBS:adc-dac
 LIBS:Altera
 LIBS:analog_devices
 LIBS:analog_switches
+LIBS:atmel
 LIBS:audio
 LIBS:cmos_ieee
+LIBS:cmos4000
+LIBS:conn
+LIBS:contrib
 LIBS:cypress
+LIBS:device
 LIBS:digital-audio
 LIBS:diode
+LIBS:display
 LIBS:dsp
 LIBS:ESD_Protection
 LIBS:gennum
 LIBS:hc11
 LIBS:intel
+LIBS:interface
 LIBS:ir
 LIBS:Lattice
+LIBS:linear
 LIBS:maxim
 LIBS:memory
+LIBS:microchip
 LIBS:microchip_dspic33dsc
 LIBS:microchip_pic10mcu
 LIBS:microchip_pic12mcu
 LIBS:microchip_pic16mcu
 LIBS:microchip_pic18mcu
 LIBS:microchip_pic32mcu
+LIBS:microcontrollers
 LIBS:motor_drivers
 LIBS:motorola
 LIBS:msp430
 LIBS:nordicsemi
 LIBS:nxp_armmcu
 LIBS:onsemi
+LIBS:opto
 LIBS:Oscillators
 LIBS:philips
+LIBS:power
 LIBS:Power_Management
 LIBS:powerint
 LIBS:pspice
 LIBS:references
+LIBS:regul
 LIBS:rfcom
 LIBS:sensors
 LIBS:silabs
+LIBS:siliconi
 LIBS:stm8
 LIBS:stm32
 LIBS:supertex
 LIBS:switches
+LIBS:texas
 LIBS:transf
+LIBS:transistors
 LIBS:ttl_ieee
 LIBS:valves
 LIBS:video
@@ -95,8 +86,8 @@ Sheet 5 8
 Title "CNC Controller"
 Date "2015-07-29"
 Rev "1"
-Comp ""
-Comment1 "3 Kanal Schrittmotorcontroller 36V / 2A"
+Comp "Daniel Walter"
+Comment1 "fordprfkt@googlemail.com"
 Comment2 "TMC260 + Atmega644"
 Comment3 ""
 Comment4 ""
@@ -157,7 +148,7 @@ Text HLabel 3650 2100 0    60   Input ~ 0
 SDO
 Text HLabel 3650 1450 0    60   Input ~ 0
 Sup_36V
-Text HLabel 1550 1650 0    60   Input ~ 0
+Text HLabel 1550 1750 0    60   Input ~ 0
 Enable
 Text HLabel 3650 2200 0    60   Input ~ 0
 CS_X
@@ -190,7 +181,7 @@ Wire Wire Line
 Wire Wire Line
 	3650 2100 5100 2100
 Wire Wire Line
-	2950 1750 5100 1750
+	1950 1750 5100 1750
 Wire Wire Line
 	3650 2200 5100 2200
 Wire Wire Line
@@ -267,82 +258,63 @@ Connection ~ 4800 3850
 Connection ~ 4700 4000
 Connection ~ 4600 4100
 Connection ~ 4500 4200
-Wire Wire Line
-	1750 1650 1550 1650
-Text HLabel 1550 1850 0    60   Input ~ 0
+Text HLabel 1550 2100 0    60   Input ~ 0
 Emergency_Off
-Wire Wire Line
-	1550 1850 1750 1850
 $Comp
-L C C14
-U 1 1 55571EF9
-P 900 1350
-F 0 "C14" H 925 1450 50  0000 L CNN
-F 1 "100nF" H 925 1250 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 938 1200 30  0001 C CNN
-F 3 "" H 900 1350 60  0000 C CNN
-	1    900  1350
-	1    0    0    -1  
-$EndComp
-$Comp
-L +5V #PWR49
-U 1 1 555720CF
-P 900 1200
-F 0 "#PWR49" H 900 1290 20  0001 C CNN
-F 1 "+5V" H 900 1290 30  0000 C CNN
-F 2 "" H 900 1200 60  0000 C CNN
-F 3 "" H 900 1200 60  0000 C CNN
-	1    900  1200
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR51
-U 1 1 5557213C
-P 900 1500
-F 0 "#PWR51" H 900 1500 30  0001 C CNN
-F 1 "GND" H 900 1430 30  0001 C CNN
-F 2 "" H 900 1500 60  0000 C CNN
-F 3 "" H 900 1500 60  0000 C CNN
-	1    900  1500
-	1    0    0    -1  
-$EndComp
-$Comp
-L +5V #PWR50
+L +5V #PWR054
 U 1 1 555721A9
-P 2150 1400
-F 0 "#PWR50" H 2150 1490 20  0001 C CNN
-F 1 "+5V" H 2150 1490 30  0000 C CNN
-F 2 "" H 2150 1400 60  0000 C CNN
-F 3 "" H 2150 1400 60  0000 C CNN
-	1    2150 1400
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR52
-U 1 1 55572216
-P 2150 2100
-F 0 "#PWR52" H 2150 2100 30  0001 C CNN
-F 1 "GND" H 2150 2030 30  0001 C CNN
-F 2 "" H 2150 2100 60  0000 C CNN
-F 3 "" H 2150 2100 60  0000 C CNN
-	1    2150 2100
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2150 2100 2150 1950
-Wire Wire Line
-	2150 1550 2150 1400
-$Comp
-L 74LS08 U4
-U 1 1 555D1147
-P 2350 1750
-F 0 "U4" H 2350 1800 60  0000 C CNN
-F 1 "74LS08" H 2350 1700 60  0000 C CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 2350 1750 60  0001 C CNN
-F 3 "" H 2350 1750 60  0000 C CNN
-	1    2350 1750
+P 2700 1250
+F 0 "#PWR054" H 2700 1340 20  0001 C CNN
+F 1 "+5V" H 2700 1340 30  0000 C CNN
+F 2 "" H 2700 1250 60  0000 C CNN
+F 3 "" H 2700 1250 60  0000 C CNN
+	1    2700 1250
 	1    0    0    -1  
 $EndComp
 Text HLabel 3650 1600 0    60   Input ~ 0
 TMC_Clock
+$Comp
+L D D24
+U 1 1 567DBE5B
+P 1800 1750
+F 0 "D24" H 1800 1850 50  0000 C CNN
+F 1 "D" H 1800 1650 50  0000 C CNN
+F 2 "" H 1800 1750 50  0001 C CNN
+F 3 "" H 1800 1750 50  0000 C CNN
+	1    1800 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L D D25
+U 1 1 567DBF65
+P 1800 2100
+F 0 "D25" H 1800 2200 50  0000 C CNN
+F 1 "D" H 1800 2000 50  0000 C CNN
+F 2 "" H 1800 2100 50  0001 C CNN
+F 3 "" H 1800 2100 50  0000 C CNN
+	1    1800 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R55
+U 1 1 567DC96F
+P 2700 1500
+F 0 "R55" V 2780 1500 50  0000 C CNN
+F 1 "10k" V 2700 1500 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 2630 1500 50  0001 C CNN
+F 3 "" H 2700 1500 50  0000 C CNN
+	1    2700 1500
+	1    0    0    -1  
+$EndComp
+Connection ~ 2700 1750
+Wire Wire Line
+	2700 2100 1950 2100
+Wire Wire Line
+	2700 1350 2700 1250
+Wire Wire Line
+	1650 1750 1550 1750
+Wire Wire Line
+	1550 2100 1650 2100
+Wire Wire Line
+	2700 1650 2700 2100
 $EndSCHEMATC

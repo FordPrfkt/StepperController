@@ -1,22 +1,5 @@
 EESchema Schematic File Version 2
 LIBS:StepperController-rescue
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:microcontrollers
-LIBS:microchip
-LIBS:texas
-LIBS:interface
-LIBS:display
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
 LIBS:brooktre
 LIBS:dc-dc
 LIBS:elec-unifil
@@ -24,62 +7,70 @@ LIBS:ftdi
 LIBS:graphic
 LIBS:logo
 LIBS:relays
-LIBS:w_connectors
-LIBS:w_device
-LIBS:w_microcontrollers
-LIBS:w_opto
-LIBS:w_relay
-LIBS:w_transistor
-LIBS:borniers
-LIBS:tmc2660
-LIBS:xo-14s
 LIBS:74xgxx
+LIBS:74xx
 LIBS:ac-dc
 LIBS:actel
 LIBS:adc-dac
 LIBS:Altera
 LIBS:analog_devices
 LIBS:analog_switches
+LIBS:atmel
 LIBS:audio
 LIBS:cmos_ieee
+LIBS:cmos4000
+LIBS:conn
+LIBS:contrib
 LIBS:cypress
+LIBS:device
 LIBS:digital-audio
 LIBS:diode
+LIBS:display
 LIBS:dsp
 LIBS:ESD_Protection
 LIBS:gennum
 LIBS:hc11
 LIBS:intel
+LIBS:interface
 LIBS:ir
 LIBS:Lattice
+LIBS:linear
 LIBS:maxim
 LIBS:memory
+LIBS:microchip
 LIBS:microchip_dspic33dsc
 LIBS:microchip_pic10mcu
 LIBS:microchip_pic12mcu
 LIBS:microchip_pic16mcu
 LIBS:microchip_pic18mcu
 LIBS:microchip_pic32mcu
+LIBS:microcontrollers
 LIBS:motor_drivers
 LIBS:motorola
 LIBS:msp430
 LIBS:nordicsemi
 LIBS:nxp_armmcu
 LIBS:onsemi
+LIBS:opto
 LIBS:Oscillators
 LIBS:philips
+LIBS:power
 LIBS:Power_Management
 LIBS:powerint
 LIBS:pspice
 LIBS:references
+LIBS:regul
 LIBS:rfcom
 LIBS:sensors
 LIBS:silabs
+LIBS:siliconi
 LIBS:stm8
 LIBS:stm32
 LIBS:supertex
 LIBS:switches
+LIBS:texas
 LIBS:transf
+LIBS:transistors
 LIBS:ttl_ieee
 LIBS:valves
 LIBS:video
@@ -95,8 +86,8 @@ Sheet 7 8
 Title "CNC Controller"
 Date "2015-07-29"
 Rev "1"
-Comp ""
-Comment1 ""
+Comp "Daniel Walter"
+Comment1 "fordprfkt@googlemail.com"
 Comment2 ""
 Comment3 ""
 Comment4 ""
@@ -110,10 +101,10 @@ SDI
 Text HLabel 4400 4050 0    60   Output ~ 0
 SDO
 $Comp
-L GND #PWR78
+L GND-RESCUE-StepperController #PWR068
 U 1 1 554EA425
 P 5700 5200
-F 0 "#PWR78" H 5700 5200 30  0001 C CNN
+F 0 "#PWR068" H 5700 5200 30  0001 C CNN
 F 1 "GND" H 5700 5130 30  0001 C CNN
 F 2 "" H 5700 5200 60  0000 C CNN
 F 3 "" H 5700 5200 60  0000 C CNN
@@ -132,10 +123,10 @@ F 3 "" H 3550 2900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR69
+L +5V #PWR069
 U 1 1 554EA432
 P 3550 2550
-F 0 "#PWR69" H 3550 2640 20  0001 C CNN
+F 0 "#PWR069" H 3550 2640 20  0001 C CNN
 F 1 "+5V" H 3550 2640 30  0000 C CNN
 F 2 "" H 3550 2550 60  0000 C CNN
 F 3 "" H 3550 2550 60  0000 C CNN
@@ -143,10 +134,10 @@ F 3 "" H 3550 2550 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR71
+L GND-RESCUE-StepperController #PWR070
 U 1 1 554EA438
 P 3550 3150
-F 0 "#PWR71" H 3550 3150 30  0001 C CNN
+F 0 "#PWR070" H 3550 3150 30  0001 C CNN
 F 1 "GND" H 3550 3080 30  0001 C CNN
 F 2 "" H 3550 3150 60  0000 C CNN
 F 3 "" H 3550 3150 60  0000 C CNN
@@ -199,10 +190,10 @@ Wire Wire Line
 	6050 2400 6050 2050
 Connection ~ 6050 2050
 $Comp
-L GND #PWR67
+L GND-RESCUE-StepperController #PWR071
 U 1 1 554EA45A
 P 6300 2400
-F 0 "#PWR67" H 6300 2400 30  0001 C CNN
+F 0 "#PWR071" H 6300 2400 30  0001 C CNN
 F 1 "GND" H 6300 2330 30  0001 C CNN
 F 2 "" H 6300 2400 60  0000 C CNN
 F 3 "" H 6300 2400 60  0000 C CNN
@@ -210,10 +201,10 @@ F 3 "" H 6300 2400 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR66
+L GND-RESCUE-StepperController #PWR072
 U 1 1 554EA460
 P 5250 2400
-F 0 "#PWR66" H 5250 2400 30  0001 C CNN
+F 0 "#PWR072" H 5250 2400 30  0001 C CNN
 F 1 "GND" H 5250 2330 30  0001 C CNN
 F 2 "" H 5250 2400 60  0000 C CNN
 F 3 "" H 5250 2400 60  0000 C CNN
@@ -223,10 +214,10 @@ $EndComp
 Wire Wire Line
 	6300 2400 6300 2350
 $Comp
-L GND #PWR76
+L GND-RESCUE-StepperController #PWR073
 U 1 1 554EA468
 P 6750 5150
-F 0 "#PWR76" H 6750 5150 30  0001 C CNN
+F 0 "#PWR073" H 6750 5150 30  0001 C CNN
 F 1 "GND" H 6750 5080 30  0001 C CNN
 F 2 "" H 6750 5150 60  0000 C CNN
 F 3 "" H 6750 5150 60  0000 C CNN
@@ -278,10 +269,10 @@ F 3 "" H 7400 3800 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR73
+L GND-RESCUE-StepperController #PWR074
 U 1 1 554EA48E
 P 7700 4050
-F 0 "#PWR73" H 7700 4050 30  0001 C CNN
+F 0 "#PWR074" H 7700 4050 30  0001 C CNN
 F 1 "GND" H 7700 3980 30  0001 C CNN
 F 2 "" H 7700 4050 60  0000 C CNN
 F 3 "" H 7700 4050 60  0000 C CNN
@@ -289,10 +280,10 @@ F 3 "" H 7700 4050 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR72
+L GND-RESCUE-StepperController #PWR075
 U 1 1 554EA494
 P 8300 3700
-F 0 "#PWR72" H 8300 3700 30  0001 C CNN
+F 0 "#PWR075" H 8300 3700 30  0001 C CNN
 F 1 "GND" H 8300 3630 30  0001 C CNN
 F 2 "" H 8300 3700 60  0000 C CNN
 F 3 "" H 8300 3700 60  0000 C CNN
@@ -350,10 +341,10 @@ Wire Wire Line
 Wire Wire Line
 	5700 5100 5700 5200
 $Comp
-L GND #PWR75
+L GND-RESCUE-StepperController #PWR076
 U 1 1 554EA4C9
 P 4750 4650
-F 0 "#PWR75" H 4750 4650 30  0001 C CNN
+F 0 "#PWR076" H 4750 4650 30  0001 C CNN
 F 1 "GND" H 4750 4580 30  0001 C CNN
 F 2 "" H 4750 4650 60  0000 C CNN
 F 3 "" H 4750 4650 60  0000 C CNN
@@ -363,10 +354,10 @@ $EndComp
 Wire Wire Line
 	4750 4500 4750 4650
 $Comp
-L GND #PWR77
+L GND-RESCUE-StepperController #PWR077
 U 1 1 554EA4D0
 P 7500 5150
-F 0 "#PWR77" H 7500 5150 30  0001 C CNN
+F 0 "#PWR077" H 7500 5150 30  0001 C CNN
 F 1 "GND" H 7500 5080 30  0001 C CNN
 F 2 "" H 7500 5150 60  0000 C CNN
 F 3 "" H 7500 5150 60  0000 C CNN
@@ -374,10 +365,10 @@ F 3 "" H 7500 5150 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR68
+L GND-RESCUE-StepperController #PWR078
 U 1 1 554EA4D6
 P 7500 2500
-F 0 "#PWR68" H 7500 2500 30  0001 C CNN
+F 0 "#PWR078" H 7500 2500 30  0001 C CNN
 F 1 "GND" H 7500 2430 30  0001 C CNN
 F 2 "" H 7500 2500 60  0000 C CNN
 F 3 "" H 7500 2500 60  0000 C CNN
@@ -438,10 +429,10 @@ F 3 "" H 3200 3200 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR74
+L GND-RESCUE-StepperController #PWR079
 U 1 1 554EA50C
 P 3200 4550
-F 0 "#PWR74" H 3200 4550 30  0001 C CNN
+F 0 "#PWR079" H 3200 4550 30  0001 C CNN
 F 1 "GND" H 3200 4480 30  0001 C CNN
 F 2 "" H 3200 4550 60  0000 C CNN
 F 3 "" H 3200 4550 60  0000 C CNN
@@ -633,10 +624,10 @@ F 3 "" H 3300 4250 50  0000 L CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR70
+L +5V #PWR080
 U 1 1 556452F5
 P 3200 2950
-F 0 "#PWR70" H 3200 3040 20  0001 C CNN
+F 0 "#PWR080" H 3200 3040 20  0001 C CNN
 F 1 "+5V" H 3200 3040 30  0000 C CNN
 F 2 "" H 3200 2950 60  0000 C CNN
 F 3 "" H 3200 2950 60  0000 C CNN

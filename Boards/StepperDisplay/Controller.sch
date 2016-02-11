@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:StepperDisplay-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -79,7 +80,7 @@ $EndComp
 Wire Wire Line
 	4600 3750 5950 3750
 $Comp
-L GND #PWR5
+L GND-RESCUE-StepperDisplay #PWR5
 U 1 1 55C412B3
 P 2300 4300
 F 0 "#PWR5" H 2300 4300 30  0001 C CNN
@@ -137,7 +138,7 @@ Wire Wire Line
 	2400 2250 2400 2950
 Connection ~ 2400 2550
 $Comp
-L GND #PWR3
+L GND-RESCUE-StepperDisplay #PWR3
 U 1 1 55C41875
 P 2200 3200
 F 0 "#PWR3" H 2200 3200 30  0001 C CNN
@@ -148,7 +149,7 @@ F 3 "" H 2200 3200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR2
+L GND-RESCUE-StepperDisplay #PWR2
 U 1 1 55C4188C
 P 2200 2800
 F 0 "#PWR2" H 2200 2800 30  0001 C CNN
@@ -201,7 +202,7 @@ Wire Wire Line
 Wire Wire Line
 	4600 3250 4900 3250
 $Comp
-L GND #PWR4
+L GND-RESCUE-StepperDisplay #PWR4
 U 1 1 55C41E9D
 P 5500 3350
 F 0 "#PWR4" H 5500 3350 30  0001 C CNN

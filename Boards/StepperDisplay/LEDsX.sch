@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:StepperDisplay-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -276,7 +277,7 @@ F 3 "" H 5300 5850 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR10
+L GND-RESCUE-StepperDisplay #PWR10
 U 1 1 55D40120
 P 2350 6350
 F 0 "#PWR10" H 2350 6350 30  0001 C CNN
@@ -287,7 +288,7 @@ F 3 "" H 2350 6350 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR11
+L GND-RESCUE-StepperDisplay #PWR11
 U 1 1 559146BE
 P 3550 6350
 F 0 "#PWR11" H 3550 6350 30  0001 C CNN
@@ -298,7 +299,7 @@ F 3 "" H 3550 6350 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR8
+L GND-RESCUE-StepperDisplay #PWR8
 U 1 1 55D40122
 P 2100 2700
 F 0 "#PWR8" H 2100 2700 30  0001 C CNN
@@ -451,7 +452,7 @@ F 3 "" H 5750 6400 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR13
+L GND-RESCUE-StepperDisplay #PWR13
 U 1 1 55B50D1E
 P 5750 6900
 F 0 "#PWR13" H 5750 6900 30  0001 C CNN

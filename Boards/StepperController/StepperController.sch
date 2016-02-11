@@ -1,22 +1,5 @@
 EESchema Schematic File Version 2
 LIBS:StepperController-rescue
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:microcontrollers
-LIBS:microchip
-LIBS:texas
-LIBS:interface
-LIBS:display
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
 LIBS:brooktre
 LIBS:dc-dc
 LIBS:elec-unifil
@@ -24,62 +7,70 @@ LIBS:ftdi
 LIBS:graphic
 LIBS:logo
 LIBS:relays
-LIBS:w_connectors
-LIBS:w_device
-LIBS:w_microcontrollers
-LIBS:w_opto
-LIBS:w_relay
-LIBS:w_transistor
-LIBS:borniers
-LIBS:tmc2660
-LIBS:xo-14s
 LIBS:74xgxx
+LIBS:74xx
 LIBS:ac-dc
 LIBS:actel
 LIBS:adc-dac
 LIBS:Altera
 LIBS:analog_devices
 LIBS:analog_switches
+LIBS:atmel
 LIBS:audio
 LIBS:cmos_ieee
+LIBS:cmos4000
+LIBS:conn
+LIBS:contrib
 LIBS:cypress
+LIBS:device
 LIBS:digital-audio
 LIBS:diode
+LIBS:display
 LIBS:dsp
 LIBS:ESD_Protection
 LIBS:gennum
 LIBS:hc11
 LIBS:intel
+LIBS:interface
 LIBS:ir
 LIBS:Lattice
+LIBS:linear
 LIBS:maxim
 LIBS:memory
+LIBS:microchip
 LIBS:microchip_dspic33dsc
 LIBS:microchip_pic10mcu
 LIBS:microchip_pic12mcu
 LIBS:microchip_pic16mcu
 LIBS:microchip_pic18mcu
 LIBS:microchip_pic32mcu
+LIBS:microcontrollers
 LIBS:motor_drivers
 LIBS:motorola
 LIBS:msp430
 LIBS:nordicsemi
 LIBS:nxp_armmcu
 LIBS:onsemi
+LIBS:opto
 LIBS:Oscillators
 LIBS:philips
+LIBS:power
 LIBS:Power_Management
 LIBS:powerint
 LIBS:pspice
 LIBS:references
+LIBS:regul
 LIBS:rfcom
 LIBS:sensors
 LIBS:silabs
+LIBS:siliconi
 LIBS:stm8
 LIBS:stm32
 LIBS:supertex
 LIBS:switches
+LIBS:texas
 LIBS:transf
+LIBS:transistors
 LIBS:ttl_ieee
 LIBS:valves
 LIBS:video
@@ -95,8 +86,8 @@ Sheet 1 8
 Title "CNC Controller"
 Date "2015-07-29"
 Rev "1"
-Comp ""
-Comment1 "Hauptschaltplan"
+Comp "Daniel Walter"
+Comment1 "fordprfkt@googlemail.com"
 Comment2 ""
 Comment3 ""
 Comment4 ""

@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:StepperDisplay-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -318,11 +319,12 @@ F 3 "" H 5300 5850 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR18
+L GND-RESCUE-StepperDisplay #PWR18
 U 1 1 559142F9
 P 2350 6350
 AR Path="/55B162BE/559142F9" Ref="#PWR18"  Part="1" 
 AR Path="/55A9E2AF/559142F9" Ref="#PWR01"  Part="1" 
+AR Path="/559142F9" Ref="#PWR18"  Part="1" 
 F 0 "#PWR18" H 2350 6350 30  0001 C CNN
 F 1 "GND" H 2350 6280 30  0001 C CNN
 F 2 "" H 2350 6350 60  0000 C CNN
@@ -331,11 +333,12 @@ F 3 "" H 2350 6350 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR19
+L GND-RESCUE-StepperDisplay #PWR19
 U 1 1 55D40121
 P 3550 6350
 AR Path="/55B162BE/55D40121" Ref="#PWR19"  Part="1" 
 AR Path="/55A9E2AF/55D40121" Ref="#PWR02"  Part="1" 
+AR Path="/55D40121" Ref="#PWR19"  Part="1" 
 F 0 "#PWR19" H 3550 6350 30  0001 C CNN
 F 1 "GND" H 3550 6280 30  0001 C CNN
 F 2 "" H 3550 6350 60  0000 C CNN
@@ -344,11 +347,12 @@ F 3 "" H 3550 6350 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR16
+L GND-RESCUE-StepperDisplay #PWR16
 U 1 1 55914B8C
 P 2100 2700
 AR Path="/55B162BE/55914B8C" Ref="#PWR16"  Part="1" 
 AR Path="/55A9E2AF/55914B8C" Ref="#PWR03"  Part="1" 
+AR Path="/55914B8C" Ref="#PWR16"  Part="1" 
 F 0 "#PWR16" H 2100 2700 30  0001 C CNN
 F 1 "GND" H 2100 2630 30  0001 C CNN
 F 2 "" H 2100 2700 60  0000 C CNN
@@ -523,11 +527,12 @@ F 3 "" H 5750 6400 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR21
+L GND-RESCUE-StepperDisplay #PWR21
 U 1 1 55D4012F
 P 5750 6900
 AR Path="/55B162BE/55D4012F" Ref="#PWR21"  Part="1" 
 AR Path="/55A9E2AF/55D4012F" Ref="#PWR08"  Part="1" 
+AR Path="/55D4012F" Ref="#PWR21"  Part="1" 
 F 0 "#PWR21" H 5750 6900 30  0001 C CNN
 F 1 "GND" H 5750 6830 30  0001 C CNN
 F 2 "" H 5750 6900 60  0000 C CNN
