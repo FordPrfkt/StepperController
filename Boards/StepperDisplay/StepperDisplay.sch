@@ -13,7 +13,6 @@ LIBS:memory
 LIBS:xilinx
 LIBS:microcontrollers
 LIBS:dsp
-LIBS:microchip
 LIBS:analog_switches
 LIBS:motorola
 LIBS:texas
@@ -30,6 +29,7 @@ LIBS:atmel
 LIBS:contrib
 LIBS:valves
 LIBS:ULN280xA
+LIBS:w_device
 LIBS:StepperDisplay-cache
 EELAYER 25 0
 EELAYER END
