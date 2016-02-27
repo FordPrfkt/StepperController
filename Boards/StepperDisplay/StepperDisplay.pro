@@ -1,8 +1,6 @@
-update=21.02.2016 23:51:07
+update=27.02.2016 20:26:31
 version=1
 last_client=kicad
-[general]
-version=1
 [pcbnew]
 version=1
 PageLayoutDescrFile=
@@ -61,3 +59,5 @@ LibName29=contrib
 LibName30=valves
 LibName31=ULN280xA
 LibName32=w_device
+[general]
+version=1

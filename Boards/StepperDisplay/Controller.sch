@@ -37,8 +37,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 5
 Title "CNC Controller Positionsanzeige"
-Date "2015-07-29"
-Rev "1"
+Date "2016-02-27"
+Rev "1.0"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -72,7 +72,7 @@ U 1 1 55C40F64
 P 10400 4000
 F 0 "P1" H 10400 4350 50  0000 C CNN
 F 1 "CONN_01X06" V 10500 4000 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Angled_2x03" H 10400 4000 60  0001 C CNN
+F 2 "w_conn_jst-ph:s6b-ph-kl" H 10400 4000 60  0001 C CNN
 F 3 "" H 10400 4000 60  0000 C CNN
 	1    10400 4000
 	1    0    0    -1  
