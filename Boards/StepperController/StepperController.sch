@@ -140,6 +140,7 @@ F34 "Keypad_Intr" I L 5000 5050 60
 F35 "Ref_Tool" I L 5000 3900 60 
 F36 "Spindle_On" O L 5000 4100 60 
 F37 "TMC_Clock" O R 6700 4550 60 
+F38 "Cover" I L 5000 3150 60 
 $EndSheet
 $Sheet
 S 2350 2950 1400 2650
@@ -168,6 +169,7 @@ F20 "Keypad_Intr" O R 3750 5050 60
 F21 "Spindle_PWM" I R 3750 4250 60 
 F22 "Emergency_Off" O R 3750 4400 60 
 F23 "Spindle_Enable" I R 3750 4100 60 
+F24 "Cover" O R 3750 3150 60 
 $EndSheet
 $Sheet
 S 7750 4200 1250 1500
@@ -193,6 +195,7 @@ F17 "Dir_Z" I L 7750 5200 60
 F18 "Stall_Z" O L 7750 5500 60 
 F19 "Emergency_Off" I R 9000 5500 60 
 F20 "TMC_Clock" I L 7750 4550 60 
+F21 "Cover" I R 9000 5350 60 
 $EndSheet
 Wire Wire Line
 	3750 3300 5000 3300
@@ -348,4 +351,15 @@ Wire Wire Line
 	3750 4100 5000 4100
 Wire Wire Line
 	6700 4550 7750 4550
+Wire Wire Line
+	3750 3150 5000 3150
+Wire Wire Line
+	4550 3150 4550 6100
+Wire Wire Line
+	4550 6100 9200 6100
+Wire Wire Line
+	9200 6100 9200 5350
+Wire Wire Line
+	9200 5350 9000 5350
+Connection ~ 4550 3150
 $EndSCHEMATC

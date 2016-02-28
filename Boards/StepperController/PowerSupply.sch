@@ -109,7 +109,7 @@ U 1 1 554E338E
 P 4200 3300
 F 0 "C1" H 4225 3400 50  0000 L CNN
 F 1 "220µF" H 4225 3200 50  0000 L CNN
-F 2 "w_smd_cap:c_elec_6.3x7.7" H 4238 3150 30  0001 C CNN
+F 2 "Capacitors_SMD:c_elec_8x10.5" H 4238 3150 30  0001 C CNN
 F 3 "" H 4200 3300 60  0000 C CNN
 	1    4200 3300
 	1    0    0    -1  
@@ -309,7 +309,7 @@ U 1 1 556221F1
 P 3800 3350
 F 0 "D12" H 3800 3450 50  0000 C CNN
 F 1 "P6KE47CA" H 3800 3250 50  0000 C CNN
-F 2 "w_pth_diodes:diode_do201" H 3800 3350 60  0001 C CNN
+F 2 "Diodes_ThroughHole:Diode_DO-201AD_Horizontal_RM15" H 3800 3350 60  0001 C CNN
 F 3 "" H 3800 3350 60  0000 C CNN
 	1    3800 3350
 	0    1    1    0   
@@ -338,7 +338,7 @@ U 1 1 567CFF20
 P 7150 3350
 F 0 "F2" H 7110 3410 50  0000 L CNN
 F 1 "4AT" H 7030 3290 50  0000 L CNN
-F 2 "Fuse_Holders_and_Fuses:Fuseholder5x20_horiz_open_universal_Type-III" H 7150 3350 50  0001 C CNN
+F 2 "Fuse_Holders_and_Fuses:Fuse_TE5_Littlefuse-395Series" H 7150 3350 50  0001 C CNN
 F 3 "" H 7150 3350 50  0000 C CNN
 	1    7150 3350
 	1    0    0    -1  
