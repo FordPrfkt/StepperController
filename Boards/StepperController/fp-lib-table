@@ -2,4 +2,5 @@
   (lib (name Euro)(type KiCad)(uri "$(KIPRJMOD)\\Euro.pretty")(options "")(descr ""))
   (lib (name w_conn_jst-ph)(type KiCad)(uri "D:\\Eigene Dateien\\Dokumente\\Projekte\\KiCad\\Kicad_Lib\\Footprint\\w_conn_jst-ph.pretty")(options "")(descr ""))
   (lib (name w_crystal)(type KiCad)(uri "D:\\Eigene Dateien\\Dokumente\\Projekte\\KiCad\\Kicad_Lib\\Footprint\\w_crystal.pretty")(options "")(descr ""))
+  (lib (name Oscillators_SMD)(type KiCad)(uri "$(KIPRJMOD)\\Oscillators_SMD.pretty")(options "")(descr ""))
 )
