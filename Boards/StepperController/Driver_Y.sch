@@ -603,7 +603,7 @@ SRA_Y
 Text Label 6750 3800 1    60   ~ 0
 SRB_Y
 Text Label 6650 3950 0    60   ~ 0
-BRN_Y
+BRB_Y
 Text Label 7900 4350 0    60   ~ 0
 OB2_Y
 Text Label 7900 4550 0    60   ~ 0

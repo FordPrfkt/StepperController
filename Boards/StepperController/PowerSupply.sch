@@ -180,7 +180,6 @@ F 3 "" H 8050 3200 60  0000 C CNN
 	1    8050 3200
 	1    0    0    -1  
 $EndComp
-Connection ~ 4200 3150
 Wire Wire Line
 	3450 3350 3450 3800
 Wire Wire Line
@@ -247,8 +246,6 @@ F 3 "" H 5100 3250 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2950 3150 4600 3150
-Wire Wire Line
 	4600 3350 4550 3350
 Wire Wire Line
 	4550 3350 4550 3550
@@ -295,12 +292,12 @@ Wire Wire Line
 $Comp
 L PWR_FLAG #FLG08
 U 1 1 5561E3FA
-P 4200 3150
-F 0 "#FLG08" H 4200 3420 30  0001 C CNN
-F 1 "PWR_FLAG" H 4200 3380 30  0000 C CNN
-F 2 "" H 4200 3150 60  0000 C CNN
-F 3 "" H 4200 3150 60  0000 C CNN
-	1    4200 3150
+P 3450 2450
+F 0 "#FLG08" H 3450 2720 30  0001 C CNN
+F 1 "PWR_FLAG" H 3450 2680 30  0000 C CNN
+F 2 "" H 3450 2450 60  0000 C CNN
+F 3 "" H 3450 2450 60  0000 C CNN
+	1    3450 2450
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -327,7 +324,6 @@ F 3 "" H 3800 3800 60  0000 C CNN
 $EndComp
 Wire Wire Line
 	3800 3550 3800 3800
-Connection ~ 3800 3150
 Wire Wire Line
 	5850 3450 5850 3350
 Text Notes 4550 2850 0    60   ~ 0
@@ -343,7 +339,6 @@ F 3 "" H 7150 3350 50  0000 C CNN
 	1    7150 3350
 	1    0    0    -1  
 $EndComp
-Connection ~ 3450 3150
 Wire Wire Line
 	2950 3350 3450 3350
 $Comp
@@ -407,4 +402,10 @@ $EndComp
 Wire Wire Line
 	7850 3200 7850 3350
 Connection ~ 7850 3350
+Connection ~ 3450 2450
+Wire Wire Line
+	2950 3150 4600 3150
+Connection ~ 3450 3150
+Connection ~ 3800 3150
+Connection ~ 4200 3150
 $EndSCHEMATC

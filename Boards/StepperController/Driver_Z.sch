@@ -605,7 +605,7 @@ OB1_Z
 Text Label 6900 3600 0    60   ~ 0
 BRA_Z
 Text Label 6900 3750 0    60   ~ 0
-BRB_Z
+SRA_Z
 Text Label 6850 4050 1    60   ~ 0
 SRB_Z
 Text Label 6800 4200 0    60   ~ 0
