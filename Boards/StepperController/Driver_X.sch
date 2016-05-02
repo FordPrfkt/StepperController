@@ -1,12 +1,5 @@
 EESchema Schematic File Version 2
 LIBS:StepperController-rescue
-LIBS:brooktre
-LIBS:dc-dc
-LIBS:elec-unifil
-LIBS:ftdi
-LIBS:graphic
-LIBS:logo
-LIBS:relays
 LIBS:74xgxx
 LIBS:74xx
 LIBS:ac-dc
@@ -17,24 +10,31 @@ LIBS:analog_devices
 LIBS:analog_switches
 LIBS:atmel
 LIBS:audio
+LIBS:bbd
+LIBS:brooktre
 LIBS:cmos_ieee
 LIBS:cmos4000
 LIBS:conn
 LIBS:contrib
 LIBS:cypress
+LIBS:dc-dc
 LIBS:device
 LIBS:digital-audio
 LIBS:diode
 LIBS:display
 LIBS:dsp
+LIBS:elec-unifil
 LIBS:ESD_Protection
+LIBS:ftdi
 LIBS:gennum
+LIBS:graphic
 LIBS:hc11
 LIBS:intel
 LIBS:interface
 LIBS:ir
 LIBS:Lattice
 LIBS:linear
+LIBS:logo
 LIBS:maxim
 LIBS:memory
 LIBS:microchip
@@ -60,6 +60,7 @@ LIBS:powerint
 LIBS:pspice
 LIBS:references
 LIBS:regul
+LIBS:relays
 LIBS:rfcom
 LIBS:sensors
 LIBS:silabs
@@ -74,6 +75,7 @@ LIBS:transistors
 LIBS:ttl_ieee
 LIBS:valves
 LIBS:video
+LIBS:Worldsemi
 LIBS:Xicor
 LIBS:xilinx
 LIBS:Zilog
@@ -414,7 +416,7 @@ U 1 1 554F79AD
 P 3200 3950
 F 0 "D9" H 3200 4050 50  0000 C CNN
 F 1 "LED_RT" H 3200 3850 50  0000 C CNN
-F 2 "LEDs:LED-0805" H 3200 3950 60  0001 C CNN
+F 2 "LEDs:LED_0805" H 3200 3950 60  0001 C CNN
 F 3 "" H 3200 3950 60  0000 C CNN
 	1    3200 3950
 	0    -1   -1   0   
@@ -622,7 +624,7 @@ U 1 1 55642781
 P 3300 4500
 F 0 "Q3" H 3500 4575 50  0000 L CNN
 F 1 "BC817-40" H 3500 4500 50  0000 L CNN
-F 2 "Housings_SOT-23_SOT-143_TSOT-6:SOT-23_Handsoldering" H 3500 4425 50  0000 L CIN
+F 2 "TO_SOT_Packages_SMD:SOT-23" H 3500 4425 50  0000 L CIN
 F 3 "" H 3300 4500 50  0000 L CNN
 	1    3300 4500
 	-1   0    0    -1  

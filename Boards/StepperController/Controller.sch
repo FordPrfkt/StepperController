@@ -1,12 +1,5 @@
 EESchema Schematic File Version 2
 LIBS:StepperController-rescue
-LIBS:brooktre
-LIBS:dc-dc
-LIBS:elec-unifil
-LIBS:ftdi
-LIBS:graphic
-LIBS:logo
-LIBS:relays
 LIBS:74xgxx
 LIBS:74xx
 LIBS:ac-dc
@@ -17,24 +10,31 @@ LIBS:analog_devices
 LIBS:analog_switches
 LIBS:atmel
 LIBS:audio
+LIBS:bbd
+LIBS:brooktre
 LIBS:cmos_ieee
 LIBS:cmos4000
 LIBS:conn
 LIBS:contrib
 LIBS:cypress
+LIBS:dc-dc
 LIBS:device
 LIBS:digital-audio
 LIBS:diode
 LIBS:display
 LIBS:dsp
+LIBS:elec-unifil
 LIBS:ESD_Protection
+LIBS:ftdi
 LIBS:gennum
+LIBS:graphic
 LIBS:hc11
 LIBS:intel
 LIBS:interface
 LIBS:ir
 LIBS:Lattice
 LIBS:linear
+LIBS:logo
 LIBS:maxim
 LIBS:memory
 LIBS:microchip
@@ -60,6 +60,7 @@ LIBS:powerint
 LIBS:pspice
 LIBS:references
 LIBS:regul
+LIBS:relays
 LIBS:rfcom
 LIBS:sensors
 LIBS:silabs
@@ -74,6 +75,7 @@ LIBS:transistors
 LIBS:ttl_ieee
 LIBS:valves
 LIBS:video
+LIBS:Worldsemi
 LIBS:Xicor
 LIBS:xilinx
 LIBS:Zilog
@@ -906,7 +908,7 @@ U 1 1 56D4BD2D
 P 2600 2250
 F 0 "Y1" H 2600 2400 50  0000 C CNN
 F 1 "20MHz" H 2600 2100 50  0000 C CNN
-F 2 "w_crystal:hc-49_smd" H 2600 2250 50  0001 C CNN
+F 2 "Crystals:Q_49U3HMS" H 2600 2250 50  0001 C CNN
 F 3 "" H 2600 2250 50  0000 C CNN
 	1    2600 2250
 	-1   0    0    1   

@@ -1,12 +1,5 @@
 EESchema Schematic File Version 2
 LIBS:StepperController-rescue
-LIBS:brooktre
-LIBS:dc-dc
-LIBS:elec-unifil
-LIBS:ftdi
-LIBS:graphic
-LIBS:logo
-LIBS:relays
 LIBS:74xgxx
 LIBS:74xx
 LIBS:ac-dc
@@ -17,24 +10,31 @@ LIBS:analog_devices
 LIBS:analog_switches
 LIBS:atmel
 LIBS:audio
+LIBS:bbd
+LIBS:brooktre
 LIBS:cmos_ieee
 LIBS:cmos4000
 LIBS:conn
 LIBS:contrib
 LIBS:cypress
+LIBS:dc-dc
 LIBS:device
 LIBS:digital-audio
 LIBS:diode
 LIBS:display
 LIBS:dsp
+LIBS:elec-unifil
 LIBS:ESD_Protection
+LIBS:ftdi
 LIBS:gennum
+LIBS:graphic
 LIBS:hc11
 LIBS:intel
 LIBS:interface
 LIBS:ir
 LIBS:Lattice
 LIBS:linear
+LIBS:logo
 LIBS:maxim
 LIBS:memory
 LIBS:microchip
@@ -60,6 +60,7 @@ LIBS:powerint
 LIBS:pspice
 LIBS:references
 LIBS:regul
+LIBS:relays
 LIBS:rfcom
 LIBS:sensors
 LIBS:silabs
@@ -74,6 +75,7 @@ LIBS:transistors
 LIBS:ttl_ieee
 LIBS:valves
 LIBS:video
+LIBS:Worldsemi
 LIBS:Xicor
 LIBS:xilinx
 LIBS:Zilog
@@ -198,7 +200,7 @@ U 1 1 554E531D
 P 7600 3950
 F 0 "D2" H 7600 4050 50  0000 C CNN
 F 1 "LED_GN" H 7600 3850 50  0000 C CNN
-F 2 "LEDs:LED-0805" H 7600 3950 60  0001 C CNN
+F 2 "LEDs:LED_0805" H 7600 3950 60  0001 C CNN
 F 3 "" H 7600 3950 60  0000 C CNN
 	1    7600 3950
 	0    -1   -1   0   
@@ -240,7 +242,7 @@ U 1 1 5555448B
 P 5100 3250
 F 0 "U1" H 4700 3600 50  0000 L CNN
 F 1 "LM2595S-5" H 4700 3500 50  0000 L CNN
-F 2 "SMD_Packages:TO-263-5_HandSoldering" H 5400 3000 50  0001 C CIN
+F 2 "TO_SOT_Packages_SMD:TO-263-5Lead" H 5400 3000 50  0001 C CIN
 F 3 "" H 5100 3250 50  0000 C CNN
 	1    5100 3250
 	1    0    0    -1  
@@ -258,7 +260,7 @@ U 1 1 55561612
 P 5850 3600
 F 0 "D1" H 5850 3700 50  0000 C CNN
 F 1 "MBRS240" H 5850 3500 50  0000 C CNN
-F 2 "Diodes_SMD:Diode-DO-214AB_Handsoldering" H 5850 3600 60  0001 C CNN
+F 2 "Diodes_SMD:DO-214AB" H 5850 3600 60  0001 C CNN
 F 3 "" H 5850 3600 60  0000 C CNN
 	1    5850 3600
 	0    1    1    0   
@@ -306,7 +308,7 @@ U 1 1 556221F1
 P 3800 3350
 F 0 "D12" H 3800 3450 50  0000 C CNN
 F 1 "P6KE47CA" H 3800 3250 50  0000 C CNN
-F 2 "Diodes_ThroughHole:Diode_DO-201AD_Horizontal_RM15" H 3800 3350 60  0001 C CNN
+F 2 "w_pth_diodes:diode_do201" H 3800 3350 60  0001 C CNN
 F 3 "" H 3800 3350 60  0000 C CNN
 	1    3800 3350
 	0    1    1    0   
@@ -372,7 +374,7 @@ U 1 1 567D9DE0
 P 8050 3950
 F 0 "D20" H 8050 4050 50  0000 C CNN
 F 1 "6V" H 8050 3850 50  0000 C CNN
-F 2 "Diodes_SMD:SOD-123" H 8050 3950 50  0001 C CNN
+F 2 "Diodes_SMD:MELF_Standard" H 8050 3950 50  0001 C CNN
 F 3 "" H 8050 3950 50  0000 C CNN
 	1    8050 3950
 	0    1    1    0   
