@@ -9,4 +9,5 @@
   (lib (name w_conn_pc)(type KiCad)(uri D:\KiCadLibs\libaries\w_conn_pc.pretty)(options "")(descr ""))
   (lib (name w_pth_diodes)(type KiCad)(uri D:\KiCadLibs\libaries\w_pth_diodes.pretty)(options "")(descr ""))
   (lib (name w_smd_dil)(type KiCad)(uri D:\KiCadLibs\libaries\w_smd_dil.pretty)(options "")(descr ""))
+  (lib (name w_smd_diode)(type KiCad)(uri D:\KiCadLibs\libaries\w_smd_diode.pretty)(options "")(descr ""))
 )
