@@ -1,4 +1,3 @@
 (fp_lib_table
-  (lib (name Buzzers_Beepers)(type KiCad)(uri "D:\\Eigene Dateien\\Dokumente\\Projekte\\KiCad\\Kicad_Lib\\Buzzers_Beepers.pretty")(options "")(descr ""))
-  (lib (name w_conn_jst-ph)(type KiCad)(uri "D:\\Eigene Dateien\\Dokumente\\Projekte\\KiCad\\Kicad_Lib\\Footprint\\w_conn_jst-ph.pretty")(options "")(descr ""))
+  (lib (name w_conn_jst-ph)(type KiCad)(uri D:\KiCadLibs\libaries\w_conn_jst-ph.pretty)(options "")(descr ""))
 )
