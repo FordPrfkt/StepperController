@@ -88,7 +88,7 @@ Sheet 5 8
 Title "CNC Controller"
 Date "2015-07-29"
 Rev "1"
-Comp "Daniel Walter"
+Comp "Daniel Walter (fordprfkt@googlemail.com)"
 Comment1 "fordprfkt@googlemail.com"
 Comment2 "TMC260 + Atmega644"
 Comment3 ""
@@ -185,8 +185,8 @@ L 74LS11 U2
 U 2 1 56D3B651
 P 2600 1750
 F 0 "U2" H 2600 1800 50  0000 C CNN
-F 1 "74LS11" H 2600 1700 50  0000 C CNN
-F 2 "w_smd_dil:soic-14" H 2600 1750 50  0001 C CNN
+F 1 "74HC11" H 2600 1700 50  0000 C CNN
+F 2 "w_smd_dil:so-14" H 2600 1750 50  0001 C CNN
 F 3 "" H 2600 1750 50  0000 C CNN
 	2    2600 1750
 	1    0    0    -1  

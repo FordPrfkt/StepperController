@@ -88,7 +88,7 @@ Sheet 2 8
 Title "CNC Controller"
 Date "2015-07-29"
 Rev "1"
-Comp "Daniel Walter"
+Comp "Daniel Walter (fordprfkt@googlemail.com)"
 Comment1 "fordprfkt@googlemail.com"
 Comment2 ""
 Comment3 ""
@@ -110,8 +110,8 @@ L CP C1
 U 1 1 554E338E
 P 4200 3300
 F 0 "C1" H 4225 3400 50  0000 L CNN
-F 1 "220µF" H 4225 3200 50  0000 L CNN
-F 2 "Capacitors_SMD:c_elec_10x10.5" H 4238 3150 30  0001 C CNN
+F 1 "100µF" H 4225 3200 50  0000 L CNN
+F 2 "Capacitors_SMD:c_elec_8x10.5" H 4238 3150 30  0001 C CNN
 F 3 "" H 4200 3300 60  0000 C CNN
 	1    4200 3300
 	1    0    0    -1  
@@ -121,8 +121,8 @@ L CP C2
 U 1 1 554E342D
 P 6800 3500
 F 0 "C2" H 6825 3600 50  0000 L CNN
-F 1 "100µF" H 6825 3400 50  0000 L CNN
-F 2 "Capacitors_SMD:c_elec_6.3x5.7" H 6838 3350 30  0001 C CNN
+F 1 "1000µF" H 6825 3400 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D16_L25_P7.5" H 6838 3350 30  0001 C CNN
 F 3 "" H 6800 3500 60  0000 C CNN
 	1    6800 3500
 	1    0    0    -1  
@@ -187,9 +187,7 @@ Wire Wire Line
 Wire Wire Line
 	4200 3450 4200 3800
 Wire Wire Line
-	5600 3350 5850 3350
-Wire Wire Line
-	5850 3350 6000 3350
+	5600 3350 6000 3350
 Connection ~ 5850 3350
 Wire Wire Line
 	6800 3650 6800 3850
@@ -238,31 +236,17 @@ Text HLabel 3550 2450 2    60   Output ~ 0
 Sup_36V
 Wire Wire Line
 	3450 2450 3550 2450
-$Comp
-L LM2595S-5-RESCUE-StepperController U1
-U 1 1 5555448B
-P 5100 3250
-F 0 "U1" H 4700 3600 50  0000 L CNN
-F 1 "LM2595S-5" H 4700 3500 50  0000 L CNN
-F 2 "TO_SOT_Packages_SMD:TO-263-5Lead" H 5400 3000 50  0001 C CIN
-F 3 "" H 5100 3250 50  0000 C CNN
-	1    5100 3250
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	4600 3350 4550 3350
 Wire Wire Line
 	4550 3350 4550 3550
-Wire Wire Line
-	4550 3550 5100 3550
-Connection ~ 5100 3550
 $Comp
 L D_Schottky D1
 U 1 1 55561612
 P 5850 3600
 F 0 "D1" H 5850 3700 50  0000 C CNN
-F 1 "MBRS240" H 5850 3500 50  0000 C CNN
-F 2 "Diodes_SMD:DO-214AB" H 5850 3600 60  0001 C CNN
+F 1 "SK34" H 5850 3500 50  0000 C CNN
+F 2 "w_smd_diode:do214ac" H 5850 3600 60  0001 C CNN
 F 3 "" H 5850 3600 60  0000 C CNN
 	1    5850 3600
 	0    1    1    0   
@@ -290,8 +274,6 @@ F 3 "" H 5100 3850 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5100 3550 5100 3850
-Wire Wire Line
 	3450 3150 3450 2450
 $Comp
 L PWR_FLAG #FLG08
@@ -309,8 +291,8 @@ L ZENER D12
 U 1 1 556221F1
 P 3800 3350
 F 0 "D12" H 3800 3450 50  0000 C CNN
-F 1 "P6KE47CA" H 3800 3250 50  0000 C CNN
-F 2 "w_pth_diodes:diode_do201" H 3800 3350 60  0001 C CNN
+F 1 "SM6T 39A" H 3800 3250 50  0000 C CNN
+F 2 "w_smd_diode:do214aa" H 3800 3350 60  0001 C CNN
 F 3 "" H 3800 3350 60  0000 C CNN
 	1    3800 3350
 	0    1    1    0   
@@ -330,8 +312,6 @@ Wire Wire Line
 	3800 3550 3800 3800
 Wire Wire Line
 	5850 3450 5850 3350
-Text Notes 4550 2850 0    60   ~ 0
-Ändern zu LM2676!! (3A/5V)
 $Comp
 L F_Small F2
 U 1 1 567CFF20
@@ -358,8 +338,6 @@ F 3 "" H 6800 3150 60  0000 C CNN
 $EndComp
 Wire Wire Line
 	5600 3150 6800 3150
-Wire Wire Line
-	6800 3150 6800 3150
 Connection ~ 6800 3150
 $Comp
 L GND-RESCUE-StepperController #PWR011
@@ -377,8 +355,8 @@ L ZENER D20
 U 1 1 567D9DE0
 P 8050 3950
 F 0 "D20" H 8050 4050 50  0000 C CNN
-F 1 "6V" H 8050 3850 50  0000 C CNN
-F 2 "w_smd_diode:sod323" H 8050 3950 50  0001 C CNN
+F 1 "P6SMB 6,8A" H 8050 3850 50  0000 C CNN
+F 2 "w_smd_diode:do214aa" H 8050 3950 50  0001 C CNN
 F 3 "" H 8050 3950 50  0000 C CNN
 	1    8050 3950
 	0    1    1    0   
@@ -388,19 +366,11 @@ Wire Wire Line
 Wire Wire Line
 	5850 3850 5850 3750
 Wire Wire Line
-	6600 3350 6800 3350
+	6600 3350 7050 3350
 Wire Wire Line
-	6800 3350 7050 3350
+	7250 3350 8050 3350
 Wire Wire Line
-	7250 3350 7600 3350
-Wire Wire Line
-	7600 3350 7850 3350
-Wire Wire Line
-	7850 3350 8050 3350
-Wire Wire Line
-	8050 3200 8050 3350
-Wire Wire Line
-	8050 3350 8050 3750
+	8050 3200 8050 3750
 Connection ~ 8050 3350
 $Comp
 L VCC #PWR012
@@ -418,14 +388,24 @@ Wire Wire Line
 Connection ~ 7850 3350
 Connection ~ 3450 2450
 Wire Wire Line
-	2950 3150 3450 3150
-Wire Wire Line
-	3450 3150 3800 3150
-Wire Wire Line
-	3800 3150 4200 3150
-Wire Wire Line
-	4200 3150 4600 3150
+	2950 3150 4600 3150
 Connection ~ 3450 3150
 Connection ~ 3800 3150
 Connection ~ 4200 3150
+$Comp
+L LM2576S-5 U1
+U 1 1 57C2DE4B
+P 5100 3250
+F 0 "U1" H 4700 3600 50  0000 L CNN
+F 1 "LM2576S-5" H 4700 3500 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:TO-263-5Lead" H 5400 3000 50  0000 C CIN
+F 3 "" H 5100 3250 50  0000 C CNN
+	1    5100 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4550 3550 5100 3550
+Wire Wire Line
+	5100 3550 5100 3850
+Connection ~ 5100 3550
 $EndSCHEMATC

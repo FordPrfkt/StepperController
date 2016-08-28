@@ -88,7 +88,7 @@ Sheet 1 8
 Title "CNC Controller"
 Date "2015-07-29"
 Rev "1"
-Comp "Daniel Walter"
+Comp "Daniel Walter (fordprfkt@googlemail.com)"
 Comment1 "fordprfkt@googlemail.com"
 Comment2 ""
 Comment3 ""

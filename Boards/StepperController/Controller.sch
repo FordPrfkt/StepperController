@@ -88,7 +88,7 @@ Sheet 3 8
 Title "CNC Controller"
 Date "2015-07-29"
 Rev "1"
-Comp "Daniel Walter"
+Comp "Daniel Walter (fordprfkt@googlemail.com)"
 Comment1 "fordprfkt@googlemail.com"
 Comment2 ""
 Comment3 ""
@@ -461,39 +461,6 @@ F 3 "" H 8700 3900 60  0000 C CNN
 $EndComp
 Text HLabel 1800 4350 0    60   Output ~ 0
 Spindle_On
-$Comp
-L 74HC00 U8
-U 1 1 5562365C
-P 9750 1400
-F 0 "U8" H 9750 1450 60  0000 C CNN
-F 1 "74HC00" H 9750 1300 60  0000 C CNN
-F 2 "w_smd_dil:soic-14" H 9750 1400 60  0001 C CNN
-F 3 "" H 9750 1400 60  0000 C CNN
-	1    9750 1400
-	1    0    0    -1  
-$EndComp
-$Comp
-L 74HC00 U8
-U 2 1 556238C9
-P 9750 1900
-F 0 "U8" H 9750 1950 60  0000 C CNN
-F 1 "74HC00" H 9750 1800 60  0000 C CNN
-F 2 "w_smd_dil:soic-14" H 9750 1900 60  0001 C CNN
-F 3 "" H 9750 1900 60  0000 C CNN
-	2    9750 1900
-	1    0    0    -1  
-$EndComp
-$Comp
-L 74HC00 U8
-U 3 1 55623915
-P 9750 2400
-F 0 "U8" H 9750 2450 60  0000 C CNN
-F 1 "74HC00" H 9750 2300 60  0000 C CNN
-F 2 "w_smd_dil:soic-14" H 9750 2400 60  0001 C CNN
-F 3 "" H 9750 2400 60  0000 C CNN
-	3    9750 2400
-	1    0    0    -1  
-$EndComp
 $Comp
 L GND-RESCUE-StepperController #PWR025
 U 1 1 55627CED
@@ -971,4 +938,51 @@ Wire Wire Line
 Wire Wire Line
 	8200 3850 8200 2950
 Connection ~ 8200 2950
+$Comp
+L 74LS08 U4
+U 2 1 57C3D60F
+P 9750 1900
+F 0 "U4" H 9750 1950 50  0000 C CNN
+F 1 "74HC08" H 9750 1850 50  0000 C CNN
+F 2 "w_smd_dil:so-14" H 9750 1900 50  0001 C CNN
+F 3 "" H 9750 1900 50  0000 C CNN
+	2    9750 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS08 U4
+U 3 1 57C3D8C3
+P 9750 2400
+F 0 "U4" H 9750 2450 50  0000 C CNN
+F 1 "74HC08" H 9750 2350 50  0000 C CNN
+F 2 "w_smd_dil:so-14" H 9750 2400 50  0001 C CNN
+F 3 "" H 9750 2400 50  0000 C CNN
+	3    9750 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS08 U4
+U 4 1 57C3D9E4
+P 7850 1400
+F 0 "U4" H 7850 1450 50  0000 C CNN
+F 1 "74HC08" H 7850 1350 50  0000 C CNN
+F 2 "w_smd_dil:so-14" H 7850 1400 50  0001 C CNN
+F 3 "" H 7850 1400 50  0000 C CNN
+	4    7850 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS08 U4
+U 1 1 57C3DA4F
+P 9750 1400
+F 0 "U4" H 9750 1450 50  0000 C CNN
+F 1 "74HC08" H 9750 1350 50  0000 C CNN
+F 2 "w_smd_dil:so-14" H 9750 1400 50  0001 C CNN
+F 3 "" H 9750 1400 50  0000 C CNN
+	1    9750 1400
+	1    0    0    -1  
+$EndComp
+NoConn ~ 7250 1300
+NoConn ~ 7250 1500
+NoConn ~ 8450 1400
 $EndSCHEMATC
