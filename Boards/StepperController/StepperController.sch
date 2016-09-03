@@ -136,13 +136,12 @@ F28 "Rel_1" O L 5000 4600 60
 F29 "Rel_2" O L 5000 4700 60 
 F30 "Emergency_Off" I L 5000 4400 60 
 F31 "Spindle_PWM" O L 5000 4250 60 
-F32 "CS_Keypad" O R 6700 4150 60 
-F33 "CS_Display" O R 6700 4050 60 
-F34 "Keypad_Intr" I L 5000 5050 60 
-F35 "Ref_Tool" I L 5000 3900 60 
-F36 "Spindle_On" O L 5000 4100 60 
-F37 "TMC_Clock" O R 6700 4550 60 
-F38 "Cover" I L 5000 3150 60 
+F32 "CS_Display" O R 6700 4050 60 
+F33 "Ref_Tool" I L 5000 3900 60 
+F34 "Spindle_On" O L 5000 4100 60 
+F35 "Cover" I L 5000 3150 60 
+F36 "Ext1" B L 5000 4850 60 
+F37 "Ext2" B L 5000 4950 60 
 $EndSheet
 $Sheet
 S 2350 2950 1400 2650
@@ -166,12 +165,12 @@ F15 "SDI" O L 2350 3400 60
 F16 "SCK" O L 2350 3300 60 
 F17 "CS_Disp" O L 2350 3600 60 
 F18 "SDO" I L 2350 3500 60 
-F19 "CS_Keypad" O L 2350 3700 60 
-F20 "Keypad_Intr" O R 3750 5050 60 
-F21 "Spindle_PWM" I R 3750 4250 60 
-F22 "Emergency_Off" O R 3750 4400 60 
-F23 "Spindle_Enable" I R 3750 4100 60 
-F24 "Cover" O R 3750 3150 60 
+F19 "Spindle_PWM" I R 3750 4250 60 
+F20 "Emergency_Off" O R 3750 4400 60 
+F21 "Spindle_Enable" I R 3750 4100 60 
+F22 "Cover" O R 3750 3150 60 
+F23 "Ext1" B R 3750 4850 60 
+F24 "Ext2" B R 3750 4950 60 
 $EndSheet
 $Sheet
 S 7750 4200 1250 1500
@@ -196,8 +195,7 @@ F16 "Step_Z" I L 7750 5100 60
 F17 "Dir_Z" I L 7750 5200 60 
 F18 "Stall_Z" O L 7750 5500 60 
 F19 "Emergency_Off" I R 9000 5500 60 
-F20 "TMC_Clock" I L 7750 4550 60 
-F21 "Cover" I R 9000 5350 60 
+F20 "Cover" I R 9000 5350 60 
 $EndSheet
 Wire Wire Line
 	3750 3300 5000 3300
@@ -221,8 +219,6 @@ Wire Wire Line
 	5000 4600 3750 4600
 Wire Wire Line
 	5000 4700 3750 4700
-Wire Wire Line
-	3750 5050 5000 5050
 Wire Wire Line
 	3750 5200 5000 5200
 Wire Wire Line
@@ -331,16 +327,6 @@ Wire Wire Line
 Wire Wire Line
 	7600 4050 6700 4050
 Wire Wire Line
-	2350 3700 1850 3700
-Wire Wire Line
-	1850 3700 1850 2800
-Wire Wire Line
-	1850 2800 7650 2800
-Wire Wire Line
-	7650 2800 7650 4150
-Wire Wire Line
-	7650 4150 6700 4150
-Wire Wire Line
 	9000 5500 9100 5500
 Wire Wire Line
 	9100 5500 9100 5950
@@ -352,8 +338,6 @@ Connection ~ 4800 4400
 Wire Wire Line
 	3750 4100 5000 4100
 Wire Wire Line
-	6700 4550 7750 4550
-Wire Wire Line
 	3750 3150 5000 3150
 Wire Wire Line
 	4550 3150 4550 6100
@@ -364,4 +348,8 @@ Wire Wire Line
 Wire Wire Line
 	9200 5350 9000 5350
 Connection ~ 4550 3150
+Wire Wire Line
+	3750 4850 5000 4850
+Wire Wire Line
+	5000 4950 3750 4950
 $EndSCHEMATC
