@@ -3,4 +3,6 @@
   (lib (name w_crystal)(type KiCad)(uri D:\KiCadLibs\libaries\w_crystal.pretty)(options "")(descr ""))
   (lib (name murata-resonators)(type Legacy)(uri D:\KiCadLibs\converted\murata-resonators.mod)(options "")(descr ""))
   (lib (name Oscillator__Crystal_SMD)(type KiCad)(uri D:\KiCadLibs\Oscillator__Crystal_SMD.pretty)(options "")(descr ""))
+  (lib (name w_switch)(type KiCad)(uri D:\KiCadLibs\libaries\w_switch.pretty)(options "")(descr ""))
+  (lib (name SMD_Switch_LSX1301)(type KiCad)(uri D:\KiCadLibs\SMD_Switch_LSX1301.pretty)(options "")(descr ""))
 )
