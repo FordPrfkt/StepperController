@@ -7,44 +7,40 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 #include <avr/io.h>
 #include <avr/wdt.h>
+#include <util/crc16.h>
+#include <util/atomic.h>
+#include <avr/cpufunc.h>
 #include <avr/sfr_defs.h>
 #include <avr/pgmspace.h>
-#include <avr/signature.h>
+/*#include <avr/signature.h>*/
 #include <avr/interrupt.h>
 
-#define DDR_SEROUT (DDRA)
+#define DDR_PIN_RCLK (DDA0)
 #define DDR_PIN_SEROUT (DDA1)
 #define DDR_PIN_SERCLK (DDA2)
-#define DDR_PIN_RCLK (DDA0)
-
-#define DDR_BEEP (DDRA)
 #define DDR_PIN_BEEP (DDA3)
-
-#define DDR_ENABLE (DDRB)
 #define DDR_PIN_ENABLE (DDB3)
+#define DDR_SPI_PIN_SO (DDB1)
 
-#define PORT_SEROUT (PORTA)
+#define PIN_RCLK (PORTA0)
 #define PIN_SEROUT (PORTA1)
 #define PIN_SERCLK (PORTA2)
-#define PIN_RCLK (PORTA0)
-
-#define PORT_BEEP (PORTA)
 #define PIN_BEEP (PORTA3)
-
-#define PORT_BTN (PORTA)
 #define PIN_BTN (PORTA4)
 
-#define PORT_ENABLE (PORTB)
 #define PIN_ENABLE (PORTB3)
+#define PIN_IN_SPI_CS (PINB6)
 
-#define SPI_CMD_RESET (0x50)
-#define SPI_CMD_CLEAR (0x40)
-#define SPI_CMD_DISPLAY (0x10)
-#define SPI_CMD_BEEP (0x20)
-#define SPI_CMD_BRIGHTNESS (0x30)
+#define SPI_CMD_RESET (0x60)
+#define SPI_CMD_CLEAR (0x50)
+#define SPI_CMD_POSITION (0x10)
+#define SPI_CMD_DISPLAY (0x20)
+#define SPI_CMD_BEEP (0x30)
+#define SPI_CMD_BRIGHTNESS (0x40)
 
 #define PRINTABLE_CHAR_MIN (32u)
 #define PRINTABLE_CHAR_MAX (126u)
@@ -163,38 +159,185 @@ static volatile uint8_t text[3][6] =
     }
 };
 
+static volatile uint16_t beepDuration = 0;
+
 static volatile uint8_t serialOutBuf[4] = {0,0,0,0};
 static volatile uint8_t runMainCtr = 0;
 
+static volatile uint8_t spiDataIn[20];
+static volatile uint8_t spiDataOut[20];
+static volatile uint8_t spiDataCtr = 0;
+static volatile uint8_t spiDataCkSum = 0;
+static volatile bool spiDataReceived = false;
+
 int main(void)
 {
-    DDR_SEROUT |= DDR_PIN_SEROUT|DDR_PIN_SERCLK|DDR_PIN_RCLK;
-    DDR_BEEP |= DDR_PIN_BEEP;
-    DDR_ENABLE |= DDR_PIN_ENABLE;
+    DDRA = _BV(DDR_PIN_SEROUT) |_BV(DDR_PIN_SERCLK) |_BV(DDR_PIN_RCLK) |_BV(DDR_PIN_BEEP);
+    DDRB = _BV(DDR_PIN_ENABLE) | _BV(DDR_SPI_PIN_SO);
     
-    wdt_enable(WDTO_15MS);
+    /*wdt_enable(WDTO_15MS);*/
     
-    TCCR0B |= _BV(TSM);
-    TCCR0B |= _BV(CS00)|_BV(CS02); /* Prescaler 1024 */
-    TIMSK |= _BV(OCIE0A);
+    TCCR0A = _BV(WGM00);
+    TCNT0L = 0;
     OCR0A = 58; /* 5ms with Prescaler 1024 @ 12MHZ*/
-    TCCR0B &= ~_BV(TSM);
+    TIMSK = _BV(OCIE0A);
+    TCCR0B = _BV(CS00)|_BV(CS02); /* Prescaler 1024 */
     
-    PORT_ENABLE |= PIN_ENABLE;
+    TCCR1A = _BV(PWM1B)|_BV(COM1B1)|_BV(COM1B0);
+    OCR1B = 127;
+    TCNT1 = 0;
+    TCCR1B = _BV(CS11)|_BV(CS10)|_BV(CS13);
     
-    if (10 == runMainCtr)
+    USICR = _BV(USIWM0)|_BV(USICS1);
+    USIPP = 0;
+    
+    MCUCR = _BV(ISC00);
+    GIMSK = _BV(INT0);
+    
+    PORTB |= _BV(PIN_ENABLE);
+    
+    sei();
+
+    do 
     {
-        wdt_reset();
-        runMainCtr = 0;
-    }    
+        if (10 == runMainCtr)
+        {
+            ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+            {
+                if (10 <= beepDuration)
+                {
+                    PORTA |= _BV(PIN_BEEP);
+                    beepDuration -= 10;
+                }
+                else
+                {
+                    beepDuration = 0;
+                    PORTA &= ~_BV(PIN_BEEP);
+                }
+            
+                /*wdt_reset();*/
+                runMainCtr = 0;
+            }
+        }
+    } while (1);
 }
 
-ISR(USI_START_vect)
+ISR(INT0_vect)
 {
+    uint32_t data;
+    uint8_t ctr;
+    uint8_t ctr2;
+    char buf[10];
     
+    if ((PORTB & _BV(PIN_IN_SPI_CS)) == _BV(PIN_IN_SPI_CS))
+    {
+        USICR &= ~_BV(USIOIF);
+        
+        if (0 < spiDataCtr)
+        {           
+            if (spiDataIn[spiDataCtr - 1] == spiDataCkSum)
+            {
+                switch(spiDataIn[0])
+                {
+                    case SPI_CMD_RESET:
+                        memset(text, 0xFF, 18);
+                        OCR1B = 127;
+                        beepDuration = 0;
+                        PORTA &= ~_BV(PIN_BEEP);
+                    break;
+                    
+                    case SPI_CMD_CLEAR:
+                        memset(text, 0, 18);
+                    break;
+                    
+                    case SPI_CMD_BRIGHTNESS:
+                        if (spiDataCtr == 3)
+                        {
+                            OCR1B = spiDataIn[1];
+                        }
+                    break;
+                    
+                    case SPI_CMD_BEEP:
+                        if (spiDataCtr == 4)
+                        {
+                            beepDuration = (spiDataIn[1]<<8) | spiDataIn[2];
+                        }                        
+                    break;
+                    
+                    case SPI_CMD_POSITION:
+                        if (spiDataCtr == 11)
+                        {
+                            for (ctr = 0; ctr < 6; ctr+=3)
+                            {
+                                data = spiDataIn[1+ctr];
+                                data <<= 8;
+                                data |= spiDataIn[2+ctr];
+                                data <<= 8;
+                                data |= spiDataIn[3+ctr];
+                                
+                                utoa(data, buf, 10);
+                                
+                                for (ctr2 = 6; ctr2 > 0; ctr2--)
+                                {
+                                    if ((buf[ctr] >= PRINTABLE_CHAR_MIN) && (buf[ctr] <= PRINTABLE_CHAR_MAX))
+                                    {
+                                        text[ctr/3][ctr2] = pgm_read_byte(characters[buf[ctr] - PRINTABLE_CHAR_MIN]);
+                                    }
+                                    else
+                                    {
+                                        text[ctr/3][ctr2] = 0;
+                                    }
+                                }
+                                
+                                text[ctr/3][2] |= DECIMAL_POINT;
+                            }
+                        }
+                    break;
+
+                    case SPI_CMD_DISPLAY:
+                        if (spiDataCtr == 20)
+                        {
+                            for (ctr = 0; ctr < 18; ctr++)
+                            {
+                                if ((spiDataIn[ctr+1] >= PRINTABLE_CHAR_MIN) && (spiDataIn[ctr+1] <= PRINTABLE_CHAR_MAX))
+                                {
+                                    text[ctr/6][ctr%6] = pgm_read_byte(characters[spiDataIn[ctr+1] - PRINTABLE_CHAR_MIN]);
+                                }
+                                else
+                                {
+                                    text[ctr/6][ctr%6] = 0;
+                                }
+                            }                            
+                        }
+                    break;
+                                                                    
+                    default:
+                    break;
+                }
+            }
+        }
+    }
+    else
+    {
+        USICR |= _BV(USIOIF);
+        spiDataCtr = 0;
+        spiDataReceived = false;
+        spiDataCkSum = 0;
+        memset((void*)spiDataIn, 0xFF, 20);
+        memset((void*)spiDataOut, 0xFF, 20);        
+    }
 }
 
-ISR(TIMER0_COMPA_vect)
+ISR(USI_OVF_vect)
+{
+    spiDataIn[spiDataCtr] = USIBR;
+    spiDataCkSum = _crc8_ccitt_update(spiDataCkSum, spiDataIn[spiDataCtr]);
+    
+    spiDataCtr++;
+    spiDataCtr %= 20;
+}
+
+ISR(TIMER0_COMPA_vect, ISR_BLOCK)
 {
     static volatile uint8_t currentSeg = 1;
     static volatile bool outputMode = false;
@@ -206,20 +349,20 @@ ISR(TIMER0_COMPA_vect)
     if (false == outputMode)
     {
         runMainCtr += 5;
-        memset((void*)serialOutBuf, 0, sizeof(serialOutBuf));
+        memset((void*)&serialOutBuf[0], 0, 4);
         
         for (currentRow = 0; currentRow < 3; currentRow++)
         {
             for (currentChar = 0; currentChar < 6; currentChar++)
             {
-                if ((text[currentRow][currentChar] & (currentSeg)) == (currentSeg))
+                if ((text[2 - currentRow][currentChar] & (currentSeg)) == (currentSeg))
                 {
-                    serialOutBuf[currentRow + 1] |= _BV(currentChar + 3);
+                    serialOutBuf[currentRow] |= _BV(currentChar + 2);
                 }
             }
         }
     
-        serialOutBuf[0] = currentSeg;
+        serialOutBuf[3] = currentSeg;
     
         currentSeg <<= 1;
         if (0 == currentSeg)
@@ -231,51 +374,57 @@ ISR(TIMER0_COMPA_vect)
 
         TCCR0B |= _BV(TSM);
         TCCR0B &= ~(_BV(CS00)|_BV(CS01)|_BV(CS02)); /* Prescaler 0 */
-        OCR0A = 12; /* 1MHz with Prescaler 0 @ 12MHZ*/
-        TCNT0L = TCNT0H = 0;
+        TCCR0B |= _BV(CS00); /* Prescaler 1 */
+        OCR0A = 6; /* 2MHz with Prescaler 1 @ 12MHZ*/
+        TCNT0L = 0;
         TCCR0B &= ~_BV(TSM);
     }
     else
     {
         if (33 > bitCtr)
         {
-            PORT_SEROUT |= PIN_RCLK;
-            PORT_SEROUT |= PIN_SERCLK;
+            PORTA &= ~_BV(PIN_RCLK);
+            PORTA &= ~_BV(PIN_SERCLK);
         
             if ((serialOutBuf[bitCtr / 8] & _BV(bitCtr)) == _BV(bitCtr))
             {
-                PORT_SEROUT |= PIN_SEROUT;
+                PORTA |= _BV(PIN_SEROUT);
             }
             else
             {
-                PORT_SEROUT &= ~PIN_SEROUT;
+                PORTA &= ~_BV(PIN_SEROUT);
             }
-
-            PORT_SEROUT &= ~PIN_SERCLK;
+            
+            _NOP();
+            _NOP();
+            _NOP();
+            PORTA |= _BV(PIN_SERCLK);
             
             bitCtr++;
         }
         else
         {
-            PORT_SEROUT |= (PIN_SEROUT | PIN_SERCLK);
+            PORTA &= ~(_BV(PIN_SEROUT) | _BV(PIN_SERCLK));
+            _NOP();
+            _NOP();
+            _NOP();
+            PORTA |= _BV(PIN_RCLK);
+            _NOP();
+            _NOP();
+            _NOP();
+            _NOP();
+            _NOP();
+            _NOP();
+            PORTA &= ~_BV(PIN_RCLK);
             
-            if (33 == bitCtr)
-            {
-                PORT_SEROUT &= ~PIN_RCLK;
-                bitCtr++;
-            }
-            else
-            {
-                PORT_SEROUT |= PIN_RCLK;
-                bitCtr = 0;
-                outputMode = false;
+            bitCtr = 0;
+            outputMode = false;
 
-                TCCR0B |= _BV(TSM);
-                TCCR0B |= _BV(CS00)|_BV(CS02); /* Prescaler 1024 */
-                OCR0A = 58; /* 5ms with Prescaler 1024 @ 12MHZ*/
-                TCNT0L = TCNT0H = 0;
-                TCCR0B &= ~_BV(TSM);
-            }
+            TCCR0B |= _BV(TSM);
+            TCCR0B |= _BV(CS00)|_BV(CS02); /* Prescaler 1024 */
+            OCR0A = 58; /* 5ms with Prescaler 1024 @ 12MHZ*/
+            TCNT0L = 0;
+            TCCR0B &= ~_BV(TSM);
         }        
     }
 }
