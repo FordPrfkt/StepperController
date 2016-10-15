@@ -16,8 +16,9 @@
 #include <avr/cpufunc.h>
 #include <avr/sfr_defs.h>
 #include <avr/pgmspace.h>
-/*#include <avr/signature.h>*/
+#include <avr/signature.h>
 #include <avr/interrupt.h>
+#include "Button.h"
 
 #define DDR_PIN_RCLK (DDA0)
 #define DDR_PIN_SEROUT (DDA1)
@@ -31,20 +32,28 @@
 #define PIN_SERCLK (PORTA2)
 #define PIN_BEEP (PORTA3)
 #define PIN_BTN (PORTA4)
+#define PIN_IN_BTN (PINA4)
 
 #define PIN_ENABLE (PORTB3)
+#define PIN_SPI_CS (PORTB6)
 #define PIN_IN_SPI_CS (PINB6)
 
 #define SPI_CMD_RESET (0x60)
 #define SPI_CMD_CLEAR (0x50)
+#define SPI_CMD_VERSION (0x05)
 #define SPI_CMD_POSITION (0x10)
 #define SPI_CMD_DISPLAY (0x20)
 #define SPI_CMD_BEEP (0x30)
 #define SPI_CMD_BRIGHTNESS (0x40)
+#define SPI_CMD_GETBUTTON (0x50)
 
 #define PRINTABLE_CHAR_MIN (32u)
 #define PRINTABLE_CHAR_MAX (126u)
 #define NUM_CHARS ((PRINTABLE_CHAR_MAX - PRINTABLE_CHAR_MIN) + 1)
+
+#define SPI_BUF_LEN (20)
+#define NUM_ROWS (3)
+#define ROW_LEN (6)
 
 #define DECIMAL_POINT (0x80u)
 static const uint8_t characters[NUM_CHARS] PROGMEM =
@@ -146,7 +155,20 @@ static const uint8_t characters[NUM_CHARS] PROGMEM =
     0x01  /* 126 	~ */
 };
 
-static volatile uint8_t text[3][6] = 
+static const char defaultText[NUM_ROWS][ROW_LEN] PROGMEM =
+{
+	{
+		'V','E','r','S','.',' '
+	},
+	{
+		'0','.','0','.','1',' '
+	},
+	{
+		'r','E','A','d','y',' '
+	}
+};
+
+static volatile uint8_t text[NUM_ROWS][ROW_LEN] = 
 {
     {
         0xFF,0xFF,0xFF,0xFF,0xFF,0xFF /* 8.8.8.8.8.8. */
@@ -164,18 +186,29 @@ static volatile uint16_t beepDuration = 0;
 static volatile uint8_t serialOutBuf[4] = {0,0,0,0};
 static volatile uint8_t runMainCtr = 0;
 
-static volatile uint8_t spiDataIn[20];
-static volatile uint8_t spiDataOut[20];
+static volatile uint8_t spiDataIn[SPI_BUF_LEN];
+static volatile uint8_t spiDataOut[SPI_BUF_LEN];
 static volatile uint8_t spiDataCtr = 0;
 static volatile uint8_t spiDataCkSum = 0;
-static volatile bool spiDataReceived = false;
+static volatile BTN_State_t curBtnState = BUTTON_RELEASE;
 
 int main(void)
 {
     DDRA = _BV(DDR_PIN_SEROUT) |_BV(DDR_PIN_SERCLK) |_BV(DDR_PIN_RCLK) |_BV(DDR_PIN_BEEP);
     DDRB = _BV(DDR_PIN_ENABLE) | _BV(DDR_SPI_PIN_SO);
     
-    /*wdt_enable(WDTO_15MS);*/
+    PORTA |= _BV(PIN_BTN);
+    PORTB |= _BV(PIN_SPI_CS);
+    
+    PORTA &= ~_BV(PIN_RCLK);
+    _NOP();
+    _NOP();
+    PORTA |= _BV(PIN_RCLK);
+    _NOP();
+    _NOP();
+    PORTA &= ~_BV(PIN_RCLK);
+    
+    wdt_enable(WDTO_30MS);
     
     TCCR0A = _BV(WGM00);
     TCNT0L = 0;
@@ -196,6 +229,10 @@ int main(void)
     
     PORTB |= _BV(PIN_ENABLE);
     
+	BTN_Init();
+	memset((void*)spiDataIn, 0xFF, SPI_BUF_LEN);
+	memset((void*)spiDataOut, 0xFF, SPI_BUF_LEN);
+
     sei();
 
     do 
@@ -204,6 +241,7 @@ int main(void)
         {
             ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
             {
+                BTN_Main();
                 if (10 <= beepDuration)
                 {
                     PORTA |= _BV(PIN_BEEP);
@@ -215,11 +253,30 @@ int main(void)
                     PORTA &= ~_BV(PIN_BEEP);
                 }
             
-                /*wdt_reset();*/
+                wdt_reset();
                 runMainCtr = 0;
             }
         }
     } while (1);
+}
+
+void BTN_Callback(uint8_t btnNum, BTN_State_t status)
+{
+    static BTN_State_t btnState = BUTTON_RELEASE;
+
+	if (BUTTON_RELEASE == status)
+	{
+		if (BUTTON_PRESS == btnState)
+		{
+			curBtnState = BUTTON_PRESS;
+		}
+	}
+	else if (BUTTON_LONGPRESS == status)
+	{
+		curBtnState = BUTTON_LONGPRESS;
+	}
+
+	btnState = status;
 }
 
 ISR(INT0_vect)
@@ -229,7 +286,7 @@ ISR(INT0_vect)
     uint8_t ctr2;
     char buf[10];
     
-    if ((PORTB & _BV(PIN_IN_SPI_CS)) == _BV(PIN_IN_SPI_CS))
+    if ((PINB & _BV(PIN_IN_SPI_CS)) == _BV(PIN_IN_SPI_CS))
     {
         USICR &= ~_BV(USIOIF);
         
@@ -240,14 +297,16 @@ ISR(INT0_vect)
                 switch(spiDataIn[0])
                 {
                     case SPI_CMD_RESET:
-                        memset(text, 0xFF, 18);
-                        OCR1B = 127;
-                        beepDuration = 0;
-                        PORTA &= ~_BV(PIN_BEEP);
+						cli();
+
+						while (1)
+                        {
+							_NOP();
+                        }
                     break;
                     
                     case SPI_CMD_CLEAR:
-                        memset(text, 0, 18);
+                        memset(text, 0, (NUM_ROWS*ROW_LEN));
                     break;
                     
                     case SPI_CMD_BRIGHTNESS:
@@ -256,7 +315,17 @@ ISR(INT0_vect)
                             OCR1B = spiDataIn[1];
                         }
                     break;
-                    
+
+                    case SPI_CMD_VERSION:
+                    if (spiDataCtr == 1)
+                    {
+	                    for (ctr = 0; ctr < (NUM_ROWS*ROW_LEN); ctr++)
+	                    {
+		                    text[ctr / ROW_LEN][ctr % ROW_LEN] = pgm_read_byte(characters[pgm_read_byte(defaultText[ctr]) - PRINTABLE_CHAR_MIN]);
+	                    }
+                    }
+                    break;
+
                     case SPI_CMD_BEEP:
                         if (spiDataCtr == 4)
                         {
@@ -295,22 +364,22 @@ ISR(INT0_vect)
                     break;
 
                     case SPI_CMD_DISPLAY:
-                        if (spiDataCtr == 20)
+                        if (spiDataCtr == SPI_BUF_LEN)
                         {
-                            for (ctr = 0; ctr < 18; ctr++)
+                            for (ctr = 0; ctr < (NUM_ROWS*ROW_LEN); ctr++)
                             {
                                 if ((spiDataIn[ctr+1] >= PRINTABLE_CHAR_MIN) && (spiDataIn[ctr+1] <= PRINTABLE_CHAR_MAX))
                                 {
-                                    text[ctr/6][ctr%6] = pgm_read_byte(characters[spiDataIn[ctr+1] - PRINTABLE_CHAR_MIN]);
+                                    text[ctr / ROW_LEN][ctr % ROW_LEN] = pgm_read_byte(characters[spiDataIn[ctr+1] - PRINTABLE_CHAR_MIN]);
                                 }
                                 else
                                 {
-                                    text[ctr/6][ctr%6] = 0;
+                                    text[ctr / ROW_LEN][ctr % ROW_LEN] = 0;
                                 }
                             }                            
                         }
                     break;
-                                                                    
+					                                          
                     default:
                     break;
                 }
@@ -321,10 +390,9 @@ ISR(INT0_vect)
     {
         USICR |= _BV(USIOIF);
         spiDataCtr = 0;
-        spiDataReceived = false;
         spiDataCkSum = 0;
-        memset((void*)spiDataIn, 0xFF, 20);
-        memset((void*)spiDataOut, 0xFF, 20);        
+        memset((void*)spiDataIn, 0xFF, SPI_BUF_LEN);
+        memset((void*)spiDataOut, 0xFF, SPI_BUF_LEN);        
     }
 }
 
@@ -334,7 +402,22 @@ ISR(USI_OVF_vect)
     spiDataCkSum = _crc8_ccitt_update(spiDataCkSum, spiDataIn[spiDataCtr]);
     
     spiDataCtr++;
-    spiDataCtr %= 20;
+    spiDataCtr %= SPI_BUF_LEN;
+
+	if (SPI_CMD_GETBUTTON == spiDataIn[0])
+	{
+		if (0 != (spiDataCtr % 2))
+		{
+			spiDataOut[spiDataCtr] = (uint8_t)curBtnState;
+			curBtnState = BUTTON_RELEASE;		
+		}
+		else
+		{
+			spiDataOut[spiDataCtr] = _crc8_ccitt_update(0, spiDataOut[spiDataCtr - 1]);
+		}
+	}
+
+	USIBR = spiDataOut[spiDataCtr];
 }
 
 ISR(TIMER0_COMPA_vect, ISR_BLOCK)
@@ -351,9 +434,9 @@ ISR(TIMER0_COMPA_vect, ISR_BLOCK)
         runMainCtr += 5;
         memset((void*)&serialOutBuf[0], 0, 4);
         
-        for (currentRow = 0; currentRow < 3; currentRow++)
+        for (currentRow = 0; currentRow < NUM_ROWS; currentRow++)
         {
-            for (currentChar = 0; currentChar < 6; currentChar++)
+            for (currentChar = 0; currentChar < ROW_LEN; currentChar++)
             {
                 if ((text[2 - currentRow][currentChar] & (currentSeg)) == (currentSeg))
                 {
@@ -406,11 +489,7 @@ ISR(TIMER0_COMPA_vect, ISR_BLOCK)
         {
             PORTA &= ~(_BV(PIN_SEROUT) | _BV(PIN_SERCLK));
             _NOP();
-            _NOP();
-            _NOP();
             PORTA |= _BV(PIN_RCLK);
-            _NOP();
-            _NOP();
             _NOP();
             _NOP();
             _NOP();
