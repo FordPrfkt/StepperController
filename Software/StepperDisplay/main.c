@@ -55,6 +55,22 @@
 #define NUM_ROWS (3)
 #define ROW_LEN (6)
 
+#define SER_CLOCK() PORTA &= ~_BV(PIN_SERCLK);\
+					_NOP();\
+					_NOP();\
+					PORTA |= _BV(PIN_SERCLK);\
+					_NOP();\
+					_NOP();\
+					PORTA &= ~_BV(PIN_SERCLK);
+
+#define LATCH_CLOCK() PORTA &= ~_BV(PIN_RCLK);\
+					  _NOP();\
+					  _NOP();\
+					  PORTA |= _BV(PIN_RCLK);\
+					  _NOP();\
+					  _NOP();\
+					  PORTA &= ~_BV(PIN_RCLK);
+
 #define DECIMAL_POINT (0x80u)
 static const uint8_t characters[NUM_CHARS] PROGMEM =
 {
@@ -171,26 +187,27 @@ static const char defaultText[NUM_ROWS][ROW_LEN] PROGMEM =
 static volatile uint8_t text[NUM_ROWS][ROW_LEN] = 
 {
     {
-        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF /* 8.8.8.8.8.8. */
+        0,0,0,0,0,0
     },
     {
-        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF /* 8.8.8.8.8.8. */
+        0,0,0,0,0,0
     },
     {
-        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF /* 8.8.8.8.8.8. */
+        0,0,0,0,0,0
     }
 };
 
-static volatile uint16_t beepDuration = 0;
-
-static volatile uint8_t serialOutBuf[4] = {0,0,0,0};
-static volatile uint8_t runMainCtr = 0;
-
-static volatile uint8_t spiDataIn[SPI_BUF_LEN];
-static volatile uint8_t spiDataOut[SPI_BUF_LEN];
+static volatile bool run500us = false;
+static uint8_t currentSeg = 1;
 static volatile uint8_t spiDataCtr = 0;
 static volatile uint8_t spiDataCkSum = 0;
-static volatile BTN_State_t curBtnState = BUTTON_RELEASE;
+static volatile uint8_t spiDataIn[SPI_BUF_LEN];
+static volatile uint8_t spiDataOut[SPI_BUF_LEN];
+static volatile uint16_t beepDuration = 0;
+static uint16_t msCtr = 0;
+static BTN_State_t curBtnState = BUTTON_RELEASE;
+
+static void sendDisplayData(void);
 
 int main(void)
 {
@@ -200,79 +217,164 @@ int main(void)
     PORTA |= _BV(PIN_BTN);
     PORTB |= _BV(PIN_SPI_CS);
     
-    PORTA &= ~_BV(PIN_RCLK);
-    _NOP();
-    _NOP();
-    PORTA |= _BV(PIN_RCLK);
-    _NOP();
-    _NOP();
-    PORTA &= ~_BV(PIN_RCLK);
+	PORTB |= _BV(PIN_ENABLE);
+    LATCH_CLOCK();
+    PORTB &= ~_BV(PIN_ENABLE);
+
+    wdt_enable(WDTO_15MS);
     
-    wdt_enable(WDTO_30MS);
-    
-    TCCR0A = _BV(WGM00);
-    TCNT0L = 0;
-    OCR0A = 58; /* 5ms with Prescaler 1024 @ 12MHZ*/
-    TIMSK = _BV(OCIE0A);
+	TCCR0A = _BV(WGM00);
     TCCR0B = _BV(CS00)|_BV(CS02); /* Prescaler 1024 */
-    
-    TCCR1A = _BV(PWM1B)|_BV(COM1B1)|_BV(COM1B0);
-    OCR1B = 127;
-    TCNT1 = 0;
-    TCCR1B = _BV(CS11)|_BV(CS10)|_BV(CS13);
-    
-    USICR = _BV(USIWM0)|_BV(USICS1);
+    OCR0A = 8; /* 0,5ms with Prescaler 1024 @ 16MHZ*/
+    TIMSK |= _BV(OCIE0A);
+            
+	USICR = _BV(USIWM0)|_BV(USICS1);
     USIPP = 0;
-    
     MCUCR = _BV(ISC00);
     GIMSK = _BV(INT0);
-    
-    PORTB |= _BV(PIN_ENABLE);
-    
+        
 	BTN_Init();
 	memset((void*)spiDataIn, 0xFF, SPI_BUF_LEN);
 	memset((void*)spiDataOut, 0xFF, SPI_BUF_LEN);
 
     sei();
-
+	beepDuration = 100;
     do 
     {
-        if (10 == runMainCtr)
-        {
-            ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
-            {
-                BTN_Main();
-                if (10 <= beepDuration)
-                {
-                    PORTA |= _BV(PIN_BEEP);
-                    beepDuration -= 10;
-                }
-                else
-                {
-                    beepDuration = 0;
-                    PORTA &= ~_BV(PIN_BEEP);
-                }
-            
-                wdt_reset();
-                runMainCtr = 0;
-            }
-        }
+		ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+		{
+			if (run500us == true)
+			{
+				sendDisplayData();
+				msCtr++;
+				run500us = false;
+			}
+		}
+
+		if (20 <= msCtr) /* 10ms */
+		{
+			BTN_Main();
+			
+			ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+			{
+				if (10 <= beepDuration)
+				{
+					PORTA |= _BV(PIN_BEEP);
+					beepDuration -= 10;
+				}
+				else
+				{
+					beepDuration = 0;
+					PORTA &= ~_BV(PIN_BEEP);
+				}
+			}
+
+			wdt_reset();
+			msCtr = 0;
+		}
+
     } while (1);
+}
+
+uint16_t ct = 0;
+uint8_t ct2 = 16;
+uint8_t ct3 = 0;
+uint16_t speed = 2000;
+void sendDisplayData(void)
+{
+	uint8_t ctr1;
+	uint8_t ctr2;
+
+	if (ct++ >= speed)
+	{
+		text[ct3 / 6][ct3 % 6] = pgm_read_byte(&characters[ct2]);
+
+		if (18 == ++ct3)
+		{
+			ct3 = 0;
+			ct2++;
+			if (ct2 >= 26)
+			{
+				ct2 = 16;
+			}
+		}
+		if (255 - OCR1B > 10)
+		{
+			OCR1B += 10;
+		}
+		else
+		{
+			OCR1B = 10;
+		}
+		ct = 0;
+	}
+
+	PORTA &= ~_BV(PIN_RCLK);
+	PORTA &= ~_BV(PIN_SERCLK);
+
+	for (ctr1 = 0; ctr1 < NUM_ROWS; ctr1++)
+	{
+		for (ctr2 = 0; ctr2 < ROW_LEN; ctr2++)
+		{
+			PORTA &= ~_BV(PIN_SEROUT);
+
+			if ((text[2 - ctr1][5 - ctr2] & (currentSeg)) == (currentSeg))
+			{
+				PORTA |= _BV(PIN_SEROUT);
+			}
+							
+			SER_CLOCK();
+		}
+
+		SER_CLOCK();
+		SER_CLOCK();
+	}
+
+	for (ctr2 = 8; ctr2-- > 0; )
+	{	
+		PORTA &= ~_BV(PIN_SEROUT);
+
+		if ((currentSeg & _BV(ctr2 % 8)) == _BV(ctr2 % 8))
+		{
+			PORTA |= _BV(PIN_SEROUT);
+		}
+
+		SER_CLOCK();
+	}		
+
+	LATCH_CLOCK();
+
+	currentSeg <<= 1;
+	if (0 == currentSeg)
+	{
+		currentSeg = 1;
+	}
 }
 
 void BTN_Callback(uint8_t btnNum, BTN_State_t status)
 {
     static BTN_State_t btnState = BUTTON_RELEASE;
+	(void)btnNum;
 
 	if (BUTTON_RELEASE == status)
 	{
 		if (BUTTON_PRESS == btnState)
 		{
+			if (speed <= 250)
+			{
+				speed = 2000;
+			}
+			else
+			{
+				speed /= 2;
+			}
+
 			curBtnState = BUTTON_PRESS;
 		}
 	}
 	else if (BUTTON_LONGPRESS == status)
 	{
+		memset(text, 0, NUM_ROWS*NUM_CHARS);
 		curBtnState = BUTTON_LONGPRESS;
 	}
 
@@ -321,7 +423,7 @@ ISR(INT0_vect)
                     {
 	                    for (ctr = 0; ctr < (NUM_ROWS*ROW_LEN); ctr++)
 	                    {
-		                    text[ctr / ROW_LEN][ctr % ROW_LEN] = pgm_read_byte(characters[pgm_read_byte(defaultText[ctr]) - PRINTABLE_CHAR_MIN]);
+		                    text[ctr / ROW_LEN][ctr % ROW_LEN] = pgm_read_byte(&characters[pgm_read_byte(&defaultText[ctr]) - PRINTABLE_CHAR_MIN]);
 	                    }
                     }
                     break;
@@ -350,7 +452,7 @@ ISR(INT0_vect)
                                 {
                                     if ((buf[ctr] >= PRINTABLE_CHAR_MIN) && (buf[ctr] <= PRINTABLE_CHAR_MAX))
                                     {
-                                        text[ctr/3][ctr2] = pgm_read_byte(characters[buf[ctr] - PRINTABLE_CHAR_MIN]);
+                                        text[ctr/3][ctr2] = pgm_read_byte(&characters[buf[ctr] - PRINTABLE_CHAR_MIN]);
                                     }
                                     else
                                     {
@@ -370,7 +472,7 @@ ISR(INT0_vect)
                             {
                                 if ((spiDataIn[ctr+1] >= PRINTABLE_CHAR_MIN) && (spiDataIn[ctr+1] <= PRINTABLE_CHAR_MAX))
                                 {
-                                    text[ctr / ROW_LEN][ctr % ROW_LEN] = pgm_read_byte(characters[spiDataIn[ctr+1] - PRINTABLE_CHAR_MIN]);
+                                    text[ctr / ROW_LEN][ctr % ROW_LEN] = pgm_read_byte(&characters[spiDataIn[ctr+1] - PRINTABLE_CHAR_MIN]);
                                 }
                                 else
                                 {
@@ -420,90 +522,7 @@ ISR(USI_OVF_vect)
 	USIBR = spiDataOut[spiDataCtr];
 }
 
-ISR(TIMER0_COMPA_vect, ISR_BLOCK)
+ISR(TIMER0_COMPA_vect)
 {
-    static volatile uint8_t currentSeg = 1;
-    static volatile bool outputMode = false;
-    static volatile uint8_t bitCtr = 0;
-    
-    uint8_t currentChar = 0;
-    uint8_t currentRow = 0;
-    
-    if (false == outputMode)
-    {
-        runMainCtr += 5;
-        memset((void*)&serialOutBuf[0], 0, 4);
-        
-        for (currentRow = 0; currentRow < NUM_ROWS; currentRow++)
-        {
-            for (currentChar = 0; currentChar < ROW_LEN; currentChar++)
-            {
-                if ((text[2 - currentRow][currentChar] & (currentSeg)) == (currentSeg))
-                {
-                    serialOutBuf[currentRow] |= _BV(currentChar + 2);
-                }
-            }
-        }
-    
-        serialOutBuf[3] = currentSeg;
-    
-        currentSeg <<= 1;
-        if (0 == currentSeg)
-        {
-            currentSeg = 1;
-        }
-        
-        outputMode = true;
-
-        TCCR0B |= _BV(TSM);
-        TCCR0B &= ~(_BV(CS00)|_BV(CS01)|_BV(CS02)); /* Prescaler 0 */
-        TCCR0B |= _BV(CS00); /* Prescaler 1 */
-        OCR0A = 6; /* 2MHz with Prescaler 1 @ 12MHZ*/
-        TCNT0L = 0;
-        TCCR0B &= ~_BV(TSM);
-    }
-    else
-    {
-        if (33 > bitCtr)
-        {
-            PORTA &= ~_BV(PIN_RCLK);
-            PORTA &= ~_BV(PIN_SERCLK);
-        
-            if ((serialOutBuf[bitCtr / 8] & _BV(bitCtr)) == _BV(bitCtr))
-            {
-                PORTA |= _BV(PIN_SEROUT);
-            }
-            else
-            {
-                PORTA &= ~_BV(PIN_SEROUT);
-            }
-            
-            _NOP();
-            _NOP();
-            _NOP();
-            PORTA |= _BV(PIN_SERCLK);
-            
-            bitCtr++;
-        }
-        else
-        {
-            PORTA &= ~(_BV(PIN_SEROUT) | _BV(PIN_SERCLK));
-            _NOP();
-            PORTA |= _BV(PIN_RCLK);
-            _NOP();
-            _NOP();
-            _NOP();
-            _NOP();
-            PORTA &= ~_BV(PIN_RCLK);
-            
-            bitCtr = 0;
-            outputMode = false;
-
-            TCCR0B |= _BV(TSM);
-            TCCR0B |= _BV(CS00)|_BV(CS02); /* Prescaler 1024 */
-            OCR0A = 58; /* 5ms with Prescaler 1024 @ 12MHZ*/
-            TCNT0L = 0;
-            TCCR0B &= ~_BV(TSM);
-        }        
-    }
+	run500us = true;
 }
