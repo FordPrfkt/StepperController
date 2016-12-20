@@ -177,7 +177,7 @@ static const uint8_t characters[NUM_CHARS] PROGMEM =
 
 static const char defaultText[NUM_ROWS*ROW_LEN] PROGMEM =
 {
-	'V','E','r','S','.',' ','0','.','0','.','1',' ','r','E','A','d','y',' '
+	'V','E','r','S','.',' ','1','.','0','.','0',' ','r','E','A','d','y',' '
 };
 
 static volatile uint8_t text[NUM_ROWS][ROW_LEN] = 
