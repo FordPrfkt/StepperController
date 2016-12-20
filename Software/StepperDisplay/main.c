@@ -8,7 +8,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include <avr/io.h>
 #include <avr/wdt.h>
 #include <util/crc16.h>
@@ -16,61 +18,63 @@
 #include <avr/cpufunc.h>
 #include <avr/sfr_defs.h>
 #include <avr/pgmspace.h>
-#include <avr/signature.h>
 #include <avr/interrupt.h>
+#include <avr/signature.h>
 #include "Button.h"
 
+/* Pin definitions */
 #define DDR_PIN_RCLK (DDA0)
 #define DDR_PIN_SEROUT (DDA1)
 #define DDR_PIN_SERCLK (DDA2)
 #define DDR_PIN_BEEP (DDA3)
 #define DDR_PIN_ENABLE (DDB3)
 #define DDR_SPI_PIN_SO (DDB1)
-
 #define PIN_RCLK (PORTA0)
 #define PIN_SEROUT (PORTA1)
 #define PIN_SERCLK (PORTA2)
 #define PIN_BEEP (PORTA3)
 #define PIN_BTN (PORTA4)
 #define PIN_IN_BTN (PINA4)
-
 #define PIN_ENABLE (PORTB3)
 #define PIN_SPI_CS (PORTB6)
 #define PIN_IN_SPI_CS (PINB6)
 
-#define SPI_CMD_RESET (0x60)
-#define SPI_CMD_CLEAR (0x50)
+/* Number of Rows and Columns */
+#define NUM_ROWS (3)
+#define ROW_LEN (6)
+
+/* Enable Testmode (Undef out to disable) */
+#define WITH_TESTMODE (1)
+
+/* Macro the generate clock strobes */
+#define SER_CLOCK() PORTA |= _BV(PIN_SERCLK);\
+					_NOP();\
+					PORTA &= ~_BV(PIN_SERCLK);
+
+#define LATCH_CLOCK() PORTA |= _BV(PIN_RCLK);\
+					  _NOP();\
+					  PORTA &= ~_BV(PIN_RCLK);
+
+/* SPI configuration */
+#define SPI_BUF_LEN (30)
+#define SPI_TIMEOUT (300)
+
+/* SPI commands */
 #define SPI_CMD_VERSION (0x05)
 #define SPI_CMD_POSITION (0x10)
 #define SPI_CMD_DISPLAY (0x20)
 #define SPI_CMD_BEEP (0x30)
-#define SPI_CMD_BRIGHTNESS (0x40)
-#define SPI_CMD_GETBUTTON (0x50)
+#define SPI_CMD_CLEAR (0x50)
+#define SPI_CMD_GETBUTTON (0x60)
+#define SPI_CMD_RESET (0x70)
+#define SPI_CMD_TESTMODE (0xCA)
 
+/* character generator configuration */
 #define PRINTABLE_CHAR_MIN (32u)
 #define PRINTABLE_CHAR_MAX (126u)
 #define NUM_CHARS ((PRINTABLE_CHAR_MAX - PRINTABLE_CHAR_MIN) + 1)
 
-#define SPI_BUF_LEN (20)
-#define NUM_ROWS (3)
-#define ROW_LEN (6)
-
-#define SER_CLOCK() PORTA &= ~_BV(PIN_SERCLK);\
-					_NOP();\
-					_NOP();\
-					PORTA |= _BV(PIN_SERCLK);\
-					_NOP();\
-					_NOP();\
-					PORTA &= ~_BV(PIN_SERCLK);
-
-#define LATCH_CLOCK() PORTA &= ~_BV(PIN_RCLK);\
-					  _NOP();\
-					  _NOP();\
-					  PORTA |= _BV(PIN_RCLK);\
-					  _NOP();\
-					  _NOP();\
-					  PORTA &= ~_BV(PIN_RCLK);
-
+/* Printable character table */
 #define DECIMAL_POINT (0x80u)
 static const uint8_t characters[NUM_CHARS] PROGMEM =
 {
@@ -171,17 +175,9 @@ static const uint8_t characters[NUM_CHARS] PROGMEM =
     0x01  /* 126 	~ */
 };
 
-static const char defaultText[NUM_ROWS][ROW_LEN] PROGMEM =
+static const char defaultText[NUM_ROWS*ROW_LEN] PROGMEM =
 {
-	{
-		'V','E','r','S','.',' '
-	},
-	{
-		'0','.','0','.','1',' '
-	},
-	{
-		'r','E','A','d','y',' '
-	}
+	'V','E','r','S','.',' ','0','.','0','.','1',' ','r','E','A','d','y',' '
 };
 
 static volatile uint8_t text[NUM_ROWS][ROW_LEN] = 
@@ -197,153 +193,233 @@ static volatile uint8_t text[NUM_ROWS][ROW_LEN] =
     }
 };
 
-static volatile bool run500us = false;
 static uint8_t currentSeg = 1;
+static volatile bool run500us = false;
 static volatile uint8_t spiDataCtr = 0;
 static volatile uint8_t spiDataCkSum = 0;
 static volatile uint8_t spiDataIn[SPI_BUF_LEN];
 static volatile uint8_t spiDataOut[SPI_BUF_LEN];
+static volatile uint8_t dimValue = 255;
 static volatile uint16_t beepDuration = 0;
-static uint16_t msCtr = 0;
+static volatile uint16_t spiDataTimeout = SPI_TIMEOUT;
+static volatile uint16_t usCtr = 0;
 static BTN_State_t curBtnState = BUTTON_RELEASE;
 
+#ifdef WITH_TESTMODE
+	static uint16_t speed = 2000;
+	static uint16_t ct = 0;
+	static uint8_t ct2 = 16;
+	static uint8_t ct3 = 0;
+	static bool testMode = false;
+#endif // WITH_TESTMDOE
+
+
 static void sendDisplayData(void);
+static void beep(uint16_t duration);
+static void showVersion(void);
+static void clear(void);
 
 int main(void)
 {
-    DDRA = _BV(DDR_PIN_SEROUT) |_BV(DDR_PIN_SERCLK) |_BV(DDR_PIN_RCLK) |_BV(DDR_PIN_BEEP);
+	/* Enable output pins */
+    DDRA = _BV(DDR_PIN_SEROUT) | _BV(DDR_PIN_SERCLK) | _BV(DDR_PIN_RCLK) | _BV(DDR_PIN_BEEP);
     DDRB = _BV(DDR_PIN_ENABLE) | _BV(DDR_SPI_PIN_SO);
     
-    PORTA |= _BV(PIN_BTN);
-    PORTB |= _BV(PIN_SPI_CS);
-    
-	PORTB |= _BV(PIN_ENABLE);
-    LATCH_CLOCK();
-    PORTB &= ~_BV(PIN_ENABLE);
-
+	/* Enable pullups on Button input and CS */
+    PORTA |= _BV(PIN_BTN);    
+	PORTB |= _BV(PIN_SPI_CS);
+ 
+	/* Set the watchdog to 15ms */
     wdt_enable(WDTO_15MS);
-    
+
+	/* Clear the shift registers */
+ 	clear();
+   
+	/* Enable the 500µs timer interrupt */
 	TCCR0A = _BV(WGM00);
     TCCR0B = _BV(CS00)|_BV(CS02); /* Prescaler 1024 */
-    OCR0A = 8; /* 0,5ms with Prescaler 1024 @ 16MHZ*/
+    OCR0A = 7; /* 0,5ms with Prescaler 1024 @ 16MHZ*/
     TIMSK |= _BV(OCIE0A);
-            
-	USICR = _BV(USIWM0)|_BV(USICS1);
-    USIPP = 0;
+
+	/* Configure SPI in slave mode */
+	USICR = _BV(USIWM0)|_BV(USICS1)|_BV(USICS0);
+    USISR &= ~(0x0F);
+	USISR |= _BV(USIOIF);
+	USIDR = 0;
+	USIBR = 0;
+
+	/* Enable CS interrupt */
     MCUCR = _BV(ISC00);
     GIMSK = _BV(INT0);
         
 	BTN_Init();
+	spiDataCtr = 0;
+	spiDataCkSum = 0;
 	memset((void*)spiDataIn, 0xFF, SPI_BUF_LEN);
 	memset((void*)spiDataOut, 0xFF, SPI_BUF_LEN);
 
     sei();
-	beepDuration = 100;
-    do 
+
+	/* To indicate start, beep for 100ms and show version */
+	beep(10);
+    showVersion();
+
+	do 
     {
 		ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
 		{
 			if (run500us == true)
 			{
+				/* Update the display contents every 500µs */
 				sendDisplayData();
-				msCtr++;
 				run500us = false;
 			}
-		}
 
-		if (20 <= msCtr) /* 10ms */
-		{
-			BTN_Main();
-			
-			ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+			if (20 <= usCtr) /* 10ms */
 			{
-				if (10 <= beepDuration)
+				NONATOMIC_BLOCK(NONATOMIC_RESTORESTATE)
 				{
-					PORTA |= _BV(PIN_BEEP);
-					beepDuration -= 10;
+					/* Update the button state */
+					BTN_Main();
 				}
-				else
+
+				/* Clear the display if no new data arrived for 
+				 * the timeout duration (to prevent showing old data) */
+				if (0 < spiDataTimeout)
 				{
-					beepDuration = 0;
-					PORTA &= ~_BV(PIN_BEEP);
+					if (0 == --spiDataTimeout)
+					{
+						clear();
+					}
 				}
+
+				/* Disable the buzzer if the duration of the beep is over */				
+				if (0 < beepDuration)
+				{
+					if (0 == --beepDuration)
+					{
+						PORTA &= ~_BV(PIN_BEEP);
+					}
+				}
+
+				/* Trigger the watchdog */
+				wdt_reset();
+
+				usCtr = 0;
 			}
-
-			wdt_reset();
-			msCtr = 0;
 		}
-
     } while (1);
 }
 
-uint16_t ct = 0;
-uint8_t ct2 = 16;
-uint8_t ct3 = 0;
-uint16_t speed = 2000;
+void clear()
+{
+	/* Empty the textbuffer and clear the shift
+	 * register contents by pulling the enable pin. */
+	memset(text, 0, (NUM_ROWS*ROW_LEN));
+	PORTB |= _BV(PIN_ENABLE);
+	LATCH_CLOCK();
+	PORTB &= ~_BV(PIN_ENABLE);
+}
+
+void beep(uint16_t duration)
+{
+	/* Enable the buzzer */
+	beepDuration = duration;
+	PORTA |= _BV(PIN_BEEP);
+}
+
+void showVersion(void)
+{
+	uint8_t ctr;
+
+	/* Show the version string on the display */
+	for (ctr = 0; ctr < (NUM_ROWS*ROW_LEN); ctr++)
+	{
+		text[ctr / ROW_LEN][ctr % ROW_LEN] = pgm_read_byte(&characters[pgm_read_byte(&defaultText[ctr]) - PRINTABLE_CHAR_MIN]);
+	}
+}
+
 void sendDisplayData(void)
 {
-	uint8_t ctr1;
+	uint8_t ctr;
 	uint8_t ctr2;
 
-	if (ct++ >= speed)
+#ifdef WITH_TESTMODE
+	if (testMode == true)
 	{
-		text[ct3 / 6][ct3 % 6] = pgm_read_byte(&characters[ct2]);
-
-		if (18 == ++ct3)
+		if (ct++ >= speed)
 		{
-			ct3 = 0;
-			ct2++;
-			if (ct2 >= 26)
+			text[ct3 / 6][ct3 % 6] = pgm_read_byte(&characters[ct2]);
+
+			if (18 == ++ct3)
 			{
-				ct2 = 16;
+				ct3 = 0;
+				ct2++;
+				if (ct2 >= 26)
+				{
+					ct2 = 16;
+				}
 			}
+			if (255 - OCR1B > 10)
+			{
+				OCR1B += 10;
+			}
+			else
+			{
+				OCR1B = 10;
+			}
+			ct = 0;
 		}
-		if (255 - OCR1B > 10)
-		{
-			OCR1B += 10;
-		}
-		else
-		{
-			OCR1B = 10;
-		}
-		ct = 0;
 	}
+#endif // WITH_TESTMODE
 
-	PORTA &= ~_BV(PIN_RCLK);
-	PORTA &= ~_BV(PIN_SERCLK);
+	/* Reset all pins */
+	PORTA &= ~(_BV(PIN_RCLK) | _BV(PIN_SERCLK) | _BV(PIN_SEROUT));
 
-	for (ctr1 = 0; ctr1 < NUM_ROWS; ctr1++)
+	/* Shift out the data for the current segment in all
+	 * rows and columns. */
+	for (ctr = 0; ctr < NUM_ROWS; ctr++)
 	{
 		for (ctr2 = 0; ctr2 < ROW_LEN; ctr2++)
 		{
-			PORTA &= ~_BV(PIN_SEROUT);
-
-			if ((text[2 - ctr1][5 - ctr2] & (currentSeg)) == (currentSeg))
+			/* If the character at the current row and column
+			 * has the currently active segment set, enable that segment. */
+			if ((text[2 - ctr][5 - ctr2] & (currentSeg)) == (currentSeg))
 			{
 				PORTA |= _BV(PIN_SEROUT);
 			}
-							
+			
+			/* Generate a clock strobe to clock the data into the shift register */
 			SER_CLOCK();
+
+			PORTA &= ~_BV(PIN_SEROUT);
 		}
 
+		/* The two lowest bits of each register are unused.
+		 * Generate two clock strobes to skip them */
 		SER_CLOCK();
 		SER_CLOCK();
 	}
 
-	for (ctr2 = 8; ctr2-- > 0; )
+	/* Clock in the segment line */
+	for (ctr = 8; ctr-- > 0; )
 	{	
-		PORTA &= ~_BV(PIN_SEROUT);
-
-		if ((currentSeg & _BV(ctr2 % 8)) == _BV(ctr2 % 8))
+		/* Enable the segment column of the currently active segment */
+		if ((currentSeg & _BV(ctr % 8)) == _BV(ctr % 8))
 		{
 			PORTA |= _BV(PIN_SEROUT);
 		}
 
+		/* Clock the data in */
 		SER_CLOCK();
+
+		PORTA &= ~_BV(PIN_SEROUT);
 	}		
 
+	/* Generate a latch strobe to update the outputs of the shift register */
 	LATCH_CLOCK();
 
+	/* Continue with the next segment */
 	currentSeg <<= 1;
 	if (0 == currentSeg)
 	{
@@ -360,6 +436,7 @@ void BTN_Callback(uint8_t btnNum, BTN_State_t status)
 	{
 		if (BUTTON_PRESS == btnState)
 		{
+#ifdef WITH_TESTMODE
 			if (speed <= 250)
 			{
 				speed = 2000;
@@ -368,6 +445,7 @@ void BTN_Callback(uint8_t btnNum, BTN_State_t status)
 			{
 				speed /= 2;
 			}
+#endif // WITH_TESTMODE
 
 			curBtnState = BUTTON_PRESS;
 		}
@@ -383,76 +461,109 @@ void BTN_Callback(uint8_t btnNum, BTN_State_t status)
 
 ISR(INT0_vect)
 {
-    uint32_t data;
+    int32_t data;
     uint8_t ctr;
     uint8_t ctr2;
-    char buf[10];
-    
+    char buf[12];
+
+	/* Check if CS pin is high */
     if ((PINB & _BV(PIN_IN_SPI_CS)) == _BV(PIN_IN_SPI_CS))
     {
-        USICR &= ~_BV(USIOIF);
-        
+		/* Disable the SPI overflow interrupt and reset
+		 * the receive buffers */
+        USICR &= ~_BV(USIOIE);
+		USISR &= ~(0x0F);
+		USIDR = 0;
+		USIBR = 0;
+
+		/* Check if data has been received at all */
         if (0 < spiDataCtr)
-        {           
+        {
+			/* Calculate the checksum of the received data */
+			spiDataCkSum = 0;
+			for (ctr = 0; ctr < (spiDataCtr - 1); ctr++)
+			{
+				spiDataCkSum = _crc8_ccitt_update(spiDataCkSum, spiDataIn[ctr]);
+			}
+            
+			/* If the checksum is correct, process the command */
             if (spiDataIn[spiDataCtr - 1] == spiDataCkSum)
             {
+				/* Check the command */
                 switch(spiDataIn[0])
                 {
+					/* Reset the controller */
                     case SPI_CMD_RESET:
+						
+						/* Clear the display, then
+						 * generate a watchdog timeout */
+						PORTB |= _BV(PIN_ENABLE);
+						LATCH_CLOCK();
+						PORTB &= ~_BV(PIN_ENABLE);
+						
 						cli();
-
 						while (1)
                         {
 							_NOP();
                         }
                     break;
                     
+                    /* Clear the display */
                     case SPI_CMD_CLEAR:
-                        memset(text, 0, (NUM_ROWS*ROW_LEN));
+						clear();
                     break;
-                    
-                    case SPI_CMD_BRIGHTNESS:
+     
+					/* Show version information */
+                    case SPI_CMD_VERSION:
+	                    showVersion();
+						spiDataTimeout = SPI_TIMEOUT;
+                    break;
+
+					/* Beep for x ms */
+                    case SPI_CMD_BEEP:
                         if (spiDataCtr == 3)
                         {
-                            OCR1B = spiDataIn[1];
+							beep(spiDataIn[1]);
+							spiDataTimeout = SPI_TIMEOUT;
                         }
                     break;
-
-                    case SPI_CMD_VERSION:
-                    if (spiDataCtr == 1)
-                    {
-	                    for (ctr = 0; ctr < (NUM_ROWS*ROW_LEN); ctr++)
-	                    {
-		                    text[ctr / ROW_LEN][ctr % ROW_LEN] = pgm_read_byte(&characters[pgm_read_byte(&defaultText[ctr]) - PRINTABLE_CHAR_MIN]);
-	                    }
-                    }
-                    break;
-
-                    case SPI_CMD_BEEP:
-                        if (spiDataCtr == 4)
-                        {
-                            beepDuration = (spiDataIn[1]<<8) | spiDataIn[2];
-                        }                        
-                    break;
                     
+					/* Display XYZ position */
                     case SPI_CMD_POSITION:
-                        if (spiDataCtr == 11)
+                        if (spiDataCtr == 14)
                         {
-                            for (ctr = 0; ctr < 6; ctr+=3)
+							/* Each axis is 4 Bytes of data, so 12 bytes at all */
+                            for (ctr = 0; ctr < 12; ctr+=4)
                             {
-                                data = spiDataIn[1+ctr];
+								/* build up the 32 bits position of one axis */
+								data = spiDataIn[1+ctr];
                                 data <<= 8;
                                 data |= spiDataIn[2+ctr];
                                 data <<= 8;
                                 data |= spiDataIn[3+ctr];
+                                data <<= 8;
+                                data |= spiDataIn[4+ctr];
                                 
-                                utoa(data, buf, 10);
-                                
-                                for (ctr2 = 6; ctr2 > 0; ctr2--)
+								/* Limit to maximum character length */
+								if (data > 999999)
+								{
+									data = 999999;
+								}
+								else if (data < -99999)
+								{
+									data = -99999;
+								}
+
+								/* Generate a formatted string */
+                                snprintf_P(buf, 10, PSTR("%06ld"), data);
+
+								/* Copy the string into the output buffer */
+                                for (ctr2 = 6; ctr2-- > 0; )
                                 {
-                                    if ((buf[ctr] >= PRINTABLE_CHAR_MIN) && (buf[ctr] <= PRINTABLE_CHAR_MAX))
+									/* Convert the characters into the display character codes */
+                                    if ((buf[ctr2] >= PRINTABLE_CHAR_MIN) && (buf[ctr2] <= PRINTABLE_CHAR_MAX))
                                     {
-                                        text[ctr/3][ctr2] = pgm_read_byte(&characters[buf[ctr] - PRINTABLE_CHAR_MIN]);
+                                        text[ctr/3][ctr2] = pgm_read_byte(&characters[buf[ctr2] - PRINTABLE_CHAR_MIN]);
                                     }
                                     else
                                     {
@@ -462,14 +573,19 @@ ISR(INT0_vect)
                                 
                                 text[ctr/3][2] |= DECIMAL_POINT;
                             }
+
+							spiDataTimeout = SPI_TIMEOUT;
                         }
                     break;
 
+					/* Display a text */
                     case SPI_CMD_DISPLAY:
-                        if (spiDataCtr == SPI_BUF_LEN)
+                        if (spiDataCtr >= 2)
                         {
-                            for (ctr = 0; ctr < (NUM_ROWS*ROW_LEN); ctr++)
+							/* Copy the string into the output buffer */
+                            for (ctr = 0; ctr < (spiDataCtr - 2); ctr++)
                             {
+								/* Convert the characters into the display character codes */
                                 if ((spiDataIn[ctr+1] >= PRINTABLE_CHAR_MIN) && (spiDataIn[ctr+1] <= PRINTABLE_CHAR_MAX))
                                 {
                                     text[ctr / ROW_LEN][ctr % ROW_LEN] = pgm_read_byte(&characters[spiDataIn[ctr+1] - PRINTABLE_CHAR_MIN]);
@@ -478,34 +594,59 @@ ISR(INT0_vect)
                                 {
                                     text[ctr / ROW_LEN][ctr % ROW_LEN] = 0;
                                 }
-                            }                            
+                            }
+							
+							spiDataTimeout = SPI_TIMEOUT;                           
                         }
                     break;
-					                                          
+#ifdef WITH_TESTMODE
+					/* Switch on testmode */
+					case SPI_CMD_TESTMODE:
+						testMode = true;
+						spiDataTimeout = SPI_TIMEOUT;
+					break;
+#endif // WITH_TESTMODE
+
                     default:
                     break;
                 }
             }
         }
+
+		/* Clear the receive buffer */
+        spiDataCtr = 0;
+        memset((void*)spiDataIn, 0xFF, SPI_BUF_LEN);
+        memset((void*)spiDataOut, 0xFF, SPI_BUF_LEN);
     }
     else
     {
-        USICR |= _BV(USIOIF);
-        spiDataCtr = 0;
-        spiDataCkSum = 0;
-        memset((void*)spiDataIn, 0xFF, SPI_BUF_LEN);
-        memset((void*)spiDataOut, 0xFF, SPI_BUF_LEN);        
+		/* Chip select has gone low.
+		 * Enable the SPI overflow interrupt and
+		 * reset the receive data counter */
+		USISR |= _BV(USIOIF);
+		USICR |= _BV(USIOIE);
+		USISR &= ~(0x0F);
+		USIDR = spiDataOut[0];
+		USIBR = 0;
+
+		spiDataCtr = 0;
     }
 }
 
 ISR(USI_OVF_vect)
 {
+	/* Reset the overflow flag */
+   	USISR |= _BV(USIOIF);
+
+	/* Copy the receive data in and the TX data to the output */
     spiDataIn[spiDataCtr] = USIBR;
-    spiDataCkSum = _crc8_ccitt_update(spiDataCkSum, spiDataIn[spiDataCtr]);
-    
+	USIDR = spiDataOut[spiDataCtr];
+
+	/* Count the received byte */
     spiDataCtr++;
     spiDataCtr %= SPI_BUF_LEN;
 
+	/* Send out requested data */
 	if (SPI_CMD_GETBUTTON == spiDataIn[0])
 	{
 		if (0 != (spiDataCtr % 2))
@@ -518,11 +659,12 @@ ISR(USI_OVF_vect)
 			spiDataOut[spiDataCtr] = _crc8_ccitt_update(0, spiDataOut[spiDataCtr - 1]);
 		}
 	}
-
-	USIBR = spiDataOut[spiDataCtr];
 }
 
 ISR(TIMER0_COMPA_vect)
 {
 	run500us = true;
+	usCtr++;
 }
+
+/* EOF */
