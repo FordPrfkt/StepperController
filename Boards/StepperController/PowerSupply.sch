@@ -103,7 +103,7 @@ F 1 "Power" V 2650 3250 40  0000 C CNN
 F 2 "w_conn_screw:mors_2p" H 2600 3250 60  0001 C CNN
 F 3 "" H 2600 3250 60  0000 C CNN
 	1    2600 3250
-	-1   0    0    -1  
+	-1   0    0    1   
 $EndComp
 $Comp
 L CP C1

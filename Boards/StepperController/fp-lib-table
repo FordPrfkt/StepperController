@@ -14,4 +14,5 @@
   (lib (name w_smd_cap)(type KiCad)(uri D:\KiCadLibs\libaries\w_smd_cap.pretty)(options "")(descr ""))
   (lib (name w_smd_inductors)(type KiCad)(uri D:\KiCadLibs\libaries\w_smd_inductors.pretty)(options "")(descr ""))
   (lib (name w_relay)(type KiCad)(uri D:\KiCadLibs\libaries\w_relay.pretty)(options "")(descr ""))
+  (lib (name Relais)(type KiCad)(uri D:\KiCadLibs\Relais.pretty)(options "")(descr ""))
 )
