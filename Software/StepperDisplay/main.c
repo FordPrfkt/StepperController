@@ -432,28 +432,34 @@ void BTN_Callback(uint8_t btnNum, BTN_State_t status)
     static BTN_State_t btnState = BUTTON_RELEASE;
 	(void)btnNum;
 
-	if (BUTTON_RELEASE == status)
+	if (curBtnState == BUTTON_RELEASE)
 	{
-		if (BUTTON_PRESS == btnState)
+		if (BUTTON_RELEASE == status)
 		{
+			if (BUTTON_PRESS == btnState)
+			{
 #ifdef WITH_TESTMODE
-			if (speed <= 250)
-			{
-				speed = 2000;
-			}
-			else
-			{
-				speed /= 2;
-			}
+				if (speed <= 250)
+				{
+					speed = 2000;
+				}
+				else
+				{
+					speed /= 2;
+				}
 #endif // WITH_TESTMODE
 
-			curBtnState = BUTTON_PRESS;
+				curBtnState = BUTTON_PRESS;
+			}
 		}
-	}
-	else if (BUTTON_LONGPRESS == status)
-	{
-		memset(text, 0, NUM_ROWS*NUM_CHARS);
-		curBtnState = BUTTON_LONGPRESS;
+		else if (BUTTON_LONGPRESS == status)
+		{
+#ifdef WITH_TESTMODE
+			memset(text, 0, NUM_ROWS*NUM_CHARS);
+#endif // WITH_TESTMODE
+
+			curBtnState = BUTTON_LONGPRESS;
+		}
 	}
 
 	btnState = status;
@@ -628,7 +634,6 @@ ISR(INT0_vect)
 		USISR &= ~(0x0F);
 		USIDR = spiDataOut[0];
 		USIBR = 0;
-
 		spiDataCtr = 0;
     }
 }
@@ -639,8 +644,7 @@ ISR(USI_OVF_vect)
    	USISR |= _BV(USIOIF);
 
 	/* Copy the receive data in and the TX data to the output */
-    spiDataIn[spiDataCtr] = USIBR;
-	USIDR = spiDataOut[spiDataCtr];
+	spiDataIn[spiDataCtr] = USIBR;
 
 	/* Count the received byte */
     spiDataCtr++;
@@ -649,14 +653,18 @@ ISR(USI_OVF_vect)
 	/* Send out requested data */
 	if (SPI_CMD_GETBUTTON == spiDataIn[0])
 	{
-		if (0 != (spiDataCtr % 2))
+		if (2 == spiDataCtr)
 		{
-			spiDataOut[spiDataCtr] = (uint8_t)curBtnState;
-			curBtnState = BUTTON_RELEASE;		
+			USIDR = (uint8_t)curBtnState;
+		}
+		else if (3 == spiDataCtr)
+		{
+			USIDR = _crc8_ccitt_update(0, curBtnState);
+			curBtnState = BUTTON_RELEASE;
 		}
 		else
 		{
-			spiDataOut[spiDataCtr] = _crc8_ccitt_update(0, spiDataOut[spiDataCtr - 1]);
+			USIDR = 0xFF;
 		}
 	}
 }
