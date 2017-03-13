@@ -1,2 +1,2 @@
 # StepperController
-Stepper Motor Controller using TMC262
+Stepper Motor Controller using TMC2660
