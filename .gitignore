@@ -51,5 +51,9 @@
 #Kicad Backup files
 *.bak
 *.kicad_pcb-bak
+*.bck
+*.dcm
+*.rpt
+_autosave-
 
 *.d
