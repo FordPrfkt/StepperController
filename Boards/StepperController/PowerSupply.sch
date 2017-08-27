@@ -97,12 +97,12 @@ $EndDescr
 $Comp
 L CONN_2 P1
 U 1 1 554E31CF
-P 1550 3250
-F 0 "P1" V 1500 3250 40  0000 C CNN
-F 1 "Power" V 1600 3250 40  0000 C CNN
-F 2 "w_conn_screw:mors_2p" H 1550 3250 60  0001 C CNN
-F 3 "" H 1550 3250 60  0000 C CNN
-	1    1550 3250
+P 1100 3250
+F 0 "P1" V 1050 3250 40  0000 C CNN
+F 1 "Power" V 1150 3250 40  0000 C CNN
+F 2 "w_conn_screw:mors_2p" H 1100 3250 60  0001 C CNN
+F 3 "" H 1100 3250 60  0000 C CNN
+	1    1100 3250
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -324,7 +324,7 @@ F 3 "" H 7400 3350 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1900 3350 2400 3350
+	1450 3350 2400 3350
 Wire Wire Line
 	5600 3150 6800 3150
 $Comp
@@ -552,7 +552,7 @@ F 3 "" H 3150 4100 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1900 3150 4600 3150
+	1750 3150 4600 3150
 Wire Wire Line
 	2750 3200 2750 3150
 Connection ~ 2750 3150
@@ -606,4 +606,19 @@ Wire Wire Line
 	5100 2400 5100 2550
 Wire Wire Line
 	5550 2550 5550 2400
+$Comp
+L F_Small F1
+U 1 1 592F5548
+P 1650 3150
+F 0 "F1" H 1610 3210 50  0000 L CNN
+F 1 "10AT" H 1530 3090 50  0000 L CNN
+F 2 "Fuse_Holders_and_Fuses:Fuseholder5x20_horiz_SemiClosed_Casing10x25mm" H 1650 3150 50  0001 C CNN
+F 3 "" H 1650 3150 50  0000 C CNN
+	1    1650 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1450 3150 1550 3150
+Text Notes 5450 1700 0    79   ~ 0
+Temperature Sense\n(Close to VREG)
 $EndSCHEMATC

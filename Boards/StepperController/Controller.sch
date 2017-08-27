@@ -936,4 +936,6 @@ Wire Wire Line
 	2850 5850 3850 5850
 Wire Wire Line
 	2850 6050 2850 5950
+Text Notes 1200 7550 0    79   ~ 0
+Status LED
 $EndSCHEMATC
