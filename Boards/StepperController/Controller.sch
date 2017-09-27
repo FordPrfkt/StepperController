@@ -172,7 +172,7 @@ F 1 "100nF" H 3475 3550 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0805_HandSoldering" H 3488 3500 30  0001 C CNN
 F 3 "" H 3450 3650 60  0000 C CNN
 	1    3450 3650
-	0    1    1    0   
+	0    1    -1   0   
 $EndComp
 $Comp
 L +5V #PWR022
@@ -226,7 +226,7 @@ Text HLabel 7600 1650 0    60   Input ~ 0
 Stall_Y
 Text HLabel 7600 2150 0    60   Input ~ 0
 Stall_Z
-Text HLabel 6850 5150 2    60   Output ~ 0
+Text HLabel 6850 4950 2    60   Output ~ 0
 Enable
 Text HLabel 6850 6050 2    60   Output ~ 0
 CS_X
@@ -238,23 +238,23 @@ Text HLabel 6900 3250 2    60   Output ~ 0
 Rel_1
 Text HLabel 6900 3350 2    60   Output ~ 0
 Rel_2
-Text HLabel 6850 5050 2    60   Input ~ 0
+Text HLabel 6850 5650 2    60   Input ~ 0
 Emergency_Off
 Text HLabel 6850 4250 2    60   Output ~ 0
 Spindle_PWM
 Text HLabel 6850 3950 2    60   Output ~ 0
 CS_Display
-Text HLabel 3600 5950 0    60   Input ~ 0
+Text HLabel 6850 5050 2    60   Input ~ 0
 Ref_Tool
 $Comp
 L GND-RESCUE-StepperController #PWR024
 U 1 1 5554FF77
-P 2850 6050
-F 0 "#PWR024" H 2850 6050 30  0001 C CNN
-F 1 "GND" H 2850 5980 30  0001 C CNN
-F 2 "" H 2850 6050 60  0000 C CNN
-F 3 "" H 2850 6050 60  0000 C CNN
-	1    2850 6050
+P 2850 6150
+F 0 "#PWR024" H 2850 6150 30  0001 C CNN
+F 1 "GND" H 2850 6080 30  0001 C CNN
+F 2 "" H 2850 6150 60  0000 C CNN
+F 3 "" H 2850 6150 60  0000 C CNN
+	1    2850 6150
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -369,7 +369,7 @@ F 3 "" H 3100 3700 60  0000 C CNN
 	1    3100 3700
 	1    0    0    -1  
 $EndComp
-Text HLabel 6850 4950 2    60   Input ~ 0
+Text HLabel 3750 6050 0    60   Input ~ 0
 Cover
 $Comp
 L Crystal Y1
@@ -467,13 +467,13 @@ F 3 "" H 3300 2200 50  0000 C CNN
 	1    3300 2200
 	0    1    1    0   
 $EndComp
-Text Label 3600 6050 0    60   ~ 0
+Text Label 3600 4150 0    60   ~ 0
 LED1
-Text Label 6850 3550 0    60   ~ 0
+Text Label 3600 4250 0    60   ~ 0
 LED2
 Text Label 1800 2650 0    60   ~ 0
 Reset
-Text Label 3450 5750 0    60   ~ 0
+Text Label 3400 5950 0    60   ~ 0
 FeedHold
 Text Label 3400 5850 0    60   ~ 0
 CycleStart
@@ -570,12 +570,8 @@ Text HLabel 6850 4750 2    60   Input ~ 0
 JogY
 Text HLabel 6850 4850 2    60   Input ~ 0
 JogZ
-NoConn ~ 3850 4250
 NoConn ~ 6450 5750
-NoConn ~ 6450 5650
 NoConn ~ 3850 2850
-NoConn ~ 3850 3950
-NoConn ~ 3850 3850
 $Comp
 L VCC #PWR035
 U 1 1 58E15495
@@ -616,34 +612,34 @@ LED2
 $Comp
 L SW_PUSH SW1
 U 1 1 58ED61E9
-P 2850 4450
-F 0 "SW1" H 3000 4560 50  0000 C CNN
-F 1 "ResetCycle" H 2850 4370 50  0000 C CNN
-F 2 "SW0773:SW_0773" H 2850 4450 60  0001 C CNN
-F 3 "" H 2850 4450 60  0000 C CNN
-	1    2850 4450
+P 2950 6450
+F 0 "SW1" H 3100 6560 50  0000 C CNN
+F 1 "ResetCycle" H 2950 6370 50  0000 C CNN
+F 2 "SW0773:SW_0773" H 2950 6450 60  0001 C CNN
+F 3 "" H 2950 6450 60  0000 C CNN
+	1    2950 6450
 	0    -1   1    0   
 $EndComp
 $Comp
 L CONN_01X03 P11
 U 1 1 58EFE774
-P 2650 5850
-F 0 "P11" H 2650 6050 50  0000 C CNN
-F 1 "Buttons" V 2750 5850 50  0000 C CNN
-F 2 "w_conn_jst-ph:b3b-ph-kl" H 2650 5850 50  0001 C CNN
-F 3 "" H 2650 5850 50  0000 C CNN
-	1    2650 5850
+P 2650 5950
+F 0 "P11" H 2650 6150 50  0000 C CNN
+F 1 "Buttons" V 2750 5950 50  0000 C CNN
+F 2 "w_conn_jst-ph:b3b-ph-kl" H 2650 5950 50  0001 C CNN
+F 3 "" H 2650 5950 50  0000 C CNN
+	1    2650 5950
 	-1   0    0    -1  
 $EndComp
 $Comp
 L GND-RESCUE-StepperController #PWR037
 U 1 1 58EFEEE9
-P 2850 4750
-F 0 "#PWR037" H 2850 4750 30  0001 C CNN
-F 1 "GND" H 2850 4680 30  0001 C CNN
-F 2 "" H 2850 4750 60  0000 C CNN
-F 3 "" H 2850 4750 60  0000 C CNN
-	1    2850 4750
+P 2950 6850
+F 0 "#PWR037" H 2950 6850 30  0001 C CNN
+F 1 "GND" H 2950 6780 30  0001 C CNN
+F 2 "" H 2950 6850 60  0000 C CNN
+F 3 "" H 2950 6850 60  0000 C CNN
+	1    2950 6850
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -848,8 +844,6 @@ Wire Wire Line
 Wire Wire Line
 	7800 2450 7600 2450
 Wire Wire Line
-	3850 5950 3600 5950
-Wire Wire Line
 	6850 4450 6450 4450
 Wire Wire Line
 	6450 4550 6850 4550
@@ -880,13 +874,7 @@ Wire Wire Line
 Wire Wire Line
 	6450 4250 6850 4250
 Wire Wire Line
-	6850 5150 6450 5150
-Wire Wire Line
 	3600 4050 3850 4050
-Wire Wire Line
-	6450 5050 6850 5050
-Wire Wire Line
-	6850 4950 6450 4950
 Wire Wire Line
 	6850 3950 6450 3950
 Wire Wire Line
@@ -895,10 +883,6 @@ Wire Wire Line
 	9400 4050 9400 4600
 Wire Wire Line
 	6450 4150 9500 4150
-Wire Wire Line
-	6450 3550 6850 3550
-Wire Wire Line
-	3850 6050 3600 6050
 Wire Wire Line
 	9400 4600 9950 4600
 Wire Wire Line
@@ -921,21 +905,48 @@ Wire Wire Line
 Wire Wire Line
 	1600 6200 1600 6000
 Wire Wire Line
-	3850 4150 2850 4150
-Wire Wire Line
 	1950 3400 2150 3400
 Wire Wire Line
 	1950 3100 3850 3100
 Wire Wire Line
 	2450 3400 3850 3400
 Wire Wire Line
-	2850 5750 3850 5750
-Wire Wire Line
-	2950 5750 2950 5750
-Wire Wire Line
-	2850 5850 3850 5850
-Wire Wire Line
-	2850 6050 2850 5950
+	2850 6150 2850 6050
 Text Notes 1200 7550 0    79   ~ 0
 Status LED
+Wire Wire Line
+	3750 6050 3850 6050
+Wire Wire Line
+	2950 5750 2950 6150
+Wire Wire Line
+	2950 6850 2950 6750
+Wire Wire Line
+	6450 4950 6850 4950
+Wire Wire Line
+	6850 5650 6450 5650
+Wire Wire Line
+	6450 5050 6850 5050
+NoConn ~ 6450 3550
+Wire Wire Line
+	3850 4150 3600 4150
+Wire Wire Line
+	3600 4250 3850 4250
+Wire Wire Line
+	2950 5750 3850 5750
+Wire Wire Line
+	3850 5850 2850 5850
+Wire Wire Line
+	2850 5950 3850 5950
+Text HLabel 6850 5150 2    60   Output ~ 0
+Spindle_Dir
+Wire Wire Line
+	6450 5150 6850 5150
+Text HLabel 3600 3950 0    60   Output ~ 0
+Cool_Mist
+Text HLabel 3600 3850 0    60   Output ~ 0
+Cool_Flood
+Wire Wire Line
+	3600 3950 3850 3950
+Wire Wire Line
+	3850 3850 3600 3850
 $EndSCHEMATC
