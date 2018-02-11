@@ -1,4 +1,4 @@
-update=29.09.2017 23:44:43
+update=14.11.2017 22:13:36
 version=1
 last_client=kicad
 [pcbnew]
@@ -117,5 +117,6 @@ LibName77=D:/KiCadLibs/libraries_official/kicad-library/library/Worldsemi
 LibName78=D:/KiCadLibs/libraries_official/kicad-library/library/Xicor
 LibName79=D:/KiCadLibs/libraries_official/kicad-library/library/xilinx
 LibName80=D:/KiCadLibs/libraries_official/kicad-library/library/Zilog
+LibName81=w_connectors
 [general]
 version=1

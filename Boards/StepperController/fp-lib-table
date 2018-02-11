@@ -20,5 +20,7 @@
   (lib (name 74xx-eu)(type Legacy)(uri D:/KiCadLibs/converted/74xx-eu.mod)(options "")(descr ""))
   (lib (name 74xx-little-us)(type Legacy)(uri D:/KiCadLibs/converted/74xx-little-us.mod)(options "")(descr ""))
   (lib (name 74ah)(type Legacy)(uri D:/KiCadLibs/converted/74ah.mod)(options "")(descr ""))
-  (lib (name SO20)(type KiCad)(uri D:/KiCadLibs/SO20.pretty)(options "")(descr ""))
+  (lib (name w_conn_misc)(type KiCad)(uri D:/KiCadLibs/libaries/w_conn_misc.pretty)(options "")(descr ""))
+  (lib (name Conn_Connfly)(type KiCad)(uri D:/KiCadLibs/Conn_Connfly.pretty)(options "")(descr ""))
+  (lib (name w_conn_d-sub)(type KiCad)(uri D:/KiCadLibs/libaries/w_conn_d-sub.pretty)(options "")(descr ""))
 )

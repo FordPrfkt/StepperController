@@ -27,14 +27,12 @@ LIBS:elec-unifil
 LIBS:ESD_Protection
 LIBS:ftdi
 LIBS:gennum
-LIBS:graphic
 LIBS:hc11
 LIBS:intel
 LIBS:interface
 LIBS:ir
 LIBS:Lattice
 LIBS:linear
-LIBS:logo
 LIBS:maxim
 LIBS:memory
 LIBS:microchip
@@ -79,6 +77,7 @@ LIBS:Worldsemi
 LIBS:Xicor
 LIBS:xilinx
 LIBS:Zilog
+LIBS:w_connectors
 LIBS:StepperController-cache
 EELAYER 25 0
 EELAYER END
@@ -87,12 +86,12 @@ encoding utf-8
 Sheet 3 8
 Title "CNC Controller"
 Date "2015-07-29"
-Rev "1"
+Rev "2"
 Comp "Daniel Walter (fordprfkt@googlemail.com)"
-Comment1 "fordprfkt@googlemail.com"
-Comment2 ""
+Comment1 "CC BY-NC-SA 4.0"
+Comment2 "Licensed under Creative Commons"
 Comment3 ""
-Comment4 ""
+Comment4 "Controller"
 $EndDescr
 Text HLabel 3600 5350 0    60   Input ~ 0
 RXD
@@ -226,7 +225,7 @@ Text HLabel 7600 1650 0    60   Input ~ 0
 Stall_Y
 Text HLabel 7600 2150 0    60   Input ~ 0
 Stall_Z
-Text HLabel 6850 4950 2    60   Output ~ 0
+Text HLabel 6850 5750 2    60   Output ~ 0
 Enable
 Text HLabel 6850 6050 2    60   Output ~ 0
 CS_X
@@ -247,22 +246,11 @@ CS_Display
 Text HLabel 6850 5050 2    60   Input ~ 0
 Ref_Tool
 $Comp
-L GND-RESCUE-StepperController #PWR024
-U 1 1 5554FF77
-P 2850 6150
-F 0 "#PWR024" H 2850 6150 30  0001 C CNN
-F 1 "GND" H 2850 6080 30  0001 C CNN
-F 2 "" H 2850 6150 60  0000 C CNN
-F 3 "" H 2850 6150 60  0000 C CNN
-	1    2850 6150
-	1    0    0    -1  
-$EndComp
-$Comp
 L R R4
 U 1 1 5555210D
 P 1600 6350
 F 0 "R4" V 1680 6350 50  0000 C CNN
-F 1 "160R" V 1600 6350 50  0000 C CNN
+F 1 "150R" V 1600 6350 50  0000 C CNN
 F 2 "Resistors_SMD:R_0805_HandSoldering" V 1530 6350 30  0001 C CNN
 F 3 "" H 1600 6350 30  0000 C CNN
 	1    1600 6350
@@ -273,17 +261,17 @@ L R R3
 U 1 1 55552334
 P 1400 6350
 F 0 "R3" V 1480 6350 50  0000 C CNN
-F 1 "140R" V 1400 6350 50  0000 C CNN
+F 1 "220R" V 1400 6350 50  0000 C CNN
 F 2 "Resistors_SMD:R_0805_HandSoldering" V 1330 6350 30  0001 C CNN
 F 3 "" H 1400 6350 30  0000 C CNN
 	1    1400 6350
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR025
+L GND-RESCUE-StepperController #PWR024
 U 1 1 555CEB42
 P 9900 5000
-F 0 "#PWR025" H 9900 5000 30  0001 C CNN
+F 0 "#PWR024" H 9900 5000 30  0001 C CNN
 F 1 "GND" H 9900 4930 30  0001 C CNN
 F 2 "" H 9900 5000 60  0000 C CNN
 F 3 "" H 9900 5000 60  0000 C CNN
@@ -291,10 +279,10 @@ F 3 "" H 9900 5000 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR026
+L +5V #PWR025
 U 1 1 555CEC82
 P 9900 4000
-F 0 "#PWR026" H 9900 4090 20  0001 C CNN
+F 0 "#PWR025" H 9900 4090 20  0001 C CNN
 F 1 "+5V" H 9900 4090 30  0000 C CNN
 F 2 "" H 9900 4000 60  0000 C CNN
 F 3 "" H 9900 4000 60  0000 C CNN
@@ -315,10 +303,10 @@ $EndComp
 Text HLabel 3600 4050 0    60   Output ~ 0
 Spindle_On
 $Comp
-L +5V #PWR027
+L +5V #PWR026
 U 1 1 55627DEA
 P 7800 800
-F 0 "#PWR027" H 7800 890 20  0001 C CNN
+F 0 "#PWR026" H 7800 890 20  0001 C CNN
 F 1 "+5V" H 7800 890 30  0000 C CNN
 F 2 "" H 7800 800 60  0000 C CNN
 F 3 "" H 7800 800 60  0000 C CNN
@@ -337,10 +325,10 @@ F 3 "" H 8750 950 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR028
+L +5V #PWR027
 U 1 1 556286F5
 P 8750 800
-F 0 "#PWR028" H 8750 890 20  0001 C CNN
+F 0 "#PWR027" H 8750 890 20  0001 C CNN
 F 1 "+5V" H 8750 890 30  0000 C CNN
 F 2 "" H 8750 800 60  0000 C CNN
 F 3 "" H 8750 800 60  0000 C CNN
@@ -348,10 +336,10 @@ F 3 "" H 8750 800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR029
+L GND-RESCUE-StepperController #PWR028
 U 1 1 5562872E
 P 8750 1100
-F 0 "#PWR029" H 8750 1100 30  0001 C CNN
+F 0 "#PWR028" H 8750 1100 30  0001 C CNN
 F 1 "GND" H 8750 1030 30  0001 C CNN
 F 2 "" H 8750 1100 60  0000 C CNN
 F 3 "" H 8750 1100 60  0000 C CNN
@@ -359,17 +347,17 @@ F 3 "" H 8750 1100 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR030
+L GND-RESCUE-StepperController #PWR029
 U 1 1 567E10FB
 P 3100 3700
-F 0 "#PWR030" H 3100 3700 30  0001 C CNN
+F 0 "#PWR029" H 3100 3700 30  0001 C CNN
 F 1 "GND" H 3100 3630 30  0001 C CNN
 F 2 "" H 3100 3700 60  0000 C CNN
 F 3 "" H 3100 3700 60  0000 C CNN
 	1    3100 3700
 	1    0    0    -1  
 $EndComp
-Text HLabel 3750 6050 0    60   Input ~ 0
+Text HLabel 3600 6050 0    60   Input ~ 0
 Cover
 $Comp
 L Crystal Y1
@@ -405,10 +393,10 @@ F 3 "" H 2600 3550 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR031
+L GND-RESCUE-StepperController #PWR030
 U 1 1 56D4CFFB
 P 2300 3750
-F 0 "#PWR031" H 2300 3750 30  0001 C CNN
+F 0 "#PWR030" H 2300 3750 30  0001 C CNN
 F 1 "GND" H 2300 3680 30  0001 C CNN
 F 2 "" H 2300 3750 60  0000 C CNN
 F 3 "" H 2300 3750 60  0000 C CNN
@@ -446,10 +434,10 @@ F 3 "" H 3500 2200 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR032
+L +5V #PWR031
 U 1 1 58BD2596
 P 3400 1950
-F 0 "#PWR032" H 3400 2040 20  0001 C CNN
+F 0 "#PWR031" H 3400 2040 20  0001 C CNN
 F 1 "+5V" H 3400 2040 30  0000 C CNN
 F 2 "" H 3400 1950 60  0000 C CNN
 F 3 "" H 3400 1950 60  0000 C CNN
@@ -467,16 +455,12 @@ F 3 "" H 3300 2200 50  0000 C CNN
 	1    3300 2200
 	0    1    1    0   
 $EndComp
-Text Label 3600 4150 0    60   ~ 0
-LED1
-Text Label 3600 4250 0    60   ~ 0
-LED2
+Text Label 3600 4150 2    60   ~ 0
+LED_Red
+Text Label 3600 4250 2    60   ~ 0
+LED_Green
 Text Label 1800 2650 0    60   ~ 0
 Reset
-Text Label 3400 5950 0    60   ~ 0
-FeedHold
-Text Label 3400 5850 0    60   ~ 0
-CycleStart
 Text Label 6450 4050 0    60   ~ 0
 CS_Ext1
 Text Label 6450 4150 0    60   ~ 0
@@ -538,10 +522,10 @@ F 3 "" H 2200 3800 50  0000 C CNN
 $EndComp
 NoConn ~ 2450 5100
 $Comp
-L GND-RESCUE-StepperController #PWR033
+L GND-RESCUE-StepperController #PWR032
 U 1 1 58D0A195
 P 1850 5300
-F 0 "#PWR033" H 1850 5300 30  0001 C CNN
+F 0 "#PWR032" H 1850 5300 30  0001 C CNN
 F 1 "GND" H 1850 5230 30  0001 C CNN
 F 2 "" H 1850 5300 60  0000 C CNN
 F 3 "" H 1850 5300 60  0000 C CNN
@@ -549,10 +533,10 @@ F 3 "" H 1850 5300 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR034
+L +5V #PWR033
 U 1 1 58D0A5AD
 P 1900 4700
-F 0 "#PWR034" H 1900 4790 20  0001 C CNN
+F 0 "#PWR033" H 1900 4790 20  0001 C CNN
 F 1 "+5V" H 1900 4790 30  0000 C CNN
 F 2 "" H 1900 4700 60  0000 C CNN
 F 3 "" H 1900 4700 60  0000 C CNN
@@ -564,19 +548,18 @@ Text HLabel 6850 4450 2    60   Input ~ 0
 JogA
 Text HLabel 6850 4550 2    60   Input ~ 0
 JogB
-Text HLabel 6850 4650 2    60   Input ~ 0
-JogX
 Text HLabel 6850 4750 2    60   Input ~ 0
-JogY
+JogX
 Text HLabel 6850 4850 2    60   Input ~ 0
+JogY
+Text HLabel 6850 4950 2    60   Input ~ 0
 JogZ
-NoConn ~ 6450 5750
 NoConn ~ 3850 2850
 $Comp
-L VCC #PWR035
+L VCC #PWR034
 U 1 1 58E15495
 P 8000 800
-F 0 "#PWR035" H 8000 650 50  0001 C CNN
+F 0 "#PWR034" H 8000 650 50  0001 C CNN
 F 1 "VCC" H 8000 950 50  0000 C CNN
 F 2 "" H 8000 800 50  0000 C CNN
 F 3 "" H 8000 800 50  0000 C CNN
@@ -595,10 +578,10 @@ F 3 "" H 1500 6900 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR036
+L GND-RESCUE-StepperController #PWR035
 U 1 1 58EBEEDE
 P 1500 7300
-F 0 "#PWR036" H 1500 7300 30  0001 C CNN
+F 0 "#PWR035" H 1500 7300 30  0001 C CNN
 F 1 "GND" H 1500 7230 30  0001 C CNN
 F 2 "" H 1500 7300 60  0000 C CNN
 F 3 "" H 1500 7300 60  0000 C CNN
@@ -606,11 +589,11 @@ F 3 "" H 1500 7300 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Text Label 1400 6000 1    60   ~ 0
-LED1
+LED_Red
 Text Label 1600 6000 1    60   ~ 0
-LED2
+LED_Green
 $Comp
-L SW_PUSH SW1
+L SW_Push SW1
 U 1 1 58ED61E9
 P 2950 6450
 F 0 "SW1" H 3100 6560 50  0000 C CNN
@@ -621,21 +604,10 @@ F 3 "" H 2950 6450 60  0000 C CNN
 	0    -1   1    0   
 $EndComp
 $Comp
-L CONN_01X03 P11
-U 1 1 58EFE774
-P 2650 5950
-F 0 "P11" H 2650 6150 50  0000 C CNN
-F 1 "Buttons" V 2750 5950 50  0000 C CNN
-F 2 "w_conn_jst-ph:b3b-ph-kl" H 2650 5950 50  0001 C CNN
-F 3 "" H 2650 5950 50  0000 C CNN
-	1    2650 5950
-	-1   0    0    -1  
-$EndComp
-$Comp
-L GND-RESCUE-StepperController #PWR037
+L GND-RESCUE-StepperController #PWR036
 U 1 1 58EFEEE9
 P 2950 6850
-F 0 "#PWR037" H 2950 6850 30  0001 C CNN
+F 0 "#PWR036" H 2950 6850 30  0001 C CNN
 F 1 "GND" H 2950 6780 30  0001 C CNN
 F 2 "" H 2950 6850 60  0000 C CNN
 F 3 "" H 2950 6850 60  0000 C CNN
@@ -848,12 +820,6 @@ Wire Wire Line
 Wire Wire Line
 	6450 4550 6850 4550
 Wire Wire Line
-	6850 4650 6450 4650
-Wire Wire Line
-	6450 4750 6850 4750
-Wire Wire Line
-	6850 4850 6450 4850
-Wire Wire Line
 	6450 5350 9050 5350
 Wire Wire Line
 	9050 5350 9050 2300
@@ -878,17 +844,17 @@ Wire Wire Line
 Wire Wire Line
 	6850 3950 6450 3950
 Wire Wire Line
-	6450 4050 9400 4050
+	6450 4050 9500 4050
 Wire Wire Line
-	9400 4050 9400 4600
+	9500 4050 9500 4600
 Wire Wire Line
-	6450 4150 9500 4150
+	6450 4150 9400 4150
 Wire Wire Line
-	9400 4600 9950 4600
+	9500 4600 9950 4600
 Wire Wire Line
-	9950 4500 9500 4500
+	9950 4500 9400 4500
 Wire Wire Line
-	9500 4500 9500 4150
+	9400 4500 9400 4150
 Wire Wire Line
 	9950 4700 9900 4700
 Connection ~ 9900 4800
@@ -910,18 +876,14 @@ Wire Wire Line
 	1950 3100 3850 3100
 Wire Wire Line
 	2450 3400 3850 3400
-Wire Wire Line
-	2850 6150 2850 6050
 Text Notes 1200 7550 0    79   ~ 0
 Status LED
 Wire Wire Line
-	3750 6050 3850 6050
+	3600 6050 3850 6050
 Wire Wire Line
-	2950 5750 2950 6150
+	2950 5750 2950 6250
 Wire Wire Line
-	2950 6850 2950 6750
-Wire Wire Line
-	6450 4950 6850 4950
+	2950 6650 2950 6850
 Wire Wire Line
 	6850 5650 6450 5650
 Wire Wire Line
@@ -933,10 +895,6 @@ Wire Wire Line
 	3600 4250 3850 4250
 Wire Wire Line
 	2950 5750 3850 5750
-Wire Wire Line
-	3850 5850 2850 5850
-Wire Wire Line
-	2850 5950 3850 5950
 Text HLabel 6850 5150 2    60   Output ~ 0
 Spindle_Dir
 Wire Wire Line
@@ -949,4 +907,34 @@ Wire Wire Line
 	3600 3950 3850 3950
 Wire Wire Line
 	3850 3850 3600 3850
+Text HLabel 3600 5850 0    60   Input ~ 0
+FeedHold
+Text HLabel 3600 5950 0    60   Input ~ 0
+CycleStart
+Wire Wire Line
+	3600 5850 3850 5850
+Wire Wire Line
+	3850 5950 3600 5950
+Wire Wire Line
+	6450 5750 6850 5750
+Text HLabel 6850 4650 2    60   Input ~ 0
+JogC
+Wire Wire Line
+	6450 4950 6850 4950
+Wire Wire Line
+	6850 4850 6450 4850
+Wire Wire Line
+	6450 4750 6850 4750
+Wire Wire Line
+	6850 4650 6450 4650
+Text Notes 3750 6400 0    60   ~ 0
+Nächstes mal AT2561
+Text Notes 2150 5800 0    60   ~ 0
+Pullup vorsehen\noder an allen Control Pins\nverwendung interner pullup erlauben
+Text Notes 3750 6750 0    60   ~ 0
+Emergency off an Reset
+Text Notes 2500 6800 0    60   ~ 0
+Hardwareentprellung
+Text Notes 6450 1650 0    60   ~ 0
+Jumper/Schalter\n an Stall ?
 $EndSCHEMATC

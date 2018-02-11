@@ -27,14 +27,12 @@ LIBS:elec-unifil
 LIBS:ESD_Protection
 LIBS:ftdi
 LIBS:gennum
-LIBS:graphic
 LIBS:hc11
 LIBS:intel
 LIBS:interface
 LIBS:ir
 LIBS:Lattice
 LIBS:linear
-LIBS:logo
 LIBS:maxim
 LIBS:memory
 LIBS:microchip
@@ -79,6 +77,7 @@ LIBS:Worldsemi
 LIBS:Xicor
 LIBS:xilinx
 LIBS:Zilog
+LIBS:w_connectors
 LIBS:StepperController-cache
 EELAYER 25 0
 EELAYER END
@@ -87,12 +86,12 @@ encoding utf-8
 Sheet 5 8
 Title "CNC Controller"
 Date "2015-07-29"
-Rev "1"
+Rev "2"
 Comp "Daniel Walter (fordprfkt@googlemail.com)"
-Comment1 "fordprfkt@googlemail.com"
-Comment2 "TMC260 + Atmega644"
+Comment1 "CC BY-NC-SA 4.0"
+Comment2 "Licensed under Creative Commons"
 Comment3 ""
-Comment4 ""
+Comment4 "Driver"
 $EndDescr
 $Sheet
 S 5100 1300 1350 1300
@@ -203,10 +202,10 @@ F 3 "" H 1300 1250 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR093
+L +5V #PWR090
 U 1 1 56D3E775
 P 1650 1250
-F 0 "#PWR093" H 1650 1100 50  0001 C CNN
+F 0 "#PWR090" H 1650 1100 50  0001 C CNN
 F 1 "+5V" H 1650 1390 50  0000 C CNN
 F 2 "" H 1650 1250 50  0000 C CNN
 F 3 "" H 1650 1250 50  0000 C CNN
@@ -214,10 +213,10 @@ F 3 "" H 1650 1250 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR094
+L +5V #PWR091
 U 1 1 56D4C028
 P 2050 2850
-F 0 "#PWR094" H 2050 2940 20  0001 C CNN
+F 0 "#PWR091" H 2050 2940 20  0001 C CNN
 F 1 "+5V" H 2050 2940 30  0000 C CNN
 F 2 "" H 2050 2850 60  0000 C CNN
 F 3 "" H 2050 2850 60  0000 C CNN
@@ -225,10 +224,10 @@ F 3 "" H 2050 2850 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR095
+L GND-RESCUE-StepperController #PWR092
 U 1 1 56D4C02E
 P 2050 3350
-F 0 "#PWR095" H 2050 3350 30  0001 C CNN
+F 0 "#PWR092" H 2050 3350 30  0001 C CNN
 F 1 "GND" H 2050 3280 30  0001 C CNN
 F 2 "" H 2050 3350 60  0000 C CNN
 F 3 "" H 2050 3350 60  0000 C CNN
@@ -356,10 +355,10 @@ F 3 "" H 3400 3400 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR096
+L GND-RESCUE-StepperController #PWR093
 U 1 1 56D8D88C
 P 3400 3650
-F 0 "#PWR096" H 3400 3650 30  0001 C CNN
+F 0 "#PWR093" H 3400 3650 30  0001 C CNN
 F 1 "GND" H 3400 3580 30  0001 C CNN
 F 2 "" H 3400 3650 60  0000 C CNN
 F 3 "" H 3400 3650 60  0000 C CNN
@@ -367,10 +366,10 @@ F 3 "" H 3400 3650 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR097
+L +5V #PWR094
 U 1 1 56D8D957
 P 3400 3150
-F 0 "#PWR097" H 3400 3240 20  0001 C CNN
+F 0 "#PWR094" H 3400 3240 20  0001 C CNN
 F 1 "+5V" H 3400 3240 30  0000 C CNN
 F 2 "" H 3400 3150 60  0000 C CNN
 F 3 "" H 3400 3150 60  0000 C CNN
@@ -415,10 +414,10 @@ Wire Wire Line
 	1700 1900 1700 1600
 Connection ~ 1700 1600
 $Comp
-L GND-RESCUE-StepperController #PWR098
+L GND-RESCUE-StepperController #PWR095
 U 1 1 58D81739
 P 1700 2300
-F 0 "#PWR098" H 1700 2300 30  0001 C CNN
+F 0 "#PWR095" H 1700 2300 30  0001 C CNN
 F 1 "GND" H 1700 2230 30  0001 C CNN
 F 2 "" H 1700 2300 60  0000 C CNN
 F 3 "" H 1700 2300 60  0000 C CNN
