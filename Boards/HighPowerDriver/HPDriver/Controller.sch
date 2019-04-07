@@ -1,0 +1,291 @@
+EESchema Schematic File Version 4
+LIBS:HPDriver-cache
+EELAYER 29 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 5 5
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector:AVR-ISP-6 J5
+U 1 1 5C784573
+P 7150 3250
+F 0 "J5" H 6870 3346 50  0000 R CNN
+F 1 "AVR-ISP-6" H 6870 3255 50  0000 R CNN
+F 2 "Connector_IDC:IDC-Header_2x03_P2.54mm_Vertical" V 6900 3300 50  0001 C CNN
+F 3 " ~" H 5875 2700 50  0001 C CNN
+	1    7150 3250
+	-1   0    0    -1  
+$EndComp
+$Comp
+L MCU_Microchip_ATtiny:ATtiny2313A-SU U10
+U 1 1 5C785677
+P 2800 3700
+F 0 "U10" H 2800 4978 50  0000 C CNN
+F 1 "ATtiny2313A-SU" H 2800 4887 50  0000 C CNN
+F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 2800 3700 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/doc8246.pdf" H 2800 3700 50  0001 C CNN
+	1    2800 3700
+	1    0    0    -1  
+$EndComp
+Text HLabel 3500 3900 2    50   Output ~ 0
+Tx
+Text HLabel 3500 3800 2    50   Input ~ 0
+Rx
+Text HLabel 3500 4000 2    50   Input ~ 0
+Stall
+Text HLabel 6200 2750 2    50   Output ~ 0
+MISO
+Text HLabel 6200 2950 2    50   Output ~ 0
+SCK
+Text HLabel 6200 2650 2    50   Output ~ 0
+CS_TMC
+Text HLabel 6200 2850 2    50   Input ~ 0
+MOSI
+Text HLabel 4400 4100 2    50   Input ~ 0
+Enable
+Wire Wire Line
+	6100 3600 6100 3250
+Wire Wire Line
+	5900 3500 5900 3050
+Wire Wire Line
+	6000 3400 6000 3150
+Wire Wire Line
+	6200 2950 6100 2950
+Wire Wire Line
+	6100 2950 6100 3250
+Connection ~ 6100 3250
+Wire Wire Line
+	6200 2850 6000 2850
+Wire Wire Line
+	6000 2850 6000 3150
+Connection ~ 6000 3150
+Wire Wire Line
+	6200 2750 5900 2750
+Wire Wire Line
+	5900 2750 5900 3050
+Connection ~ 5900 3050
+Wire Wire Line
+	5800 3300 5800 2650
+Wire Wire Line
+	5800 2650 6200 2650
+Wire Wire Line
+	3400 3800 3500 3800
+Wire Wire Line
+	3500 3900 3400 3900
+Wire Wire Line
+	3500 4000 3400 4000
+Wire Wire Line
+	4000 4100 3900 4100
+Text HLabel 3500 4400 2    50   Input ~ 0
+Step
+Text HLabel 3500 4300 2    50   Input ~ 0
+Dir
+Wire Wire Line
+	3400 4400 3500 4400
+Wire Wire Line
+	3500 4300 3400 4300
+Wire Wire Line
+	6600 3350 6600 2200
+Wire Wire Line
+	1950 2200 1950 2900
+Wire Wire Line
+	1950 2900 2200 2900
+$Comp
+L Device:Resonator Y1
+U 1 1 5C88BF04
+P 1800 3300
+F 0 "Y1" H 1800 3548 50  0000 C CNN
+F 1 "20MHz" H 1800 3457 50  0000 C CNN
+F 2 "Crystal:Resonator_SMD_muRata_CSTxExxV-3Pin_3.0x1.1mm_HandSoldering" H 1775 3300 50  0001 C CNN
+F 3 "~" H 1775 3300 50  0001 C CNN
+F 4 "CSTCE20M0V53" H 1350 3200 50  0000 C CNN "Feld4"
+	1    1800 3300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 3300 1950 3300
+Wire Wire Line
+	2200 3100 1550 3100
+Wire Wire Line
+	1550 3100 1550 3300
+Wire Wire Line
+	1550 3300 1650 3300
+$Comp
+L power:GND #PWR0155
+U 1 1 5C88CCF1
+P 1800 3550
+F 0 "#PWR0155" H 1800 3300 50  0001 C CNN
+F 1 "GND" H 1805 3377 50  0000 C CNN
+F 2 "" H 1800 3550 50  0001 C CNN
+F 3 "" H 1800 3550 50  0001 C CNN
+	1    1800 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 3550 1800 3500
+$Comp
+L power:+5V #PWR0156
+U 1 1 5C88D4FB
+P 2800 2150
+F 0 "#PWR0156" H 2800 2000 50  0001 C CNN
+F 1 "+5V" H 2815 2323 50  0000 C CNN
+F 2 "" H 2800 2150 50  0001 C CNN
+F 3 "" H 2800 2150 50  0001 C CNN
+	1    2800 2150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2800 2600 2800 2300
+$Comp
+L power:+5V #PWR0157
+U 1 1 5C88DD25
+P 7250 2650
+F 0 "#PWR0157" H 7250 2500 50  0001 C CNN
+F 1 "+5V" H 7265 2823 50  0000 C CNN
+F 2 "" H 7250 2650 50  0001 C CNN
+F 3 "" H 7250 2650 50  0001 C CNN
+	1    7250 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7250 2750 7250 2650
+$Comp
+L power:GND #PWR0158
+U 1 1 5C88E570
+P 7250 3750
+F 0 "#PWR0158" H 7250 3500 50  0001 C CNN
+F 1 "GND" H 7255 3577 50  0000 C CNN
+F 2 "" H 7250 3750 50  0001 C CNN
+F 3 "" H 7250 3750 50  0001 C CNN
+	1    7250 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0159
+U 1 1 5C88E5A4
+P 2800 4900
+F 0 "#PWR0159" H 2800 4650 50  0001 C CNN
+F 1 "GND" H 2805 4727 50  0000 C CNN
+F 2 "" H 2800 4900 50  0001 C CNN
+F 3 "" H 2800 4900 50  0001 C CNN
+	1    2800 4900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7250 3750 7250 3650
+Wire Wire Line
+	2800 4900 2800 4800
+Wire Wire Line
+	5900 3050 6750 3050
+Wire Wire Line
+	6000 3150 6750 3150
+Wire Wire Line
+	6100 3250 6750 3250
+Wire Wire Line
+	6600 3350 6750 3350
+NoConn ~ 3400 2900
+$Comp
+L Device:C C27
+U 1 1 5C8A5D6E
+P 3550 2500
+F 0 "C27" H 3665 2546 50  0000 L CNN
+F 1 "100nF" H 3665 2455 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 3588 2350 50  0001 C CNN
+F 3 "~" H 3550 2500 50  0001 C CNN
+	1    3550 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0160
+U 1 1 5C8A5DFE
+P 3550 2750
+F 0 "#PWR0160" H 3550 2500 50  0001 C CNN
+F 1 "GND" H 3555 2577 50  0000 C CNN
+F 2 "" H 3550 2750 50  0001 C CNN
+F 3 "" H 3550 2750 50  0001 C CNN
+	1    3550 2750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3550 2350 3550 2300
+Wire Wire Line
+	3550 2300 2800 2300
+Connection ~ 2800 2300
+Wire Wire Line
+	2800 2300 2800 2150
+Wire Wire Line
+	3550 2750 3550 2650
+Text HLabel 3500 4200 2    50   Output ~ 0
+Ready
+Wire Wire Line
+	3400 4200 3500 4200
+NoConn ~ 3400 3000
+Text HLabel 1850 2200 0    50   Input ~ 0
+Reset
+$Comp
+L Diode:1N4148 D9
+U 1 1 5C8B80F7
+P 4150 4100
+F 0 "D9" H 4150 4316 50  0000 C CNN
+F 1 "1N4148" H 4150 4225 50  0000 C CNN
+F 2 "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 4150 3925 50  0001 C CNN
+F 3 "http://www.nxp.com/documents/data_sheet/1N4148_1N4448.pdf" H 4150 4100 50  0001 C CNN
+	1    4150 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4400 4100 4300 4100
+$Comp
+L Device:R R37
+U 1 1 5C8CBBA4
+P 3900 4350
+F 0 "R37" H 3970 4396 50  0000 L CNN
+F 1 "10k" H 3970 4305 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 3830 4350 50  0001 C CNN
+F 3 "~" H 3900 4350 50  0001 C CNN
+	1    3900 4350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0161
+U 1 1 5C8CBC00
+P 3900 4650
+F 0 "#PWR0161" H 3900 4400 50  0001 C CNN
+F 1 "GND" H 3905 4477 50  0000 C CNN
+F 2 "" H 3900 4650 50  0001 C CNN
+F 3 "" H 3900 4650 50  0001 C CNN
+	1    3900 4650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3900 4200 3900 4100
+Connection ~ 3900 4100
+Wire Wire Line
+	3900 4100 3400 4100
+Wire Wire Line
+	3900 4650 3900 4500
+Wire Wire Line
+	3400 3600 6100 3600
+Wire Wire Line
+	3400 3500 5900 3500
+Wire Wire Line
+	3400 3400 6000 3400
+Wire Wire Line
+	3400 3300 5800 3300
+Wire Wire Line
+	1950 2200 6600 2200
+NoConn ~ 3400 3200
+NoConn ~ 3400 3100
+Wire Wire Line
+	1950 2200 1850 2200
+Connection ~ 1950 2200
+$EndSCHEMATC

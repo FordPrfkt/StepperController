@@ -1,0 +1,182 @@
+EESchema Schematic File Version 4
+LIBS:HPDriver-cache
+EELAYER 29 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 5
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Sheet
+S 2900 1950 1200 1250
+U 5C784504
+F0 "Supply" 50
+F1 "Supply.sch" 50
+$EndSheet
+$Sheet
+S 7650 2000 1100 1500
+U 5C78452A
+F0 "Driver" 50
+F1 "Driver.sch" 50
+F2 "Dir" I L 7650 2300 50 
+F3 "Step" I L 7650 2400 50 
+F4 "DriveEN" I L 7650 2150 50 
+F5 "SDI" I L 7650 2850 50 
+F6 "SCK" I L 7650 2950 50 
+F7 "TMC_CS" I L 7650 3050 50 
+F8 "SDO" O L 7650 2750 50 
+F9 "Stall" O L 7650 3250 50 
+F10 "Coil_A1" O R 8750 2450 50 
+F11 "Coil_A2" O R 8750 2550 50 
+F12 "Coil_B1" O R 8750 2650 50 
+F13 "Coil_B2" O R 8750 2750 50 
+$EndSheet
+$Sheet
+S 5850 4350 1000 1500
+U 5C885480
+F0 "Connector" 50
+F1 "Connector.sch" 50
+F2 "Stall" I R 6850 4850 50 
+F3 "Step" O R 6850 4650 50 
+F4 "Dir" O R 6850 4750 50 
+F5 "Ready" I L 5850 5050 50 
+F6 "Rx" O L 5850 4950 50 
+F7 "Tx" I L 5850 4850 50 
+F8 "Coil_A1" I R 6850 5100 50 
+F9 "Coil_A2" I R 6850 5200 50 
+F10 "Coil_B1" I R 6850 5300 50 
+F11 "Coil_B2" I R 6850 5400 50 
+F12 "Reset" U L 5850 4750 50 
+F13 "Enable" I L 5850 4650 50 
+$EndSheet
+Wire Wire Line
+	7650 2750 6900 2750
+Wire Wire Line
+	6900 2850 7650 2850
+Wire Wire Line
+	6900 2950 7650 2950
+Wire Wire Line
+	7650 3050 6900 3050
+Wire Wire Line
+	7650 3250 7400 3250
+$Sheet
+S 5850 2150 1050 1350
+U 5C784513
+F0 "Controller" 50
+F1 "Controller.sch" 50
+F2 "Tx" O L 5850 2950 50 
+F3 "Rx" I L 5850 3050 50 
+F4 "Stall" I R 6900 3250 50 
+F5 "MISO" O R 6900 2850 50 
+F6 "SCK" O R 6900 2950 50 
+F7 "CS_TMC" O R 6900 3050 50 
+F8 "MOSI" I R 6900 2750 50 
+F9 "Enable" I L 5850 2250 50 
+F10 "Step" I L 5850 2550 50 
+F11 "Dir" I L 5850 2450 50 
+F12 "Ready" O L 5850 3150 50 
+F13 "Reset" I L 5850 3400 50 
+$EndSheet
+Wire Wire Line
+	7650 2150 7400 2150
+Wire Wire Line
+	7400 2150 7400 1850
+Wire Wire Line
+	7400 1850 5750 1850
+Wire Wire Line
+	5750 1850 5750 2250
+Wire Wire Line
+	5750 2250 5850 2250
+Wire Wire Line
+	7650 2300 7300 2300
+Wire Wire Line
+	7300 2300 7300 1950
+Wire Wire Line
+	7300 1950 5650 1950
+Wire Wire Line
+	5650 1950 5650 2450
+Wire Wire Line
+	5650 2450 5850 2450
+Wire Wire Line
+	7650 2400 7200 2400
+Wire Wire Line
+	7200 2400 7200 2050
+Wire Wire Line
+	7200 2050 5550 2050
+Wire Wire Line
+	5550 2050 5550 2550
+Wire Wire Line
+	5550 2550 5850 2550
+Wire Wire Line
+	6850 4650 7200 4650
+Wire Wire Line
+	7200 4650 7200 2400
+Connection ~ 7200 2400
+Wire Wire Line
+	6850 4750 7300 4750
+Wire Wire Line
+	7300 4750 7300 2300
+Connection ~ 7300 2300
+Wire Wire Line
+	6850 4850 7400 4850
+Wire Wire Line
+	7400 4850 7400 3250
+Connection ~ 7400 3250
+Wire Wire Line
+	7400 3250 6900 3250
+Wire Wire Line
+	6850 5100 9150 5100
+Wire Wire Line
+	9150 5100 9150 2450
+Wire Wire Line
+	9150 2450 8750 2450
+Wire Wire Line
+	6850 5200 9050 5200
+Wire Wire Line
+	9050 5200 9050 2550
+Wire Wire Line
+	9050 2550 8750 2550
+Wire Wire Line
+	6850 5300 8950 5300
+Wire Wire Line
+	8950 5300 8950 2650
+Wire Wire Line
+	8950 2650 8750 2650
+Wire Wire Line
+	6850 5400 8850 5400
+Wire Wire Line
+	8850 5400 8850 2750
+Wire Wire Line
+	8850 2750 8750 2750
+Wire Wire Line
+	5850 4850 5450 4850
+Wire Wire Line
+	5450 4850 5450 2950
+Wire Wire Line
+	5450 2950 5850 2950
+Wire Wire Line
+	5850 4950 5550 4950
+Wire Wire Line
+	5550 4950 5550 3050
+Wire Wire Line
+	5550 3050 5850 3050
+Wire Wire Line
+	5850 5050 5650 5050
+Wire Wire Line
+	5650 5050 5650 3150
+Wire Wire Line
+	5650 3150 5850 3150
+Wire Wire Line
+	5850 4750 5750 4750
+Wire Wire Line
+	5750 4750 5750 3400
+Wire Wire Line
+	5750 3400 5850 3400
+$EndSCHEMATC
