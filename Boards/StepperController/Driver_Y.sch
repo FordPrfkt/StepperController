@@ -1,85 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:StepperController-rescue
-LIBS:74xgxx
-LIBS:74xx
-LIBS:ac-dc
-LIBS:actel
-LIBS:adc-dac
-LIBS:Altera
-LIBS:analog_devices
-LIBS:analog_switches
-LIBS:atmel
-LIBS:audio
-LIBS:bbd
-LIBS:brooktre
-LIBS:cmos_ieee
-LIBS:cmos4000
-LIBS:conn
-LIBS:contrib
-LIBS:cypress
-LIBS:dc-dc
-LIBS:device
-LIBS:digital-audio
-LIBS:diode
-LIBS:display
-LIBS:dsp
-LIBS:elec-unifil
-LIBS:ESD_Protection
-LIBS:ftdi
-LIBS:gennum
-LIBS:hc11
-LIBS:intel
-LIBS:interface
-LIBS:ir
-LIBS:Lattice
-LIBS:linear
-LIBS:maxim
-LIBS:memory
-LIBS:microchip
-LIBS:microchip_dspic33dsc
-LIBS:microchip_pic10mcu
-LIBS:microchip_pic12mcu
-LIBS:microchip_pic16mcu
-LIBS:microchip_pic18mcu
-LIBS:microchip_pic32mcu
-LIBS:microcontrollers
-LIBS:motor_drivers
-LIBS:motorola
-LIBS:msp430
-LIBS:nordicsemi
-LIBS:nxp_armmcu
-LIBS:onsemi
-LIBS:opto
-LIBS:Oscillators
-LIBS:philips
-LIBS:power
-LIBS:Power_Management
-LIBS:powerint
-LIBS:pspice
-LIBS:references
-LIBS:regul
-LIBS:relays
-LIBS:rfcom
-LIBS:sensors
-LIBS:silabs
-LIBS:siliconi
-LIBS:stm8
-LIBS:stm32
-LIBS:supertex
-LIBS:switches
-LIBS:texas
-LIBS:transf
-LIBS:transistors
-LIBS:ttl_ieee
-LIBS:valves
-LIBS:video
-LIBS:Worldsemi
-LIBS:Xicor
-LIBS:xilinx
-LIBS:Zilog
-LIBS:w_connectors
+EESchema Schematic File Version 4
 LIBS:StepperController-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -102,7 +23,7 @@ SDI
 Text HLabel 4400 4050 0    60   Output ~ 0
 SDO
 $Comp
-L GND-RESCUE-StepperController #PWR0110
+L StepperController-rescue:GND-RESCUE-StepperController #PWR0110
 U 1 1 554EA425
 P 5700 5200
 F 0 "#PWR0110" H 5700 5200 30  0001 C CNN
@@ -113,7 +34,7 @@ F 3 "" H 5700 5200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C26
+L Device:C C26
 U 1 1 554EA42B
 P 3550 2900
 F 0 "C26" H 3575 3000 50  0000 L CNN
@@ -124,7 +45,7 @@ F 3 "" H 3550 2900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR0111
+L power:+5V #PWR0111
 U 1 1 554EA432
 P 3550 2550
 F 0 "#PWR0111" H 3550 2640 20  0001 C CNN
@@ -135,7 +56,7 @@ F 3 "" H 3550 2550 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR0112
+L StepperController-rescue:GND-RESCUE-StepperController #PWR0112
 U 1 1 554EA438
 P 3550 3150
 F 0 "#PWR0112" H 3550 3150 30  0001 C CNN
@@ -146,7 +67,7 @@ F 3 "" H 3550 3150 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C29
+L Device:C C29
 U 1 1 554EA43E
 P 6750 4900
 F 0 "C29" H 6775 5000 50  0000 L CNN
@@ -157,7 +78,7 @@ F 3 "" H 6750 4900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C27
+L Device:C C27
 U 1 1 554EA445
 P 5850 2200
 F 0 "C27" H 5875 2300 50  0000 L CNN
@@ -168,7 +89,7 @@ F 3 "" H 5850 2200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C28
+L Device:C C28
 U 1 1 554EA44C
 P 6250 2200
 F 0 "C28" H 6275 2300 50  0000 L CNN
@@ -181,9 +102,9 @@ $EndComp
 Wire Wire Line
 	5850 2400 5850 2350
 Wire Wire Line
-	6050 1850 6050 2400
+	6050 1850 6050 2000
 $Comp
-L GND-RESCUE-StepperController #PWR0113
+L StepperController-rescue:GND-RESCUE-StepperController #PWR0113
 U 1 1 554EA45A
 P 6250 2400
 F 0 "#PWR0113" H 6250 2400 30  0001 C CNN
@@ -196,7 +117,7 @@ $EndComp
 Wire Wire Line
 	6250 2400 6250 2350
 $Comp
-L GND-RESCUE-StepperController #PWR0114
+L StepperController-rescue:GND-RESCUE-StepperController #PWR0114
 U 1 1 554EA468
 P 6750 5150
 F 0 "#PWR0114" H 6750 5150 30  0001 C CNN
@@ -207,7 +128,7 @@ F 3 "" H 6750 5150 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R23
+L Device:R R23
 U 1 1 554EA46E
 P 8350 3500
 F 0 "R23" V 8430 3500 50  0000 C CNN
@@ -218,18 +139,18 @@ F 3 "" H 8350 3500 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R R24
+L Device:R R24
 U 1 1 554EA475
 P 8700 3550
 F 0 "R24" V 8780 3550 50  0000 C CNN
-F 1 "100mR" V 8600 3550 50  0000 C CNN
+F 1 "20mR" V 8600 3550 50  0000 C CNN
 F 2 "Resistors_SMD:R_2512_HandSoldering" V 8630 3550 30  0001 C CNN
 F 3 "" H 8700 3550 30  0000 C CNN
 	1    8700 3550
 	-1   0    0    1   
 $EndComp
 $Comp
-L R R21
+L Device:R R21
 U 1 1 554EA47C
 P 7550 3950
 F 0 "R21" V 7630 3950 50  0000 C CNN
@@ -240,18 +161,18 @@ F 3 "" H 7550 3950 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R R22
+L Device:R R22
 U 1 1 554EA483
 P 7900 4000
 F 0 "R22" V 7980 4000 50  0000 C CNN
-F 1 "150mR" V 7900 4000 50  0000 C CNN
+F 1 "20mR" V 7900 4000 50  0000 C CNN
 F 2 "Resistors_SMD:R_2512_HandSoldering" V 7830 4000 30  0001 C CNN
 F 3 "" H 7900 4000 30  0000 C CNN
 	1    7900 4000
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR0115
+L StepperController-rescue:GND-RESCUE-StepperController #PWR0115
 U 1 1 554EA48E
 P 7900 4350
 F 0 "#PWR0115" H 7900 4350 30  0001 C CNN
@@ -262,7 +183,7 @@ F 3 "" H 7900 4350 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR0116
+L StepperController-rescue:GND-RESCUE-StepperController #PWR0116
 U 1 1 554EA494
 P 8700 3950
 F 0 "#PWR0116" H 8700 3950 30  0001 C CNN
@@ -273,7 +194,7 @@ F 3 "" H 8700 3950 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C30
+L Device:C C30
 U 1 1 554EA49C
 P 7250 4900
 F 0 "C30" H 7275 5000 50  0000 L CNN
@@ -284,7 +205,7 @@ F 3 "" H 7250 4900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C31
+L Device:C C31
 U 1 1 554EA4A3
 P 7300 2550
 F 0 "C31" H 7325 2650 50  0000 L CNN
@@ -295,7 +216,7 @@ F 3 "" H 7300 2550 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L CP C34
+L Device:CP C34
 U 1 1 554EA4AA
 P 7700 2550
 F 0 "C34" H 7725 2650 50  0000 L CNN
@@ -306,7 +227,7 @@ F 3 "" H 7700 2550 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L CP C33
+L Device:CP C33
 U 1 1 554EA4B1
 P 7650 4900
 F 0 "C33" H 7675 5000 50  0000 L CNN
@@ -323,7 +244,7 @@ Wire Wire Line
 Wire Wire Line
 	5700 5100 5700 5200
 $Comp
-L GND-RESCUE-StepperController #PWR0117
+L StepperController-rescue:GND-RESCUE-StepperController #PWR0117
 U 1 1 554EA4C9
 P 4750 4650
 F 0 "#PWR0117" H 4750 4650 30  0001 C CNN
@@ -336,7 +257,7 @@ $EndComp
 Wire Wire Line
 	4750 4500 4750 4650
 $Comp
-L GND-RESCUE-StepperController #PWR0118
+L StepperController-rescue:GND-RESCUE-StepperController #PWR0118
 U 1 1 554EA4D0
 P 7450 5150
 F 0 "#PWR0118" H 7450 5150 30  0001 C CNN
@@ -355,7 +276,7 @@ Sup_30V
 Text HLabel 7800 4700 2    60   Input ~ 0
 Sup_30V
 $Comp
-L C C32
+L Device:C C32
 U 1 1 554EA4E9
 P 7350 4150
 F 0 "C32" H 7375 4250 50  0000 L CNN
@@ -366,7 +287,7 @@ F 3 "" H 7350 4150 60  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L C C35
+L Device:C C35
 U 1 1 554EA4F0
 P 8150 3700
 F 0 "C35" H 8175 3800 50  0000 L CNN
@@ -377,7 +298,7 @@ F 3 "" H 8150 3700 60  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L LED-RESCUE-StepperController D10
+L StepperController-rescue:LED-RESCUE-StepperController D10
 U 1 1 554EA4FE
 P 3200 3650
 F 0 "D10" H 3200 3750 50  0000 C CNN
@@ -388,7 +309,7 @@ F 3 "" H 3200 3650 60  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L R R20
+L Device:R R20
 U 1 1 554EA505
 P 3200 3200
 F 0 "R20" V 3280 3200 50  0000 C CNN
@@ -399,7 +320,7 @@ F 3 "" H 3200 3200 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR0119
+L StepperController-rescue:GND-RESCUE-StepperController #PWR0119
 U 1 1 554EA50C
 P 3200 4550
 F 0 "#PWR0119" H 3200 4550 30  0001 C CNN
@@ -432,7 +353,7 @@ TMC_Clock
 Wire Wire Line
 	4750 2900 4400 2900
 $Comp
-L CONN_4 P9
+L StepperController-rescue:CONN_4 P9
 U 1 1 554EE142
 P 9350 3650
 F 0 "P9" V 9300 3650 50  0000 C CNN
@@ -459,11 +380,11 @@ Wire Wire Line
 Wire Wire Line
 	8850 3700 9000 3700
 Wire Wire Line
-	6650 3350 8700 3350
+	6650 3350 8550 3350
 Wire Wire Line
-	6650 3500 8200 3500
+	6650 3500 8150 3500
 Wire Wire Line
-	6950 2350 7900 2350
+	6950 2350 7300 2350
 Wire Wire Line
 	7300 2350 7300 2400
 Wire Wire Line
@@ -473,7 +394,7 @@ Wire Wire Line
 	6950 2350 6950 2850
 Connection ~ 7300 2350
 Wire Wire Line
-	6900 4700 7800 4700
+	6900 4700 7250 4700
 Wire Wire Line
 	7650 4700 7650 4750
 Wire Wire Line
@@ -509,7 +430,7 @@ Wire Wire Line
 	3550 2750 4750 2750
 Connection ~ 3550 2750
 $Comp
-L TMC2660 U6
+L StepperController-rescue:TMC2660 U6
 U 1 1 5555ED68
 P 5700 3700
 AR Path="/5555ED68" Ref="U6"  Part="1" 
@@ -544,7 +465,7 @@ OB1_Y
 Wire Wire Line
 	4400 4050 4750 4050
 $Comp
-L BC817-40 Q4
+L StepperController-rescue:BC817-40 Q4
 U 1 1 556427E5
 P 3300 4250
 F 0 "Q4" H 3500 4325 50  0000 L CNN
@@ -555,7 +476,7 @@ F 3 "" H 3300 4250 50  0000 L CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR0120
+L power:+5V #PWR0120
 U 1 1 556452F5
 P 3200 2950
 F 0 "#PWR0120" H 3200 3040 20  0001 C CNN
@@ -570,14 +491,14 @@ Wire Wire Line
 Wire Wire Line
 	3200 3350 3200 3450
 Wire Wire Line
-	3200 3850 3200 4050
+	3200 3850 3200 3950
 Wire Wire Line
 	3200 4450 3200 4550
 Wire Wire Line
 	2700 3950 3200 3950
 Connection ~ 3200 3950
 $Comp
-L R R31
+L Device:R R31
 U 1 1 5564552A
 P 3900 4250
 F 0 "R31" V 3980 4250 50  0000 C CNN
@@ -594,12 +515,12 @@ Wire Wire Line
 Wire Wire Line
 	5850 2050 5850 2000
 Wire Wire Line
-	5850 2000 6250 2000
+	5850 2000 6050 2000
 Connection ~ 6050 2000
 Wire Wire Line
 	6250 2000 6250 2050
 $Comp
-L GND-RESCUE-StepperController #PWR0121
+L StepperController-rescue:GND-RESCUE-StepperController #PWR0121
 U 1 1 554EA4D6
 P 7500 2850
 F 0 "#PWR0121" H 7500 2850 30  0001 C CNN
@@ -614,7 +535,7 @@ Wire Wire Line
 Wire Wire Line
 	7250 5050 7250 5100
 Wire Wire Line
-	7250 5100 7650 5100
+	7250 5100 7450 5100
 Wire Wire Line
 	7650 5100 7650 5050
 Wire Wire Line
@@ -630,7 +551,7 @@ Wire Wire Line
 	8150 3550 8150 3500
 Connection ~ 8150 3500
 Wire Wire Line
-	6650 3800 7900 3800
+	6650 3800 7750 3800
 Wire Wire Line
 	7900 3800 7900 3850
 Wire Wire Line
@@ -639,14 +560,14 @@ Wire Wire Line
 	7750 3950 7750 3800
 Connection ~ 7750 3800
 Wire Wire Line
-	6650 3950 7400 3950
+	6650 3950 7350 3950
 Wire Wire Line
 	7350 4000 7350 3950
 Connection ~ 7350 3950
 Wire Wire Line
 	7900 4350 7900 4150
 $Comp
-L GND-RESCUE-StepperController #PWR0122
+L StepperController-rescue:GND-RESCUE-StepperController #PWR0122
 U 1 1 58AAA659
 P 7350 4350
 F 0 "#PWR0122" H 7350 4350 30  0001 C CNN
@@ -659,7 +580,7 @@ $EndComp
 Wire Wire Line
 	7350 4350 7350 4300
 $Comp
-L GND-RESCUE-StepperController #PWR0123
+L StepperController-rescue:GND-RESCUE-StepperController #PWR0123
 U 1 1 58AAA718
 P 8150 3950
 F 0 "#PWR0123" H 8150 3950 30  0001 C CNN
@@ -676,10 +597,36 @@ VSA_Y
 Text Label 6650 4450 0    60   ~ 0
 VSB_Y
 Wire Wire Line
-	7300 2750 7700 2750
+	7300 2750 7500 2750
 Wire Wire Line
 	7500 2750 7500 2850
 Wire Wire Line
 	7700 2750 7700 2700
 Connection ~ 7500 2750
+Wire Wire Line
+	7700 2350 7900 2350
+Wire Wire Line
+	7300 2350 7700 2350
+Wire Wire Line
+	7650 4700 7800 4700
+Wire Wire Line
+	7250 4700 7650 4700
+Wire Wire Line
+	7450 5100 7650 5100
+Wire Wire Line
+	3200 3950 3200 4050
+Wire Wire Line
+	6050 2000 6050 2400
+Wire Wire Line
+	6050 2000 6250 2000
+Wire Wire Line
+	8550 3350 8700 3350
+Wire Wire Line
+	8150 3500 8200 3500
+Wire Wire Line
+	7750 3800 7900 3800
+Wire Wire Line
+	7350 3950 7400 3950
+Wire Wire Line
+	7500 2750 7700 2750
 $EndSCHEMATC

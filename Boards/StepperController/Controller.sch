@@ -1,85 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:StepperController-rescue
-LIBS:74xgxx
-LIBS:74xx
-LIBS:ac-dc
-LIBS:actel
-LIBS:adc-dac
-LIBS:Altera
-LIBS:analog_devices
-LIBS:analog_switches
-LIBS:atmel
-LIBS:audio
-LIBS:bbd
-LIBS:brooktre
-LIBS:cmos_ieee
-LIBS:cmos4000
-LIBS:conn
-LIBS:contrib
-LIBS:cypress
-LIBS:dc-dc
-LIBS:device
-LIBS:digital-audio
-LIBS:diode
-LIBS:display
-LIBS:dsp
-LIBS:elec-unifil
-LIBS:ESD_Protection
-LIBS:ftdi
-LIBS:gennum
-LIBS:hc11
-LIBS:intel
-LIBS:interface
-LIBS:ir
-LIBS:Lattice
-LIBS:linear
-LIBS:maxim
-LIBS:memory
-LIBS:microchip
-LIBS:microchip_dspic33dsc
-LIBS:microchip_pic10mcu
-LIBS:microchip_pic12mcu
-LIBS:microchip_pic16mcu
-LIBS:microchip_pic18mcu
-LIBS:microchip_pic32mcu
-LIBS:microcontrollers
-LIBS:motor_drivers
-LIBS:motorola
-LIBS:msp430
-LIBS:nordicsemi
-LIBS:nxp_armmcu
-LIBS:onsemi
-LIBS:opto
-LIBS:Oscillators
-LIBS:philips
-LIBS:power
-LIBS:Power_Management
-LIBS:powerint
-LIBS:pspice
-LIBS:references
-LIBS:regul
-LIBS:relays
-LIBS:rfcom
-LIBS:sensors
-LIBS:silabs
-LIBS:siliconi
-LIBS:stm8
-LIBS:stm32
-LIBS:supertex
-LIBS:switches
-LIBS:texas
-LIBS:transf
-LIBS:transistors
-LIBS:ttl_ieee
-LIBS:valves
-LIBS:video
-LIBS:Worldsemi
-LIBS:Xicor
-LIBS:xilinx
-LIBS:Zilog
-LIBS:w_connectors
+EESchema Schematic File Version 4
 LIBS:StepperController-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -102,7 +23,7 @@ RTS
 Text HLabel 3600 5650 0    60   Output ~ 0
 CTS
 $Comp
-L GND-RESCUE-StepperController #PWR020
+L StepperController-rescue:GND-RESCUE-StepperController #PWR020
 U 1 1 554E928E
 P 5150 6550
 F 0 "#PWR020" H 5150 6550 30  0001 C CNN
@@ -113,7 +34,7 @@ F 3 "" H 5150 6550 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR021
+L power:+5V #PWR021
 U 1 1 554E92C4
 P 5000 2200
 F 0 "#PWR021" H 5000 2290 20  0001 C CNN
@@ -130,7 +51,7 @@ SDO
 Text HLabel 10250 3750 2    60   Output ~ 0
 SDI
 $Comp
-L C C4
+L Device:C C4
 U 1 1 554E9371
 P 3300 1100
 F 0 "C4" H 3325 1200 50  0000 L CNN
@@ -141,7 +62,7 @@ F 3 "" H 3300 1100 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C5
+L Device:C C5
 U 1 1 554E9462
 P 3600 1100
 F 0 "C5" H 3625 1200 50  0000 L CNN
@@ -152,7 +73,7 @@ F 3 "" H 3600 1100 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C6
+L Device:C C6
 U 1 1 554E949F
 P 3900 1100
 F 0 "C6" H 3925 1200 50  0000 L CNN
@@ -163,7 +84,7 @@ F 3 "" H 3900 1100 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C7
+L Device:C C7
 U 1 1 554E94E9
 P 3450 3650
 F 0 "C7" H 3475 3750 50  0000 L CNN
@@ -174,7 +95,7 @@ F 3 "" H 3450 3650 60  0000 C CNN
 	0    1    -1   0   
 $EndComp
 $Comp
-L +5V #PWR022
+L power:+5V #PWR022
 U 1 1 554E952C
 P 3600 750
 F 0 "#PWR022" H 3600 840 20  0001 C CNN
@@ -185,7 +106,7 @@ F 3 "" H 3600 750 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR023
+L StepperController-rescue:GND-RESCUE-StepperController #PWR023
 U 1 1 554E953F
 P 3600 1450
 F 0 "#PWR023" H 3600 1450 30  0001 C CNN
@@ -246,7 +167,7 @@ CS_Display
 Text HLabel 6850 5050 2    60   Input ~ 0
 Ref_Tool
 $Comp
-L R R4
+L Device:R R4
 U 1 1 5555210D
 P 1600 6350
 F 0 "R4" V 1680 6350 50  0000 C CNN
@@ -257,7 +178,7 @@ F 3 "" H 1600 6350 30  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L R R3
+L Device:R R3
 U 1 1 55552334
 P 1400 6350
 F 0 "R3" V 1480 6350 50  0000 C CNN
@@ -268,7 +189,7 @@ F 3 "" H 1400 6350 30  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR024
+L StepperController-rescue:GND-RESCUE-StepperController #PWR024
 U 1 1 555CEB42
 P 9900 5000
 F 0 "#PWR024" H 9900 5000 30  0001 C CNN
@@ -279,7 +200,7 @@ F 3 "" H 9900 5000 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR025
+L power:+5V #PWR025
 U 1 1 555CEC82
 P 9900 4000
 F 0 "#PWR025" H 9900 4090 20  0001 C CNN
@@ -290,7 +211,7 @@ F 3 "" H 9900 4000 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HEADER_8 J2
+L StepperController-rescue:HEADER_8 J2
 U 1 1 5561CFB3
 P 10050 4450
 F 0 "J2" H 10050 4900 60  0000 C CNN
@@ -303,7 +224,7 @@ $EndComp
 Text HLabel 3600 4050 0    60   Output ~ 0
 Spindle_On
 $Comp
-L +5V #PWR026
+L power:+5V #PWR026
 U 1 1 55627DEA
 P 7800 800
 F 0 "#PWR026" H 7800 890 20  0001 C CNN
@@ -314,7 +235,7 @@ F 3 "" H 7800 800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C46
+L Device:C C46
 U 1 1 55628516
 P 8750 950
 F 0 "C46" H 8775 1050 50  0000 L CNN
@@ -325,7 +246,7 @@ F 3 "" H 8750 950 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR027
+L power:+5V #PWR027
 U 1 1 556286F5
 P 8750 800
 F 0 "#PWR027" H 8750 890 20  0001 C CNN
@@ -336,7 +257,7 @@ F 3 "" H 8750 800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR028
+L StepperController-rescue:GND-RESCUE-StepperController #PWR028
 U 1 1 5562872E
 P 8750 1100
 F 0 "#PWR028" H 8750 1100 30  0001 C CNN
@@ -347,7 +268,7 @@ F 3 "" H 8750 1100 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR029
+L StepperController-rescue:GND-RESCUE-StepperController #PWR029
 U 1 1 567E10FB
 P 3100 3700
 F 0 "#PWR029" H 3100 3700 30  0001 C CNN
@@ -360,7 +281,7 @@ $EndComp
 Text HLabel 3600 6050 0    60   Input ~ 0
 Cover
 $Comp
-L Crystal Y1
+L Device:Crystal Y1
 U 1 1 56D4BD2D
 P 2300 3400
 F 0 "Y1" H 2300 3550 50  0000 C CNN
@@ -371,7 +292,7 @@ F 3 "" H 2300 3400 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L C C8
+L Device:C C8
 U 1 1 56D4C25F
 P 1950 3550
 F 0 "C8" H 1975 3650 50  0000 L CNN
@@ -382,7 +303,7 @@ F 3 "" H 1950 3550 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C9
+L Device:C C9
 U 1 1 56D4C477
 P 2600 3550
 F 0 "C9" H 2625 3650 50  0000 L CNN
@@ -393,7 +314,7 @@ F 3 "" H 2600 3550 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR030
+L StepperController-rescue:GND-RESCUE-StepperController #PWR030
 U 1 1 56D4CFFB
 P 2300 3750
 F 0 "#PWR030" H 2300 3750 30  0001 C CNN
@@ -408,7 +329,7 @@ Ext1
 Text HLabel 3600 4650 0    60   BiDi ~ 0
 Ext2
 $Comp
-L C C47
+L Device:C C47
 U 1 1 57CBF3B0
 P 4200 1100
 F 0 "C47" H 4225 1200 50  0000 L CNN
@@ -423,7 +344,7 @@ V_SUP
 Text HLabel 3600 4450 0    60   Input ~ 0
 T_REG
 $Comp
-L R R70
+L Device:R R70
 U 1 1 58BCF678
 P 3500 2200
 F 0 "R70" V 3580 2200 50  0000 C CNN
@@ -434,7 +355,7 @@ F 3 "" H 3500 2200 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR031
+L power:+5V #PWR031
 U 1 1 58BD2596
 P 3400 1950
 F 0 "#PWR031" H 3400 2040 20  0001 C CNN
@@ -445,7 +366,7 @@ F 3 "" H 3400 1950 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L ZENERsmall D32
+L StepperController-rescue:ZENERsmall D32
 U 1 1 58BD31FE
 P 3300 2200
 F 0 "D32" H 3300 2300 50  0000 C CNN
@@ -466,7 +387,7 @@ CS_Ext1
 Text Label 6450 4150 0    60   ~ 0
 CS_Ext2
 $Comp
-L ATMEGA128-A IC1
+L StepperController-rescue:ATMEGA128-A IC1
 U 1 1 58C5413F
 P 5150 4350
 F 0 "IC1" H 4000 6250 50  0000 L BNN
@@ -477,7 +398,7 @@ F 3 "" H 5150 4350 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L 74LS11 U4
+L StepperController-rescue:74LS11 U4
 U 1 1 58C7F524
 P 8400 1300
 F 0 "U4" H 8400 1350 50  0000 C CNN
@@ -488,7 +409,7 @@ F 3 "" H 8400 1300 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L 74LS11 U4
+L StepperController-rescue:74LS11 U4
 U 2 1 58C7F77F
 P 8400 1800
 F 0 "U4" H 8400 1850 50  0000 C CNN
@@ -499,7 +420,7 @@ F 3 "" H 8400 1800 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L 74LS11 U4
+L StepperController-rescue:74LS11 U4
 U 3 1 58C7F7EE
 P 8400 2300
 F 0 "U4" H 8400 2350 50  0000 C CNN
@@ -510,7 +431,7 @@ F 3 "" H 8400 2300 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L CONN_02X05 P7
+L StepperController-rescue:CONN_02X05 P7
 U 1 1 58D09626
 P 2200 5000
 F 0 "P7" H 2200 5300 50  0000 C CNN
@@ -522,7 +443,7 @@ F 3 "" H 2200 3800 50  0000 C CNN
 $EndComp
 NoConn ~ 2450 5100
 $Comp
-L GND-RESCUE-StepperController #PWR032
+L StepperController-rescue:GND-RESCUE-StepperController #PWR032
 U 1 1 58D0A195
 P 1850 5300
 F 0 "#PWR032" H 1850 5300 30  0001 C CNN
@@ -533,7 +454,7 @@ F 3 "" H 1850 5300 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR033
+L power:+5V #PWR033
 U 1 1 58D0A5AD
 P 1900 4700
 F 0 "#PWR033" H 1900 4790 20  0001 C CNN
@@ -556,7 +477,7 @@ Text HLabel 6850 4950 2    60   Input ~ 0
 JogZ
 NoConn ~ 3850 2850
 $Comp
-L VCC #PWR034
+L power:VCC #PWR034
 U 1 1 58E15495
 P 8000 800
 F 0 "#PWR034" H 8000 650 50  0001 C CNN
@@ -567,7 +488,7 @@ F 3 "" H 8000 800 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Led_x2 D33
+L StepperController-rescue:Led_x2 D33
 U 1 1 58EBE1DE
 P 1500 6900
 F 0 "D33" H 1500 7125 50  0000 C CNN
@@ -578,7 +499,7 @@ F 3 "" H 1500 6900 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR035
+L StepperController-rescue:GND-RESCUE-StepperController #PWR035
 U 1 1 58EBEEDE
 P 1500 7300
 F 0 "#PWR035" H 1500 7300 30  0001 C CNN
@@ -593,7 +514,7 @@ LED_Red
 Text Label 1600 6000 1    60   ~ 0
 LED_Green
 $Comp
-L SW_Push SW1
+L StepperController-rescue:SW_Push SW1
 U 1 1 58ED61E9
 P 2950 6450
 F 0 "SW1" H 3100 6560 50  0000 C CNN
@@ -604,7 +525,7 @@ F 3 "" H 2950 6450 60  0000 C CNN
 	0    -1   1    0   
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR036
+L StepperController-rescue:GND-RESCUE-StepperController #PWR036
 U 1 1 58EFEEE9
 P 2950 6850
 F 0 "#PWR036" H 2950 6850 30  0001 C CNN

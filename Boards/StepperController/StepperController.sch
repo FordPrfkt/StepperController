@@ -1,85 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:StepperController-rescue
-LIBS:74xgxx
-LIBS:74xx
-LIBS:ac-dc
-LIBS:actel
-LIBS:adc-dac
-LIBS:Altera
-LIBS:analog_devices
-LIBS:analog_switches
-LIBS:atmel
-LIBS:audio
-LIBS:bbd
-LIBS:brooktre
-LIBS:cmos_ieee
-LIBS:cmos4000
-LIBS:conn
-LIBS:contrib
-LIBS:cypress
-LIBS:dc-dc
-LIBS:device
-LIBS:digital-audio
-LIBS:diode
-LIBS:display
-LIBS:dsp
-LIBS:elec-unifil
-LIBS:ESD_Protection
-LIBS:ftdi
-LIBS:gennum
-LIBS:hc11
-LIBS:intel
-LIBS:interface
-LIBS:ir
-LIBS:Lattice
-LIBS:linear
-LIBS:maxim
-LIBS:memory
-LIBS:microchip
-LIBS:microchip_dspic33dsc
-LIBS:microchip_pic10mcu
-LIBS:microchip_pic12mcu
-LIBS:microchip_pic16mcu
-LIBS:microchip_pic18mcu
-LIBS:microchip_pic32mcu
-LIBS:microcontrollers
-LIBS:motor_drivers
-LIBS:motorola
-LIBS:msp430
-LIBS:nordicsemi
-LIBS:nxp_armmcu
-LIBS:onsemi
-LIBS:opto
-LIBS:Oscillators
-LIBS:philips
-LIBS:power
-LIBS:Power_Management
-LIBS:powerint
-LIBS:pspice
-LIBS:references
-LIBS:regul
-LIBS:relays
-LIBS:rfcom
-LIBS:sensors
-LIBS:silabs
-LIBS:siliconi
-LIBS:stm8
-LIBS:stm32
-LIBS:supertex
-LIBS:switches
-LIBS:texas
-LIBS:transf
-LIBS:transistors
-LIBS:ttl_ieee
-LIBS:valves
-LIBS:video
-LIBS:Worldsemi
-LIBS:Xicor
-LIBS:xilinx
-LIBS:Zilog
-LIBS:w_connectors
+EESchema Schematic File Version 4
 LIBS:StepperController-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -239,7 +160,7 @@ Wire Wire Line
 Wire Wire Line
 	5000 4500 3750 4500
 Wire Wire Line
-	3750 4700 5000 4700
+	3750 4700 4800 4700
 Wire Wire Line
 	5000 5100 3750 5100
 Wire Wire Line
@@ -279,19 +200,19 @@ Wire Wire Line
 Wire Wire Line
 	7250 4750 7750 4750
 Wire Wire Line
-	6700 3850 9350 3850
+	6700 3850 7350 3850
 Wire Wire Line
 	9350 3850 9350 4850
 Wire Wire Line
 	9350 4850 9000 4850
 Wire Wire Line
-	6700 3950 9300 3950
+	6700 3950 7450 3950
 Wire Wire Line
 	9300 3950 9300 4950
 Wire Wire Line
 	9300 4950 9000 4950
 Wire Wire Line
-	6700 4050 9250 4050
+	6700 4050 7550 4050
 Wire Wire Line
 	9250 4050 9250 5050
 Wire Wire Line
@@ -363,7 +284,7 @@ Connection ~ 4800 4700
 Wire Wire Line
 	3750 4400 5000 4400
 Wire Wire Line
-	3750 3500 5000 3500
+	3750 3500 4550 3500
 Wire Wire Line
 	4550 3500 4550 6400
 Wire Wire Line
@@ -477,4 +398,14 @@ Wire Wire Line
 	7000 4750 6700 4750
 Text Notes 3450 6100 0    60   Italic 12
 RX und TX vertauscht!
+Wire Wire Line
+	7350 3850 9350 3850
+Wire Wire Line
+	7450 3950 9300 3950
+Wire Wire Line
+	7550 4050 9250 4050
+Wire Wire Line
+	4800 4700 5000 4700
+Wire Wire Line
+	4550 3500 5000 3500
 $EndSCHEMATC

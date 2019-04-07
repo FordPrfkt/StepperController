@@ -1,85 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:StepperController-rescue
-LIBS:74xgxx
-LIBS:74xx
-LIBS:ac-dc
-LIBS:actel
-LIBS:adc-dac
-LIBS:Altera
-LIBS:analog_devices
-LIBS:analog_switches
-LIBS:atmel
-LIBS:audio
-LIBS:bbd
-LIBS:brooktre
-LIBS:cmos_ieee
-LIBS:cmos4000
-LIBS:conn
-LIBS:contrib
-LIBS:cypress
-LIBS:dc-dc
-LIBS:device
-LIBS:digital-audio
-LIBS:diode
-LIBS:display
-LIBS:dsp
-LIBS:elec-unifil
-LIBS:ESD_Protection
-LIBS:ftdi
-LIBS:gennum
-LIBS:hc11
-LIBS:intel
-LIBS:interface
-LIBS:ir
-LIBS:Lattice
-LIBS:linear
-LIBS:maxim
-LIBS:memory
-LIBS:microchip
-LIBS:microchip_dspic33dsc
-LIBS:microchip_pic10mcu
-LIBS:microchip_pic12mcu
-LIBS:microchip_pic16mcu
-LIBS:microchip_pic18mcu
-LIBS:microchip_pic32mcu
-LIBS:microcontrollers
-LIBS:motor_drivers
-LIBS:motorola
-LIBS:msp430
-LIBS:nordicsemi
-LIBS:nxp_armmcu
-LIBS:onsemi
-LIBS:opto
-LIBS:Oscillators
-LIBS:philips
-LIBS:power
-LIBS:Power_Management
-LIBS:powerint
-LIBS:pspice
-LIBS:references
-LIBS:regul
-LIBS:relays
-LIBS:rfcom
-LIBS:sensors
-LIBS:silabs
-LIBS:siliconi
-LIBS:stm8
-LIBS:stm32
-LIBS:supertex
-LIBS:switches
-LIBS:texas
-LIBS:transf
-LIBS:transistors
-LIBS:ttl_ieee
-LIBS:valves
-LIBS:video
-LIBS:Worldsemi
-LIBS:Xicor
-LIBS:xilinx
-LIBS:Zilog
-LIBS:w_connectors
+EESchema Schematic File Version 4
 LIBS:StepperController-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -180,7 +101,7 @@ Emergency_Off
 Text HLabel 1000 1250 0    60   Input ~ 0
 Cover
 $Comp
-L 74LS11 U2
+L StepperController-rescue:74LS11 U2
 U 2 1 56D3B651
 P 2600 1750
 F 0 "U2" H 2600 1800 50  0000 C CNN
@@ -191,7 +112,7 @@ F 3 "" H 2600 1750 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L JUMPER3 JP2
+L StepperController-rescue:JUMPER3 JP2
 U 1 1 56D3DBB8
 P 1300 1250
 F 0 "JP2" H 1350 1150 50  0000 L CNN
@@ -202,7 +123,7 @@ F 3 "" H 1300 1250 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR090
+L power:+5V #PWR090
 U 1 1 56D3E775
 P 1650 1250
 F 0 "#PWR090" H 1650 1100 50  0001 C CNN
@@ -213,7 +134,7 @@ F 3 "" H 1650 1250 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR091
+L power:+5V #PWR091
 U 1 1 56D4C028
 P 2050 2850
 F 0 "#PWR091" H 2050 2940 20  0001 C CNN
@@ -224,7 +145,7 @@ F 3 "" H 2050 2850 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR092
+L StepperController-rescue:GND-RESCUE-StepperController #PWR092
 U 1 1 56D4C02E
 P 2050 3350
 F 0 "#PWR092" H 2050 3350 30  0001 C CNN
@@ -235,9 +156,9 @@ F 3 "" H 2050 3350 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3650 2000 5100 2000
+	3650 2000 4600 2000
 Wire Wire Line
-	3650 2100 5100 2100
+	3650 2100 4500 2100
 Wire Wire Line
 	3650 2200 5100 2200
 Wire Wire Line
@@ -275,13 +196,13 @@ Wire Wire Line
 Wire Wire Line
 	6450 5850 6750 5850
 Wire Wire Line
-	3650 1900 5100 1900
+	3650 1900 4700 1900
 Wire Wire Line
-	3650 1450 5100 1450
+	3650 1450 5000 1450
 Wire Wire Line
 	5100 3550 5000 3550
 Wire Wire Line
-	5000 1450 5000 5550
+	5000 1450 5000 3550
 Connection ~ 5000 1450
 Wire Wire Line
 	5000 5550 5100 5550
@@ -289,20 +210,20 @@ Connection ~ 5000 3550
 Wire Wire Line
 	5100 3700 4900 3700
 Wire Wire Line
-	4900 1600 4900 5700
+	4900 1600 4900 2950
 Wire Wire Line
 	5100 3850 4800 3850
 Wire Wire Line
-	4800 1750 4800 5850
+	4800 1750 4800 3850
 Connection ~ 4800 1750
 Wire Wire Line
-	4700 1900 4700 6000
+	4700 1900 4700 4000
 Connection ~ 4700 1900
 Wire Wire Line
-	4600 2000 4600 6100
+	4600 2000 4600 4100
 Connection ~ 4600 2000
 Wire Wire Line
-	4500 2100 4500 6200
+	4500 2100 4500 4200
 Connection ~ 4500 2100
 Wire Wire Line
 	4900 5700 5100 5700
@@ -314,11 +235,11 @@ Connection ~ 4700 4000
 Connection ~ 4600 4100
 Connection ~ 4500 4200
 Wire Wire Line
-	1300 1600 2000 1600
+	1300 1600 1700 1600
 Wire Wire Line
 	1300 1750 2000 1750
 Wire Wire Line
-	3200 1750 5100 1750
+	3200 1750 4800 1750
 Wire Wire Line
 	1900 1400 1300 1400
 Wire Wire Line
@@ -333,7 +254,7 @@ Wire Wire Line
 	3300 2950 4900 2950
 Connection ~ 4900 2950
 $Comp
-L IQXO/7X X1
+L StepperController-rescue:IQXO_7X X1
 U 1 1 56D8D24D
 P 2700 3100
 F 0 "X1" H 2700 3400 50  0000 C CNN
@@ -344,7 +265,7 @@ F 3 "" H 2700 3100 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C14
+L Device:C C14
 U 1 1 56D4C034
 P 3400 3400
 F 0 "C14" H 3425 3500 50  0000 L CNN
@@ -355,7 +276,7 @@ F 3 "" H 3400 3400 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND-RESCUE-StepperController #PWR093
+L StepperController-rescue:GND-RESCUE-StepperController #PWR093
 U 1 1 56D8D88C
 P 3400 3650
 F 0 "#PWR093" H 3400 3650 30  0001 C CNN
@@ -366,7 +287,7 @@ F 3 "" H 3400 3650 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR094
+L power:+5V #PWR094
 U 1 1 56D8D957
 P 3400 3150
 F 0 "#PWR094" H 3400 3240 20  0001 C CNN
@@ -400,7 +321,7 @@ Wire Wire Line
 Wire Wire Line
 	1900 1900 1900 1400
 $Comp
-L R R5
+L Device:R R5
 U 1 1 58D8087B
 P 1700 2050
 F 0 "R5" V 1780 2050 50  0000 C CNN
@@ -414,7 +335,7 @@ Wire Wire Line
 	1700 1900 1700 1600
 Connection ~ 1700 1600
 $Comp
-L GND-RESCUE-StepperController #PWR095
+L StepperController-rescue:GND-RESCUE-StepperController #PWR095
 U 1 1 58D81739
 P 1700 2300
 F 0 "#PWR095" H 1700 2300 30  0001 C CNN
@@ -426,4 +347,30 @@ F 3 "" H 1700 2300 60  0000 C CNN
 $EndComp
 Wire Wire Line
 	1700 2200 1700 2300
+Wire Wire Line
+	5000 1450 5100 1450
+Wire Wire Line
+	5000 3550 5000 5550
+Wire Wire Line
+	4800 1750 5100 1750
+Wire Wire Line
+	4700 1900 5100 1900
+Wire Wire Line
+	4600 2000 5100 2000
+Wire Wire Line
+	4500 2100 5100 2100
+Wire Wire Line
+	4900 3700 4900 5700
+Wire Wire Line
+	4800 3850 4800 5850
+Wire Wire Line
+	4700 4000 4700 6000
+Wire Wire Line
+	4600 4100 4600 6100
+Wire Wire Line
+	4500 4200 4500 6200
+Wire Wire Line
+	4900 2950 4900 3700
+Wire Wire Line
+	1700 1600 2000 1600
 $EndSCHEMATC
