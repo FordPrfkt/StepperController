@@ -37,17 +37,6 @@ F 3 "~" H 5050 1100 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Device:Polyfuse F1
-U 1 1 5C8857C6
-P 1600 1300
-F 0 "F1" V 1375 1300 50  0000 C CNN
-F 1 "Polyfuse" V 1466 1300 50  0000 C CNN
-F 2 "Fuse:Fuseholder_TR5_Littelfuse_No560_No460" H 1650 1100 50  0001 L CNN
-F 3 "~" H 1600 1300 50  0001 C CNN
-	1    1600 1300
-	0    1    1    0   
-$EndComp
-$Comp
 L Device:D_TVS D5
 U 1 1 5C885885
 P 1900 1500
@@ -70,8 +59,6 @@ F 3 "" H 2650 1100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1750 1300 1900 1300
-Wire Wire Line
 	1900 1350 1900 1300
 $Comp
 L power:GND #PWR0130
@@ -83,17 +70,6 @@ F 2 "" H 1250 2150 50  0001 C CNN
 F 3 "" H 1250 2150 50  0001 C CNN
 	1    1250 2150
 	1    0    0    -1  
-$EndComp
-$Comp
-L Device:Q_PMOS_DGS Q10
-U 1 1 5C885B70
-P 2350 1400
-F 0 "Q10" V 2693 1400 50  0000 C CNN
-F 1 "IRF9530" V 2602 1400 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:TO-263-2" H 2550 1500 50  0001 C CNN
-F 3 "~" H 2350 1400 50  0001 C CNN
-	1    2350 1400
-	0    -1   -1   0   
 $EndComp
 Wire Wire Line
 	1900 1300 2150 1300
@@ -896,23 +872,23 @@ $EndComp
 $Comp
 L Isolator:LTV-827S U8
 U 1 1 5CA43B01
-P 8850 5000
-F 0 "U8" H 8850 5325 50  0000 C CNN
-F 1 "LTV-827S" H 8850 5234 50  0000 C CNN
-F 2 "Package_DIP:SMDIP-8_W9.53mm" H 8850 4700 50  0001 C CNN
-F 3 "http://www.us.liteon.com/downloads/LTV-817-827-847.PDF" H 8050 5550 50  0001 C CNN
-	1    8850 5000
-	-1   0    0    -1  
-$EndComp
-$Comp
-L Isolator:LTV-827S U8
-U 2 1 5CA447B6
 P 8850 5550
 F 0 "U8" H 8850 5875 50  0000 C CNN
 F 1 "LTV-827S" H 8850 5784 50  0000 C CNN
 F 2 "Package_DIP:SMDIP-8_W9.53mm" H 8850 5250 50  0001 C CNN
 F 3 "http://www.us.liteon.com/downloads/LTV-817-827-847.PDF" H 8050 6100 50  0001 C CNN
-	2    8850 5550
+	1    8850 5550
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Isolator:LTV-827S U8
+U 2 1 5CA447B6
+P 8850 5000
+F 0 "U8" H 8850 5325 50  0000 C CNN
+F 1 "LTV-827S" H 8850 5234 50  0000 C CNN
+F 2 "Package_DIP:SMDIP-8_W9.53mm" H 8850 4700 50  0001 C CNN
+F 3 "http://www.us.liteon.com/downloads/LTV-817-827-847.PDF" H 8050 5550 50  0001 C CNN
+	2    8850 5000
 	-1   0    0    -1  
 $EndComp
 $Comp
@@ -1523,8 +1499,6 @@ F 3 "~" H 1800 5800 50  0001 C CNN
 	1    1800 5800
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1450 1300 1250 1300
 $Comp
 L Isolator:SFH617A-2X019T U4
 U 1 1 5CAB1397
@@ -1546,5 +1520,18 @@ F 2 "Package_DIP:SMDIP-4_W7.62mm" H 5750 6350 50  0001 C CNN
 F 3 "http://www.vishay.com/docs/83740/sfh617a.pdf" H 5400 6950 50  0001 C CNN
 	1    5750 6650
 	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 1300 1900 1300
+$Comp
+L Device:Q_PMOS_GDS Q10
+U 1 1 5CB85C9B
+P 2350 1400
+F 0 "Q10" V 2693 1400 50  0000 C CNN
+F 1 "IRF4950S" V 2602 1400 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:TO-263-2" H 2550 1500 50  0001 C CNN
+F 3 "~" H 2350 1400 50  0001 C CNN
+	1    2350 1400
+	0    -1   -1   0   
 $EndComp
 $EndSCHEMATC

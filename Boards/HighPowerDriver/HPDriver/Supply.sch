@@ -59,17 +59,6 @@ F 3 "~" H 5100 3000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:CP_Small C1
-U 1 1 5CA36C3C
-P 4650 3000
-F 0 "C1" H 4450 3050 50  0000 L CNN
-F 1 "4,7µF" H 4350 2950 50  0000 L CNN
-F 2 "Capacitor_SMD:CP_Elec_5x5.8" H 4650 3000 50  0001 C CNN
-F 3 "~" H 4650 3000 50  0001 C CNN
-	1    4650 3000
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:R_Small R2
 U 1 1 5CA37757
 P 5450 3250
@@ -256,17 +245,6 @@ F 1 "1R5" H 8359 3155 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 8300 3200 50  0001 C CNN
 F 3 "~" H 8300 3200 50  0001 C CNN
 	1    8300 3200
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:CP_Small C6
-U 1 1 5CA5942D
-P 8300 3500
-F 0 "C6" H 8388 3546 50  0000 L CNN
-F 1 "5µF" H 8388 3455 50  0000 L CNN
-F 2 "Capacitor_SMD:CP_Elec_4x4.5" H 8300 3500 50  0001 C CNN
-F 3 "~" H 8300 3500 50  0001 C CNN
-	1    8300 3500
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -2531,4 +2509,26 @@ F 3 "" H 9350 3650 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	9350 3650 9350 3600
+$Comp
+L Device:C_Small C1
+U 1 1 5CB50D23
+P 4650 3000
+F 0 "C1" H 4742 3046 50  0000 L CNN
+F 1 "4,7µF" H 4742 2955 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder" H 4650 3000 50  0001 C CNN
+F 3 "~" H 4650 3000 50  0001 C CNN
+	1    4650 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C6
+U 1 1 5CB513BE
+P 8300 3500
+F 0 "C6" H 8392 3546 50  0000 L CNN
+F 1 "5µF" H 8392 3455 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder" H 8300 3500 50  0001 C CNN
+F 3 "~" H 8300 3500 50  0001 C CNN
+	1    8300 3500
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
