@@ -55,6 +55,8 @@ F10 "Coil_B1" I R 6850 5300 50
 F11 "Coil_B2" I R 6850 5400 50 
 F12 "Reset" U L 5850 4750 50 
 F13 "Enable" I L 5850 4650 50 
+F14 "Error" I L 5850 5250 50 
+F15 "Active" I L 5850 5150 50 
 $EndSheet
 Wire Wire Line
 	7650 2750 6900 2750
@@ -83,6 +85,8 @@ F10 "Step" I L 5850 2550 50
 F11 "Dir" I L 5850 2450 50 
 F12 "Ready" O L 5850 3150 50 
 F13 "Reset" I L 5850 3400 50 
+F14 "Active" O L 5850 2850 50 
+F15 "Error" O L 5850 2750 50 
 $EndSheet
 Wire Wire Line
 	7650 2150 7400 2150
@@ -184,4 +188,16 @@ Wire Wire Line
 Wire Wire Line
 	5700 4650 5850 4650
 Connection ~ 5700 2250
+Wire Wire Line
+	5850 2750 5100 2750
+Wire Wire Line
+	5100 2750 5100 5250
+Wire Wire Line
+	5200 5150 5200 2850
+Wire Wire Line
+	5200 2850 5850 2850
+Wire Wire Line
+	5850 5150 5200 5150
+Wire Wire Line
+	5100 5250 5850 5250
 $EndSCHEMATC

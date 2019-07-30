@@ -283,9 +283,15 @@ Wire Wire Line
 	3400 3300 5800 3300
 Wire Wire Line
 	1950 2200 6600 2200
-NoConn ~ 3400 3200
-NoConn ~ 3400 3100
 Wire Wire Line
 	1950 2200 1850 2200
 Connection ~ 1950 2200
+Text HLabel 3500 3200 2    50   Output ~ 0
+Active
+Wire Wire Line
+	3400 3200 3500 3200
+Text HLabel 3500 3100 2    50   Output ~ 0
+Error
+Wire Wire Line
+	3400 3100 3500 3100
 $EndSCHEMATC
