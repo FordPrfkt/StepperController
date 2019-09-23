@@ -845,7 +845,6 @@ F 3 "http://www.us.liteon.com/downloads/LTV-817-827-847.PDF" H 8050 4350 50  000
 	1    8850 3800
 	1    0    0    -1  
 $EndComp
-NoConn ~ 8800 4250
 $Comp
 L Isolator:LTV-827S U7
 U 2 1 5CA42908
