@@ -1,4 +1,4 @@
-update=16.04.2019 17:39:46
+update=15.12.2019 23:30:04
 version=1
 last_client=kicad
 [general]
@@ -65,3 +65,13 @@ Type=1
 [pcbnew/Layer.In2.Cu]
 Name=In2.Cu
 Type=1
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=Pcbnew
+SpiceAjustPassiveValues=0
+LabSize=50
+ERC_TestSimilarLabels=1
