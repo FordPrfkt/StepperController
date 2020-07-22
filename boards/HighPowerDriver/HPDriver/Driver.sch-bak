@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:HPDriver-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -901,4 +900,138 @@ F 3 "~" H 7750 4700 50  0001 C CNN
 	1    7750 4700
 	1    0    0    1   
 $EndComp
+$Comp
+L Device:Thermistor_NTC TH2
+U 1 1 5EE84B4A
+P 9250 2200
+F 0 "TH2" H 9348 2246 50  0000 L CNN
+F 1 "Thermistor_NTC" H 9348 2155 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9250 2250 50  0001 C CNN
+F 3 "~" H 9250 2250 50  0001 C CNN
+	1    9250 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Thermistor_NTC TH1
+U 1 1 5EE86746
+P 9200 5250
+F 0 "TH1" H 9298 5296 50  0000 L CNN
+F 1 "Thermistor_NTC" H 9298 5205 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9200 5300 50  0001 C CNN
+F 3 "~" H 9200 5300 50  0001 C CNN
+	1    9200 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R40
+U 1 1 5EE86E97
+P 9200 5650
+F 0 "R40" H 9270 5696 50  0000 L CNN
+F 1 "R" H 9270 5605 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 9130 5650 50  0001 C CNN
+F 3 "~" H 9200 5650 50  0001 C CNN
+	1    9200 5650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R41
+U 1 1 5EE881BD
+P 9250 2650
+F 0 "R41" H 9320 2696 50  0000 L CNN
+F 1 "R" H 9320 2605 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 9180 2650 50  0001 C CNN
+F 3 "~" H 9250 2650 50  0001 C CNN
+	1    9250 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0164
+U 1 1 5EE886E0
+P 9250 1950
+F 0 "#PWR0164" H 9250 1800 50  0001 C CNN
+F 1 "+5V" H 9265 2123 50  0000 C CNN
+F 2 "" H 9250 1950 50  0001 C CNN
+F 3 "" H 9250 1950 50  0001 C CNN
+	1    9250 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0165
+U 1 1 5EE88F25
+P 9200 4950
+F 0 "#PWR0165" H 9200 4800 50  0001 C CNN
+F 1 "+5V" H 9215 5123 50  0000 C CNN
+F 2 "" H 9200 4950 50  0001 C CNN
+F 3 "" H 9200 4950 50  0001 C CNN
+	1    9200 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0166
+U 1 1 5EE898D3
+P 9200 5900
+F 0 "#PWR0166" H 9200 5650 50  0001 C CNN
+F 1 "GND" H 9205 5727 50  0000 C CNN
+F 2 "" H 9200 5900 50  0001 C CNN
+F 3 "" H 9200 5900 50  0001 C CNN
+	1    9200 5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0167
+U 1 1 5EE89F1A
+P 9250 2900
+F 0 "#PWR0167" H 9250 2650 50  0001 C CNN
+F 1 "GND" H 9255 2727 50  0000 C CNN
+F 2 "" H 9250 2900 50  0001 C CNN
+F 3 "" H 9250 2900 50  0001 C CNN
+	1    9250 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9250 1950 9250 2050
+Wire Wire Line
+	9250 2500 9250 2400
+Wire Wire Line
+	9250 2900 9250 2800
+Wire Wire Line
+	9200 5100 9200 4950
+Wire Wire Line
+	9200 5500 9200 5450
+Wire Wire Line
+	9200 5900 9200 5800
+Text HLabel 9700 5450 2    50   Output ~ 0
+Temp2
+Wire Wire Line
+	9700 5450 9200 5450
+Connection ~ 9200 5450
+Wire Wire Line
+	9200 5450 9200 5400
+Text HLabel 9550 2400 2    50   Output ~ 0
+Temp1
+Wire Wire Line
+	9550 2400 9250 2400
+Connection ~ 9250 2400
+Wire Wire Line
+	9250 2400 9250 2350
+Wire Notes Line
+	8900 1600 10100 1600
+Wire Notes Line
+	10100 1600 10100 3200
+Wire Notes Line
+	10100 3200 8900 3200
+Wire Notes Line
+	8900 3200 8900 1600
+Wire Notes Line
+	8900 4600 8900 6150
+Wire Notes Line
+	8900 6150 10100 6150
+Wire Notes Line
+	10100 6150 10100 4600
+Wire Notes Line
+	10100 4600 8900 4600
+Text Notes 9300 6000 0    50   ~ 0
+Temperature Sense.\nMount close to FETs
+Text Notes 9300 2900 0    50   ~ 0
+Temperature Sense.\nMount close to FETs
 $EndSCHEMATC

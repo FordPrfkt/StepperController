@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:HPDriver-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -37,6 +36,8 @@ F10 "Coil_A1" O R 7900 2450 50
 F11 "Coil_A2" O R 7900 2550 50 
 F12 "Coil_B1" O R 7900 2650 50 
 F13 "Coil_B2" O R 7900 2750 50 
+F14 "Temp2" O L 6800 3350 50 
+F15 "Temp1" O L 6800 3450 50 
 $EndSheet
 $Sheet
 S 5000 4350 1000 1500
@@ -87,6 +88,8 @@ F12 "Ready" O L 5000 3150 50
 F13 "Reset" I L 5000 3400 50 
 F14 "Active" O L 5000 2850 50 
 F15 "Error" O L 5000 2750 50 
+F16 "Temp1" I R 6050 3450 50 
+F17 "Temp2" I R 6050 3350 50 
 $EndSheet
 Wire Wire Line
 	6800 2150 6550 2150
@@ -200,4 +203,8 @@ Wire Wire Line
 	5000 5150 4350 5150
 Wire Wire Line
 	4250 5250 5000 5250
+Wire Wire Line
+	6050 3450 6800 3450
+Wire Wire Line
+	6800 3350 6050 3350
 $EndSCHEMATC
