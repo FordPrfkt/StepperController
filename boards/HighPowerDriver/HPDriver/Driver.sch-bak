@@ -263,8 +263,8 @@ L Device:R R9
 U 1 1 5C87D3A4
 P 7300 3250
 F 0 "R9" H 7370 3296 50  0000 L CNN
-F 1 "20mR" H 7370 3205 50  0000 L CNN
-F 2 "Resistor_SMD:R_1210_3225Metric_Pad1.42x2.65mm_HandSolder" V 7230 3250 50  0001 C CNN
+F 1 "25mR" H 7370 3205 50  0000 L CNN
+F 2 "Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder" V 7230 3250 50  0001 C CNN
 F 3 "~" H 7300 3250 50  0001 C CNN
 	1    7300 3250
 	1    0    0    -1  
@@ -333,8 +333,8 @@ L Device:R R10
 U 1 1 5C8C355D
 P 7300 4100
 F 0 "R10" H 7370 4146 50  0000 L CNN
-F 1 "20mR" H 7370 4055 50  0000 L CNN
-F 2 "Resistor_SMD:R_1210_3225Metric_Pad1.42x2.65mm_HandSolder" V 7230 4100 50  0001 C CNN
+F 1 "25mR" H 7370 4055 50  0000 L CNN
+F 2 "Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder" V 7230 4100 50  0001 C CNN
 F 3 "~" H 7300 4100 50  0001 C CNN
 	1    7300 4100
 	1    0    0    -1  
@@ -1034,4 +1034,14 @@ Text Notes 9300 6000 0    50   ~ 0
 Temperature Sense.\nMount close to FETs
 Text Notes 9300 2900 0    50   ~ 0
 Temperature Sense.\nMount close to FETs
+Text Notes 7950 3750 0    50   ~ 0
+YAGEO PA2512FKE7T0R025E\n3W\n\nIrms 0,28 - 7,5 A
+Wire Notes Line
+	7900 3550 7900 3250
+Wire Notes Line
+	7900 3250 7550 3250
+Wire Notes Line
+	7900 3600 7900 4050
+Wire Notes Line
+	7900 4050 7600 4050
 $EndSCHEMATC
