@@ -51,9 +51,12 @@
 #Kicad Backup files
 *.bak
 *.kicad_pcb-bak
+*.sch-bak
 *.bck
 *.dcm
 *.rpt
 _autosave-
 
 *.d
+
+HPDriver-backups/
