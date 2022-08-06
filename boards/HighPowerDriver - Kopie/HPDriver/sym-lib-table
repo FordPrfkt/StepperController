@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name HPDriver-rescue)(type Legacy)(uri ${KIPRJMOD}/HPDriver-rescue.lib)(options "")(descr ""))
-)
