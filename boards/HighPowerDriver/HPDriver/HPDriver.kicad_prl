@@ -61,7 +61,7 @@
       35,
       36
     ],
-    "visible_layers": "003c0f0_ffffffff",
+    "visible_layers": "003d0f0_ffffffff",
     "zone_display_mode": 0
   },
   "meta": {
@@ -69,6 +69,31 @@
     "version": 3
   },
   "project": {
-    "files": []
+    "files": [
+      {
+        "name": "HPDriver.kicad_pcb",
+        "open": false,
+        "window": {
+          "display": 0,
+          "maximized": true,
+          "pos_x": -8,
+          "pos_y": -8,
+          "size_x": 2576,
+          "size_y": 1456
+        }
+      },
+      {
+        "name": "HPDriver.kicad_sch",
+        "open": false,
+        "window": {
+          "display": 0,
+          "maximized": true,
+          "pos_x": -8,
+          "pos_y": -8,
+          "size_x": 2576,
+          "size_y": 1456
+        }
+      }
+    ]
   }
 }

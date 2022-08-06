@@ -1,0 +1,11 @@
+(sym_lib_table
+  (lib (name StepperDisplay-rescue)(type Legacy)(uri ${KIPRJMOD}/StepperDisplay-rescue.lib)(options "")(descr ""))
+  (lib (name power1)(type Legacy)(uri C:/Users/danie/Documents/Projekte/KiCad/Kicad_Lib/power.lib)(options "")(descr ""))
+  (lib (name xilinx)(type Legacy)(uri C:/Users/danie/Documents/Projekte/KiCad/Kicad_Lib/converted/xilinx.lib)(options "")(descr ""))
+  (lib (name texas)(type Legacy)(uri C:/Users/danie/Documents/Projekte/KiCad/Kicad_Lib/converted/texas.lib)(options "")(descr ""))
+  (lib (name interface)(type Legacy)(uri C:/Users/danie/Documents/Projekte/KiCad/Kicad_Lib/converted/interface.lib)(options "")(descr ""))
+  (lib (name philips)(type Legacy)(uri C:/Users/danie/Documents/Projekte/KiCad/Kicad_Lib/converted/philips.lib)(options "")(descr ""))
+  (lib (name atmel)(type Legacy)(uri C:/Users/danie/Documents/Projekte/KiCad/Kicad_Lib/converted/atmel.lib)(options "")(descr ""))
+  (lib (name ULN280xA)(type Legacy)(uri C:/Users/danie/Documents/Projekte/KiCad/Kicad_Lib/ULN280xA.lib)(options "")(descr ""))
+  (lib (name w_device)(type Legacy)(uri C:/Users/danie/Documents/Projekte/KiCad/Kicad_Lib/w_device.lib)(options "")(descr ""))
+)

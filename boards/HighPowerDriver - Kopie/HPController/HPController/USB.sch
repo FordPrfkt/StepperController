@@ -1,0 +1,345 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 6 6
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector:USB_B J?
+U 1 1 5CE06A1E
+P 3400 3050
+F 0 "J?" H 3457 3517 50  0000 C CNN
+F 1 "USB_B" H 3457 3426 50  0000 C CNN
+F 2 "" H 3550 3000 50  0001 C CNN
+F 3 " ~" H 3550 3000 50  0001 C CNN
+	1    3400 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5CE076F5
+P 4400 3050
+F 0 "R?" V 4193 3050 50  0000 C CNN
+F 1 "33R" V 4284 3050 50  0000 C CNN
+F 2 "" V 4330 3050 50  0001 C CNN
+F 3 "~" H 4400 3050 50  0001 C CNN
+	1    4400 3050
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5CE080E1
+P 4850 3150
+F 0 "R?" V 4643 3150 50  0000 C CNN
+F 1 "33R" V 4734 3150 50  0000 C CNN
+F 2 "" V 4780 3150 50  0001 C CNN
+F 3 "~" H 4850 3150 50  0001 C CNN
+	1    4850 3150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3700 3050 4250 3050
+Wire Wire Line
+	3700 3150 4700 3150
+Wire Wire Line
+	5000 3150 5100 3150
+Text HLabel 5200 3150 2    50   BiDi ~ 0
+USB_D+
+Text HLabel 5200 3050 2    50   BiDi ~ 0
+USB_D-
+Wire Wire Line
+	4550 3050 4650 3050
+$Comp
+L Device:Q_PMOS_GSD Q?
+U 1 1 5CE09950
+P 4550 2150
+F 0 "Q?" H 4756 2196 50  0000 L CNN
+F 1 "Q_PMOS_GSD" H 4756 2105 50  0000 L CNN
+F 2 "" H 4750 2250 50  0001 C CNN
+F 3 "~" H 4550 2150 50  0001 C CNN
+	1    4550 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5CE0AF4D
+P 4650 1750
+F 0 "#PWR?" H 4650 1600 50  0001 C CNN
+F 1 "+3.3V" H 4665 1923 50  0000 C CNN
+F 2 "" H 4650 1750 50  0001 C CNN
+F 3 "" H 4650 1750 50  0001 C CNN
+	1    4650 1750
+	1    0    0    -1  
+$EndComp
+Text HLabel 4250 2150 0    50   Input ~ 0
+USB_Connect
+Text HLabel 3800 2850 2    50   Output ~ 0
+USB_VBus
+Wire Wire Line
+	3800 2850 3700 2850
+Wire Wire Line
+	4250 2150 4350 2150
+Text HLabel 2200 2800 0    50   Input ~ 0
+USB_Up
+Wire Wire Line
+	4650 1750 4650 1950
+$Comp
+L Device:R R?
+U 1 1 5CE0C267
+P 4650 2650
+F 0 "R?" H 4720 2696 50  0000 L CNN
+F 1 "1k5" H 4720 2605 50  0000 L CNN
+F 2 "" V 4580 2650 50  0001 C CNN
+F 3 "~" H 4650 2650 50  0001 C CNN
+	1    4650 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4650 2350 4650 2500
+Wire Wire Line
+	4650 2800 4650 3050
+Connection ~ 4650 3050
+Wire Wire Line
+	4650 3050 5200 3050
+$Comp
+L Device:C C?
+U 1 1 5CE0EC09
+P 4650 3500
+F 0 "C?" H 4765 3546 50  0000 L CNN
+F 1 "C" H 4765 3455 50  0000 L CNN
+F 2 "" H 4688 3350 50  0001 C CNN
+F 3 "~" H 4650 3500 50  0001 C CNN
+	1    4650 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5CE0F6F6
+P 5100 3500
+F 0 "C?" H 5215 3546 50  0000 L CNN
+F 1 "C" H 5215 3455 50  0000 L CNN
+F 2 "" H 5138 3350 50  0001 C CNN
+F 3 "~" H 5100 3500 50  0001 C CNN
+	1    5100 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4650 3350 4650 3050
+Wire Wire Line
+	5100 3350 5100 3150
+Connection ~ 5100 3150
+Wire Wire Line
+	5100 3150 5200 3150
+$Comp
+L Device:R R?
+U 1 1 5CE10054
+P 2300 3100
+F 0 "R?" H 2370 3146 50  0000 L CNN
+F 1 "R" H 2370 3055 50  0000 L CNN
+F 2 "" V 2230 3100 50  0001 C CNN
+F 3 "~" H 2300 3100 50  0001 C CNN
+	1    2300 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED D?
+U 1 1 5CE109B7
+P 2300 3600
+F 0 "D?" V 2339 3483 50  0000 R CNN
+F 1 "LED" V 2248 3483 50  0000 R CNN
+F 2 "" H 2300 3600 50  0001 C CNN
+F 3 "~" H 2300 3600 50  0001 C CNN
+	1    2300 3600
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5CE114AD
+P 3400 3600
+F 0 "#PWR?" H 3400 3350 50  0001 C CNN
+F 1 "GND" H 3405 3427 50  0000 C CNN
+F 2 "" H 3400 3600 50  0001 C CNN
+F 3 "" H 3400 3600 50  0001 C CNN
+	1    3400 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3400 3600 3400 3500
+Wire Wire Line
+	3300 3450 3300 3500
+Wire Wire Line
+	3300 3500 3400 3500
+Connection ~ 3400 3500
+Wire Wire Line
+	3400 3500 3400 3450
+$Comp
+L power:GND #PWR?
+U 1 1 5CE1273A
+P 4650 3800
+F 0 "#PWR?" H 4650 3550 50  0001 C CNN
+F 1 "GND" H 4655 3627 50  0000 C CNN
+F 2 "" H 4650 3800 50  0001 C CNN
+F 3 "" H 4650 3800 50  0001 C CNN
+	1    4650 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4650 3650 4650 3700
+Wire Wire Line
+	5100 3650 5100 3700
+Wire Wire Line
+	5100 3700 4650 3700
+Connection ~ 4650 3700
+Wire Wire Line
+	4650 3700 4650 3800
+$Comp
+L power:GND #PWR?
+U 1 1 5CE131A4
+P 2300 3850
+F 0 "#PWR?" H 2300 3600 50  0001 C CNN
+F 1 "GND" H 2305 3677 50  0000 C CNN
+F 2 "" H 2300 3850 50  0001 C CNN
+F 3 "" H 2300 3850 50  0001 C CNN
+	1    2300 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 2800 2300 2800
+Wire Wire Line
+	2300 2800 2300 2950
+Wire Wire Line
+	2300 3250 2300 3450
+Wire Wire Line
+	2300 3850 2300 3750
+$Comp
+L Connector:Micro_SD_Card J?
+U 1 1 5CE16C04
+P 4500 5750
+F 0 "J?" H 4450 6467 50  0000 C CNN
+F 1 "Micro_SD_Card" H 4450 6376 50  0000 C CNN
+F 2 "" H 5650 6050 50  0001 C CNN
+F 3 "http://katalog.we-online.de/em/datasheet/693072010801.pdf" H 4500 5750 50  0001 C CNN
+	1    4500 5750
+	1    0    0    -1  
+$EndComp
+Text HLabel 3050 6050 0    50   Output ~ 0
+SPI_MISO
+Text HLabel 3050 5650 0    50   Input ~ 0
+SPI_MOSI
+Text HLabel 3050 5850 0    50   Input ~ 0
+SPI_CLK
+Text HLabel 3050 5550 0    50   Input ~ 0
+SPI_SS
+Wire Wire Line
+	3050 5550 3600 5550
+Wire Wire Line
+	3600 5850 3050 5850
+Wire Wire Line
+	3050 5650 3600 5650
+Wire Wire Line
+	3600 6050 3050 6050
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5D5EC7A6
+P 3350 5150
+F 0 "#PWR?" H 3350 5000 50  0001 C CNN
+F 1 "+3.3V" H 3365 5323 50  0000 C CNN
+F 2 "" H 3350 5150 50  0001 C CNN
+F 3 "" H 3350 5150 50  0001 C CNN
+	1    3350 5150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3600 5750 3350 5750
+Wire Wire Line
+	3350 5750 3350 5150
+$Comp
+L power:GND #PWR?
+U 1 1 5D5EEA4B
+P 3350 6300
+F 0 "#PWR?" H 3350 6050 50  0001 C CNN
+F 1 "GND" H 3355 6127 50  0000 C CNN
+F 2 "" H 3350 6300 50  0001 C CNN
+F 3 "" H 3350 6300 50  0001 C CNN
+	1    3350 6300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3600 5950 3350 5950
+Wire Wire Line
+	3350 5950 3350 6300
+$Comp
+L power:GND #PWR?
+U 1 1 5D5EFC45
+P 5350 6500
+F 0 "#PWR?" H 5350 6250 50  0001 C CNN
+F 1 "GND" H 5355 6327 50  0000 C CNN
+F 2 "" H 5350 6500 50  0001 C CNN
+F 3 "" H 5350 6500 50  0001 C CNN
+	1    5350 6500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5300 6350 5350 6350
+Wire Wire Line
+	5350 6350 5350 6500
+NoConn ~ 3600 6150
+NoConn ~ 3600 5450
+$Comp
+L Device:C C?
+U 1 1 5D5F1760
+P 3000 5000
+F 0 "C?" H 3115 5046 50  0000 L CNN
+F 1 "C" H 3115 4955 50  0000 L CNN
+F 2 "" H 3038 4850 50  0001 C CNN
+F 3 "~" H 3000 5000 50  0001 C CNN
+	1    3000 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5D5F3059
+P 3000 4800
+F 0 "#PWR?" H 3000 4650 50  0001 C CNN
+F 1 "+3.3V" H 3015 4973 50  0000 C CNN
+F 2 "" H 3000 4800 50  0001 C CNN
+F 3 "" H 3000 4800 50  0001 C CNN
+	1    3000 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D5F368B
+P 3000 5200
+F 0 "#PWR?" H 3000 4950 50  0001 C CNN
+F 1 "GND" H 3005 5027 50  0000 C CNN
+F 2 "" H 3000 5200 50  0001 C CNN
+F 3 "" H 3000 5200 50  0001 C CNN
+	1    3000 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3000 5200 3000 5150
+Wire Wire Line
+	3000 4850 3000 4800
+$Comp
+L Connector:USB_A J?
+U 1 1 5EFE9ACE
+P 3400 1350
+F 0 "J?" H 3457 1817 50  0000 C CNN
+F 1 "USB_A" H 3457 1726 50  0000 C CNN
+F 2 "" H 3550 1300 50  0001 C CNN
+F 3 " ~" H 3550 1300 50  0001 C CNN
+	1    3400 1350
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
